@@ -1,0 +1,96 @@
+Change Component DesignItemId : Designator=R1 Old DesignItemId= New DesignItemId=3362P-1-502
+Change Component DesignItemId : Designator=H2 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x2P
+Change Component DesignItemId : Designator=H5 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x2P
+Change Component DesignItemId : Designator=H6 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x2P
+Change Component DesignItemId : Designator=H1 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x3P
+Change Component DesignItemId : Designator=H3 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x3P
+Change Component DesignItemId : Designator=H4 Old DesignItemId= New DesignItemId=HDR-M_2.54_1x3P
+Change Component DesignItemId : Designator=CN1 Old DesignItemId= New DesignItemId=XT30UPB-M
+Change Component Description : Designator=R1 Old Description= New Description=阻值:5kΩ;精度:±10%;温度系数:±250ppm/;
+Change component parameters: Designator = "H1"; Footprint = "HDR-TH_3P-P2.54-V-M"; UniqueID = "\gge2"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x3P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C2937625"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "PZ254V-11-03P_C2937625"; VariantName = "[No Variations]"
+Change component parameters: Designator = "H2"; Footprint = "HDR-TH_2P-P2.54-V-M-1"; UniqueID = "\gge3"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x2P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C124375"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "210S-1*2P L=11.6MMGold-plated black"; VariantName = "[No Variations]"
+Change component parameters: Designator = "H3"; Footprint = "HDR-TH_3P-P2.54-V-M"; UniqueID = "\gge4"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x3P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C2937625"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "PZ254V-11-03P_C2937625"; VariantName = "[No Variations]"
+Change component parameters: Designator = "H4"; Footprint = "HDR-TH_3P-P2.54-V-M"; UniqueID = "\gge5"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x3P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C2937625"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "PZ254V-11-03P_C2937625"; VariantName = "[No Variations]"
+Change component parameters: Designator = "H5"; Footprint = "HDR-TH_2P-P2.54-V-M-1"; UniqueID = "\gge7"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x2P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C124375"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "210S-1*2P L=11.6MMGold-plated black"; VariantName = "[No Variations]"
+Change component parameters: Designator = "H6"; Footprint = "HDR-TH_2P-P2.54-V-M-1"; UniqueID = "\gge8"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "HDR-M_2.54_1x2P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "插件"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C124375"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "210S-1*2P L=11.6MMGold-plated black"; VariantName = "[No Variations]"
+Change component parameters: Designator = "CN1"; Footprint = "CONN-TH_XT30UPB-M"; UniqueID = "\gge6"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "XT30UPB-M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Changzhou Amass Elec"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part"; Value = "XT30UPB-M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = "XT30UPB-M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Origin Footprint"; Value = "CONN-TH_XT30UPB-M"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C428721"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "XT30UPB-M"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R1"; Footprint = "RES-ADJ-TH_3362P"; UniqueID = "\gge1"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Add into BOM"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Convert to PCB"; Value = "yes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet"; Value = "https://atta.szlcsc.com/upload/public/pdf/source/20171114/C118903_15106326539181117393.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Device"; Value = "3362P-1-502"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB Part Class"; Value = "Extended Part"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LCSC Part Name"; Value = "5kΩ ±10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "BOCHEN(博晨)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part"; Value = "3362P-1-502"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Name"; Value = "5kΩ"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier"; Value = "LCSC"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Footprint"; Value = "3362P"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Supplier Part"; Value = "C118903"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Symbol"; Value = "3362P-1-502"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Temperature Coefficient"; Value = "±250ppm/"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "±10%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "5kΩ"; VariantName = "[No Variations]"
+Added Class: Name=IEECS_Design_Head
+Added Room: Name=IEECS_Design_Head

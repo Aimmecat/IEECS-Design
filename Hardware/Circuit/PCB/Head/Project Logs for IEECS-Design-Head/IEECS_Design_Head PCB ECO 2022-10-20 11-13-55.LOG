@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=H2 Old Footprint=HDR-TH_2P-P2.54-V-M-1 New Footprint=Pin1x2
+Change Component Footprint: Designator=H5 Old Footprint=HDR-TH_2P-P2.54-V-M-1 New Footprint=Pin1x2
+Change Component Footprint: Designator=H6 Old Footprint=HDR-TH_2P-P2.54-V-M-1 New Footprint=Pin1x2
+Added Room: Name=IEECS_Design_Head

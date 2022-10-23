@@ -1,0 +1,847 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<title>Recitation 15: Search: Basics | Search Algorithms | Unit 4: Probability and Planning | Introduction to Electrical Engineering and Computer Science I | Electrical Engineering and Computer Science | MIT OpenCourseWare</title>
+<!-- Begin Automatic Metadata Insertion --><meta content="6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011" name="WT.cg_n">
+<meta content="Recitation 15: Search: Basics" name="WT.cg_s">
+<meta content="" name="Description">
+<meta content="Kaelbling, Leslie" name="Author">
+<meta content="White, Jacob" name="Author">
+<meta content="Abelson, Harold" name="Author">
+<meta content="Freeman, Dennis" name="Author">
+<meta content="Lozano-Pérez, Tomás" name="Author">
+<meta content="Chuang, Isaac" name="Author">
+<meta content="6.01SC,6.01,Python programming,object-oriented programming,state machines,signals and systems,linear time-invariant,LTI,poles,circuits,op-amps,Thevenin,Norton,superposition,probability,state estimation,search algorithms,Software Design and Engineering,Robotics and Control Systems,Artificial Intelligence" name="keywords">
+<meta content="6.01SC Introduction to Electrical Engineering and Computer Science I | Recitation 15: Search: Basics" name="Search_Display">
+<meta content="Software Design and Engineering" itemprop="about">
+<meta content="Robotics and Control Systems" itemprop="about">
+<meta content="Artificial Intelligence" itemprop="about">
+<!-- End Automatic Metadata Insertion --><link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/grid.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/base.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/menu.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/jquery.bubblepopup.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/courses.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/courses_new.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/jquery.jscrollpane.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/media_tabs.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/scholar2.css">
+<link href="https://ocw.mit.edu/xml/ocwcc.rdf" type="application/rdf+xml" rel="metadata">
+<link rel="canonical" href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance">
+<link rel="apple-touch-icon" href="../../../../common/images/apple-touch-icon.png">
+<script type="text/javascript" src="../../../../common/scripts/jquery.js"></script><script type="text/javascript" src="../../../../common/scripts/ocw-media-utils-offline.js"></script><script type="text/javascript" src="../../../../common/scripts/ocw-offline.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery.bubblepopup.min.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery-ui.min.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery.jscrollpane.min.js"></script><script type="text/javascript" src="../../../../common/scripts/expandy.js"></script><script type="text/javascript" src="../../../../common/scripts/bubble-popup-offline.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $("#tabs").tabs();
+        IpadScroller();
+      });
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+        
+	
+
+        <header id="top"><div id="grid">
+				
+				
+					
+<div id="portletwrapper-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572" class="portletWrapper kssattr-portlethash-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572">
+<div class="portletStaticText portlet-static-site-header">
+<!--googleoff: index-->
+<div class="grid_6 alpha" id="banner"><a href="https://ocw.mit.edu/"><img src="../../../../common/images/ocw_mast.png" class="logo" alt="MIT OpenCourseWare, Massachusetts Institute of Technology"></a></div>
+<div class="grid_6 omega" id="subscribe">
+<aside class="module" aria-label="Connect with OCW"><table class="social"><tbody><tr>
+<td class="socialbutton"><a aria-label="Subscribe to the OCW Newsletter" href="https://ocw.mit.edu/subscribe/index.htm?utm_source=header"><img src="../../../../common/images/trans.gif" alt="An icon depicting an envelope.">Subscribe to the OCW Newsletter</a></td>
+            <td>
+<a aria-label="Google+" href="https://plus.google.com/104567381989352550847/posts"><img src="../../../../common/images/icon_gp.png" alt="Click to visit our Google+ page."></a>                   <a aria-label="Pinterest" href="https://www.pinterest.com/mitocw/pins/"><img src="../../../../common/images/icon_pin.png" alt="Click to visit our Pinterest page."></a>                   <a aria-label="Facebook" href="https://facebook.com/mitocw"><img src="../../../../common/images/icon_fb.png" alt="Click to visit our Facebook page."></a>                   <a aria-label="Twitter" href="https://twitter.com/mitocw"><img src="../../../../common/images/icon_tw.png" alt="Click to visit our Twitter feed."></a>
+</td>
+        </tr></tbody></table></aside><nav aria-label="Help Links" class="helplinks"><a aria-label="OCW Site Help" href="https://ocw.mit.edu/help">Help</a><span aria-hidden="true">|</span>     <a href="../../../../common/jsp/feedback.htm">Contact Us</a>   </nav>
+</div>
+<div class="clear"> </div>
+<!--googleon: index-->
+</div>
+
+</div>
+
+
+
+
+
+<!--googleoff: index-->
+<nav id="mega" class="grid_8 alpha" aria-label="Site"><ul id="menu" role="presentation">
+<li id="menu_home">
+        <a href="https://ocw.mit.edu/" aria-label="Homepage"><img src="../../../../common/images/top-nav_home.png" class="home_icon" alt="Click for site home page."></a><!-- Begin Home Item -->
+    </li>
+<!-- End Home Item -->
+    
+    <li id="drop_1" class="selected" aria-label="Find Courses">
+     <a href="#" aria-hidden="true">Find Courses</a><!-- Begin 5 columns Item -->
+      <div class="dropdown_5columns-a mega-courses">
+        <div class="col_1a">
+          <div class="row_1a">
+            <nav aria-labelledby="mm-find-courses-by"><span id="mm-find-courses-by" class="nav" aria-hidden="true">Find courses by:</span>
+              <ul class="find_by" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Topic</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-number/">MIT Course Number</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-department/">Department</a></li>
+				<li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+				<li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+            	<li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-megamenu&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+			   </ul></nav><nav aria-labelledby="mm-collections"><span id="mm-collections" class="nav" aria-hidden="true">Collections</span>
+              <ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Lectures</a></li>
+                <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+                <li><a href="https://ocw.mit.edu/courses/instructor-insights/">Instructor Insights</a></li>
+                <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+              </ul></nav><nav class="col_1b" aria-labelledby="mm-translated-courses"><span id="mm-translated-courses" class="nav" aria-hidden="true" style="line-height: 1.3;">Cross-Disciplinary Topic Lists</span>
+							<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/energy-courses">Energy</a></li>
+                				<li><a href="https://ocw.mit.edu/courses/entrepreneurship">Entrepreneurship</a></li>
+				                <li><a href="https://ocw.mit.edu/courses/environment-courses">Environment</a></li>
+				              	<li><a href="https://ocw.mit.edu/courses/intro-programming">Introductory Programming</a></li>
+				                <li><a href="https://ocw.mit.edu/courses/life-sciences">Life Sciences</a></li>
+                				<li><a href="https://ocw.mit.edu/courses/transportation-courses">Transportation</a></li>
+							</ul></nav>
+</div>
+          <div class="row_1b">
+            <nav aria-labelledby="mm-cross-disciplinary-topic-lists"><span id="mm-cross-disciplinary-topic-lists" class="nav" aria-hidden="true">Translated Courses</span>
+            	<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/translated-courses/traditional-chinese" aria-label="Traditional Chinese">繁體字 / Traditional Chinese</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/spanish" aria-label="Spanish">Español / Spanish</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/portuguese" aria-label="Portuguese">Português / Portuguese</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/persian" aria-label="Persian">فارسی / Persian</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/turkish" aria-label="Turkish">Türkçe / Turkish</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/korean" aria-label="Korean">(비디오)한국 / Korean</a></li>
+              </ul></nav>
+</div>
+        </div>
+
+      </div>
+    </li>
+    <li id="drop_2">
+        <a href="" aria-hidden="true">About</a>
+        <div class="dropdown_1column-a">
+            <nav class="col_1" aria-label="About"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About MIT OpenCourseWare</a></li>
+                    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+                    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+                    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+                </ul></nav>
+</div>
+    </li>
+    <li id="drop_3">
+        <a href="" aria-hidden="true">Give Now</a>
+        <div class="dropdown_1column-a">
+          <nav class="col_1" aria-label="Donate"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/give/">Make a Donation</a></li>
+              <li><a href="https://ocw.mit.edu/give/why-give/">Why Give?</a></li>
+              <li><a href="https://ocw.mit.edu/give/our-supporters/">Our Supporters</a></li>
+              <li><a href="https://ocw.mit.edu/give/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+              <li><a href="https://ocw.mit.edu/give/shop-ocw">Shop OCW</a></li>
+              <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+            </ul></nav>
+</div>
+    </li>
+    <li id="drop_4">
+      <a href="" aria-hidden="true">Featured Sites</a>
+      <div class="dropdown_1column-a">
+        <nav class="col_1" aria-labelledby="mm-featured-sites"><span id="mm-featured-sites" class="nav" aria-hidden="true">OCW Initiatives</span>
+          <ul role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+            <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=featured-sites">OCW Educator</a></li>
+            <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+            <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+					</ul></nav><nav class="col_1" aria-labelledby="mm-featured-external-links"><span id="mm-featured-external-links" class="nav" aria-hidden="true">Beyond OCW</span>
+					<ul>
+<li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT Plus K12 Videos">MIT+K12 Videos</a></li>
+            <li><a href="https://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+						<li><a href="https://outreach.mit.edu" aria-label="External Link: Outreach at MIT">Outreach @ MIT</a></li>
+						<li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+          </ul></nav>
+</div>
+    </li>
+  </ul></nav><div id="search" role="search" class="grid_4 omega">
+  
+    <form aria-label="Advanced Search" method="get" action="../../../../common/search/AdvancedSearch.htm">
+		  <table class="search"><tbody><tr>
+<td class="black"><input type="text" onblur="fillSearchBox()" onfocus="clearSearchBox()" maxlength="255" value="Search" name="q" class="greytext searchField" id="terms"></td>
+            <td class="black"><input type="image" src="../../../../common/images/button_search.png" name="btnG" class="sub_button"></td>
+            <td class="text2"><a href="../../../../common/search/AdvancedSearch.htm">Advanced<br>Search</a></td>
+          </tr></tbody></table>
+</form>
+</div>
+<div class="clear"></div>
+<!--googleon: index-->
+<!-- *end header* -->
+
+				
+				
+			</div>
+<!-- top grid end -->
+		</header><!-- top end --><div id="center_media">
+      	<div id="grid">
+      		<div id="left">
+        		<nav id="breadcrumb_media" aria-label="Breadcrumb"><p>
+
+    <a href="https://ocw.mit.edu/">Home</a>
+    
+        »
+        
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses">Courses</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science">Electrical Engineering and Computer Science</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/index.htm">Introduction to Electrical Engineering and Computer Science I</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/unit-4-probability-and-planning/index.htm">Unit 4: Probability and Planning</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/unit-4-probability-and-planning/search-algorithms/index.htm">Search Algorithms</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            
+            
+            Recitation 15: Search: Basics
+         
+    
+</p>
+
+            	</nav><div class="clear"></div>
+        		<div id="media_title">
+        		<h1 class="title" itemprop="name" property="dct:title">
+        <span class="" id="parent-fieldname-title">
+            Recitation 15: Search: Basics
+        </span>
+    </h1>
+        		</div>
+           		<div class="clear"></div>
+           		<div id="course_wrapper_media">
+           			<nav id="course_nav" aria-label="Course"><script language="javascript" type="text/javascript">
+function toggleMenu(objID) {
+  if (!document.getElementById) return;
+  var ob = document.getElementById(objID);
+  ob.className = (ob.className == 'selected')?'': 'selected';
+}
+function toggleClass(id)
+{
+  var divtoggleClass= document.getElementById(id);
+  divtoggleClass.className = (divtoggleClass.className == 'mO')?'mC': 'mO';
+  return false;
+}
+function changeAlt(id)
+{
+  id.alt = (id.alt == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+  id.title = (id.title == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+}
+</script><!--Left Nav Starts --><ul>
+<li class="">
+			   			<a href="../../../../contents/index.htm">
+		                  Course Home  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/syllabus/index.htm">
+		                  Syllabus  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="this-course-at-mit" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuthis-course-at-mit'); toggleClass('this-course-at-mit'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/this-course-at-mit/index.htm" class="">
+		                  This Course at MIT  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuthis-course-at-mit" class="">
+<li class="">
+				 		<a href="../../../../contents/this-course-at-mit/shifting-to-a-practice-theory-practice-approach/index.htm" class="">Shifting to a Practice-Theory-Practice Approach</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/becoming-more-cognizant-of-students2019-learning/index.htm" class="">Becoming More Cognizant of Students’ Learning</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/flipping-the-classroom-to-facilitate-active-learning/index.htm" class="">Flipping the Classroom to Facilitate Active Learning</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/using-an-online-tutoring-environment-to-promote-student-self-assessment/index.htm" class="">Online Tutoring Environment</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/formative-assessment-during-design-labs/index.htm" class="">Formative Assessment during Design Labs</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/reflecting-on-assessment/index.htm" class="">Reflecting on Assessment</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/co-teaching-the-course/index.htm" class="">Co-Teaching the Course</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/software-and-tools/index.htm">
+		                  Software and Tools  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="python-tutorial" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menupython-tutorial'); toggleClass('python-tutorial'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/python-tutorial/index.htm" class="">
+		                  Python Tutorial  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menupython-tutorial" class="">
+<li class="">
+				 		<a href="../../../../contents/python-tutorial/part-i/index.htm" class="">Types, Values, Expressions; Variables and Binding</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-2/index.htm" class="">Functions and Scope</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-3/index.htm" class="">Using if, else, and while</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-4/index.htm" class="">Quadratic Roots</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-5/index.htm" class="">Loops and List Comprehensions</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-6/index.htm" class="">Arrays as Lists of Lists</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-7/index.htm" class="">Association Lists</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-1-software-engineering" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-1-software-engineering'); toggleClass('unit-1-software-engineering'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-1-software-engineering/index.htm" class="">
+		                  Unit 1: Software Engineering  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-1-software-engineering" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-1-software-engineering/object-oriented-programming/index.htm" class="">Object-Oriented Programming</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-1-software-engineering/state-machines/index.htm" class="">State Machines</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-2-signals-and-systems" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-2-signals-and-systems'); toggleClass('unit-2-signals-and-systems'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-2-signals-and-systems/index.htm" class="">
+		                  Unit 2: Signals and Systems  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-2-signals-and-systems" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/signals-and-systems/index.htm" class="">Signals and Systems</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/lti-signals-and-systems/index.htm" class="">LTI Signals and Systems</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/characterizing-system-performance/index.htm" class="">Characterizing System Performance</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/designing-control-systems/index.htm" class="">Designing Control Systems</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/midterm-exam-1/index.htm">
+		                  Midterm Exam 1  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-3-circuits" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-3-circuits'); toggleClass('unit-3-circuits'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-3-circuits/index.htm" class="">
+		                  Unit 3: Circuits  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-3-circuits" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-3-circuits/circuits/index.htm" class="">Circuits</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-3-circuits/op-amps/index.htm" class="">Op-Amps</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-3-circuits/circuit-abstractions/index.htm" class="">Circuit Abstractions</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/midterm-exam-2/index.htm">
+		                  Midterm Exam 2  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-4-probability-and-planning" class="mC">
+						<a href="#" class="" onclick="toggleMenu('menuunit-4-probability-and-planning'); toggleClass('unit-4-probability-and-planning'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Collapse Menu" title="Collapse Menu"></a>
+		                <a href="../../../../contents/unit-4-probability-and-planning/index.htm" class="">
+		                  Unit 4: Probability and Planning  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-4-probability-and-planning" class="selected">
+<li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/discrete-probability/index.htm" class="">Discrete Probability</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/state-estimation/index.htm" class="">State Estimation</a>
+		            </li>
+		            <li class="selected">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/search-algorithms/index.htm" class="selected">Search Algorithms</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/optimizing-a-search/index.htm" class="">Optimizing a Search</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/final-exam/index.htm">
+		                  Final Exam  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/resource-index/index.htm">
+		                  Resource Index  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    
+		    
+         	
+	<!--second tal block close-->  
+	
+</ul>
+<!--Left Nav Ends --></nav><main id="course_inner_media" aria-labelledby="media_title"><p><img src="../../../../common/images/scholar_bar_chp.png" style="width: 543px; height: 32px; border: 1px solid #790835; margin-top: -16px;" alt="OCW Scholar"></p>
+      					 
+        <div class="" id="parent-fieldname-text">
+            
+            
+        </div>
+    
+      					 
+
+<script type="text/javascript">var caption_embed_1 ={'English - US': '/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance/MIT6_01SC_rec15_300k.srt'}</script><div id="media-embed">
+         <div class="attention_message" id="embed_1">
+<p>Flash and JavaScript are required for this feature.</p>
+<p>Download the video from <a href="http://itunes.apple.com/us/itunes-u/recitation-15-search-basics/id490181666?i=108667924">iTunes U</a> or the <a href="http://www.archive.org/download/MIT6.01SCS11/MIT6_01SC_rec15_300k.mp4">Internet Archive</a>.</p>
+</div>
+     </div>
+    
+     <script type="text/javascript">ocw_embed_chapter_media('embed_1', 'https://www.youtube.com/v/yWQYXEjxAnk', 'youtube', '/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance', 'https://img.youtube.com/vi/yWQYXEjxAnk/0.jpg',0,0, 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance/MIT6_01SC_rec15_300k.srt')</script><script type="text/javascript">
+		window.onload=function(){
+		init();
+		
+		}
+		var tabLinks = new Array();
+		var contentDivs = new Array();
+		function init() {
+		  // Grab the tab links and content divs from the page
+		  var tabListItems = document.getElementById('tabs').childNodes;
+		  for ( var i = 0; i < tabListItems.length; i++ ) {
+			if ( tabListItems[i].nodeName == "LI" ) {
+			  var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+			  var id = getHash( tabLink.getAttribute('href') );
+			  tabLinks[id] = tabLink;
+			  contentDivs[id] = document.getElementById( id );
+			}
+		  }
+		  // Assign onclick events to the tab links, and
+		  // highlight the first tab
+		  var i = 0;
+		  for ( var id in tabLinks ) {
+			tabLinks[id].onclick = showTab;
+			tabLinks[id].onfocus = function() { this.blur() };
+			if ( i == 0 ) tabLinks[id].className = 'selected';
+			i++;
+		  }
+		  // Hide all content divs except the first
+		  var i = 0;
+		  for ( var id in contentDivs ) {
+			if ( i != 0 ) contentDivs[id].className = 'tabContent hide';
+			i++;
+		  }
+		}
+		function showTab() {
+		  var selectedId = getHash( this.getAttribute('href') );
+		  // Highlight the selected tab, and dim all others.
+		  // Also show the selected content div, and hide all others.
+		  for ( var id in contentDivs ) {
+			if ( id == selectedId ) {
+			  tabLinks[id].className = 'selected';
+			  contentDivs[id].className = 'tabContent';
+			} else {
+			  tabLinks[id].className = '';
+			  contentDivs[id].className = 'tabContent hide';
+			}
+		  }
+		  // Stop the browser following the link
+		  return false;
+		}
+		function getFirstChildWithTagName( element, tagName ) {
+		  for ( var i = 0; i < element.childNodes.length; i++ ) {
+			if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
+		  }
+		}
+		function getHash( url ) {
+		  var hashPos = url.lastIndexOf ( '#' );
+		  return url.substring( hashPos + 1 );
+		}
+ </script><div id="media_tabs">
+     
+        <ul id="tabs">
+<li class="first">
+                <a href="#vid_about" class="selected">Transcript</a>
+            </li>
+            <li class="">
+                <a href="#vid_index" class="">Download this Video</a>
+            </li>
+        </ul>
+<div id="vid_about" itemprop="description" class="tabContent">
+<ul><li><a class="transcript-link" title="Open in a new window." alt="Open in a new window." style="text-decoration: none; font-size: 1.0em;" target="_blank" text-decoration: none font-size: href="../../../../contents/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance/MIT6_01SC_rec15_300k.pdf"> Download this transcript - PDF (English - US)</a></li></ul>
+<p>KENDRA PUGH: Hi. Today, I'd like to talk to you about search. Previously, we've talked about ways to model uncertainty and also how to make estimations about a particular system when we're observing it from the outside or when we don't have perfect information. At this point, we've almost got enough components to attempt to make an autonomous system.</p>
+<p>But at this point, we also haven't enabled our autonomous systems to make complex decisions for itself. This is why we want to be able to encode search. Or we want to be able to enable a system to make an evaluation of a succession of decisions, or a succession of actions, when there are multiple choices and possibly multiple choices at every level. So as a consequence of being able to do search, our autonomous system should be able to complete a successive grouping of actions.</p>
+<p>In 6.01, we're going to be searching state spaces. And searching state spaces borrows a lot of ideas from state transition diagrams, or what we already know about state machines. When we're searching a state space, we want to know what states we're searching, what the transitions between them are going to look like, or how the access to the transitions from a given state to all the states that are its neighbors. We're going to want the start state to be specified so we know where to begin.</p>
+<p>We want a goal test, which actually specifies what we're looking for as a consequence of the search. Or if we get to a state and we want to know whether or not we're done, we use our goal test. And it could look at the output of the state, or actually just the state name, that sort of thing.</p>
+<p>The other thing that we're going to have while we're searching is a legal action list. The searches that we're going to do today, you and I are going to be able to see the entire state transition diagram at once. But if we're encoding how to search on our robot, our robot can't see the entire state transition diagram at once because if it could, then it wouldn't have to do search. It would know how to get there from here.</p>
+<p>Therefore, we give our system a legal action list, or all the actions that it should attempt to do at a given state. It's entirely possible that there aren't legal transitions at every state for every legal action. But it's good to have an exhaustive list of things to try and see if they succeed or fail and, as a consequence, what state you end up visiting every time you try to do one of these.</p>
+<p>Being able to do search is great. But we also want to be able to keep track of where we searched and how so that once we're done searching, we can actually execute the best thing. We're going to use a search tree to keep track of where we've been and how we got there. Search tree is going to be comprised of nodes. It's otherwise going to look like a directed, acyclic graph. And it's going to have a lot of similarity to any particular state transition diagram that we end up searching. But it's going to have nodes instead of states.</p>
+<p>Nodes are different. Nodes represent both the state that you've visited as a consequence of expanding its parent node, the parent node, or the place that you came from as a consequence of getting to that node, and the transition that you made in order to get there, or the action that happened that got you from the parent node to the child. Keeping track of a list of nodes is known as a path, or it specifies where you've been and how you got there. And if you're at a given node, you can actually use the reference to the parent node and the action to trace back from whatever node you're at currently to its parent node, to its parent node, to its parent node, and then finally get back to the start state. At that point, you'll know what path to take.</p>
+<p>So the only thing left to do is, how do you figure out which paths to follow first? That's where the agenda comes in. The agenda is going to be the collection of all partial paths you've ever created as a consequence of expanding nodes and then putting its child nodes on a partial path meant for future expansion. The order in which you add and remove things to the agenda is going to determine what your search tree looks like.</p>
+<p>That's a lot of information. At this point, I'm going to go over an example. We're going to search the state transition diagram. We're going to start at A. And our goal test would be whether or not our state was equal to E.</p>
+<p>Today, we're going to try two different kinds of basic search. One is referred to as breadth-first search, or BFS. And one is referred to as depth-first search, or DFS.</p>
+<p>Breadth-first search refers to the idea that as you build your search tree, you're going to exhaustively expand all the nodes at a given level before advancing to the next level, or all the given nodes at a given depth before expanding to the next depth. This means you're being very thorough. It also means that you're guaranteed to find the shortest path from your start node to the goal if it exists.</p>
+<p>Depth-first search is the opposite. As a consequence of depth-first search, you're going to expand all the nodes in a given branch as far down the tree as you possibly can before advancing to the next branch. It takes up a lot less space than the breadth-first search, but it's not guaranteed to find the optimal path.</p>
+<p>Another way to think about these two types of search is that if you're doing breadth-first search, then your agenda acts as a cue. First items in, or first partial paths that you discover, are the first items out or the first partial paths that you end up expanding. Depth-first search is when the agenda is used as a stack, or the first partial paths that you visit are the first partial paths-- or, the most recent partial paths that you visited are going to be the partial paths that you first extend. First in, last out. Or, last in, first out.</p>
+<p>Let me walk through a couple iterations on this state transition diagram. And hopefully, it'll be clearer what's going on. The first thing that happens is that you end up visiting and expanding the start node. That's pretty straightforward. So the path A is going to be added to both agendas. And the node A is going to be visited first on both search trees.</p>
+<p>If, in the general sense, I say that I'm going to make a transition to states in alphabetical order, and that's the order in which I'm going to add them to my agenda, that's going to be reflected in what I write up here. Let's say that I'm going to visit new nodes in alphabetical order. So nodes I would visit are B and C, and I'm going to add AB and AC to my agenda.</p>
+<p>Here's where the difference between breadth-first search and depth-first search comes in. In breadth-first search, because I'm following the convention first in, first out, if I place the partial path AB in my agenda first, then I'm going to expand B as a consequence of the partial path AB first. So when I go to B, I'm actually going to expand B now. I'm going to look at the nodes that I can visit as a consequence of expanding B. The ones that I can visit are C and D. And I'm going to add the partial paths ABC and ABD to my agenda.</p>
+<p>So AC, I'm just going to move to the front of the queue, or the agenda, and I'm going to add ABC and ABD. And I got there through B. So I'm going to add C and D here.</p>
+<p>Depth-first search grabs from the opposite end of the agenda. So the first thing I'm going to look at is AC. I'm going to expand to C, look at the nodes that I can reach as a consequence of expanding C, and visit B and D.</p>
+<p>AB is still hanging out here. I popped off AC to use it in order to expand C's children. And I'm going to add ACB first and ACD second.</p>
+<p>Note that our search trees already look different. And we'll actually end up reaching the goal using one of these search strategies first than the other, or as opposed to the other. If I go back to breadth-first search, I'm going to pop the partial path AC off the front of my agenda. I'm going to expand C. Expanding C gets me B and D. I'm going to move over my existing partial paths. And add ACB and ACD.</p>
+<p>I've staggered these in order to indicate that they're a consequence of a third iteration of breadth-first search. But they're actually considered to be at the same depth, since their parents are considered to be at the same depth, since their parents are parents of the start node. That's the defining feature of breadth-first research is the fact that we're going to exhaustively search a given depth in our search tree before advancing to the next depth level.</p>
+<p>If I run one more iteration of depth-first search, again, I'm popping partial paths off this end of the agenda. I'm going to expand D. D one transition available to a node. And in plain old fashioned breadth-first search and depth-first search, I run my goal test when I visit a node.</p>
+<p>So at this point, I would test whether or not E was my goal test. I would discover it's my goal test. My search would return successfully and return the path found. So AB and ACB remain on the agenda. I popped off ACD in order to expand D. And I found this path.</p>
+<p>At this point, I've concluded depth-first search. I'm going to do one more around of breadth-first search to demonstrate an important rule. If I pop ABC off the agenda and move all these over, if I'm looking at ABC, and I look at the children of C, the two children of C are B and D. So the first partial path that I would end up adding to the agenda as a consequence of expanding C in this case would be ABCD. And it would look like this.</p>
+<p>You'll notice that we're going to create an infinite loop. And there are two basic rules of basic search that I need to emphasize now to prevent you from doing things like creating an infinite loop. If you look in the textbook, they're called "How to Not be Completely Stupid."</p>
+<p>If at any point you're visiting a node in your partial path that already exists in your partial path, don't add it to that partial path. You'll prevent yourself from creating a cycle. Because if you visit the same node more than once, you've actually done more work than you need to.</p>
+<p>The second rule-- and it's not demonstrated well on this state transition diagram. But, for instance, if I had two arrows from B to D, there's no particular reason to consider both of these actions. And if you have a state transition diagram that allows multiple transitions from one state to another based on different actions, then you need to come up with some sort of rule to decide between the two actions. That's the second rule of how to not be completely stupid is -- if you have more than one transition from one state to another as a consequence of doing search, pick one and come up with a rule to pick one.</p>
+<p>This covers basic search. Next week, I'm going to talk about dynamic programming, costs, and heuristics.  </p>
+</div>
+        <div id="vid_index" itemprop="description" class="tabContent hide">
+<h2 class="subhead">Free Downloads</h2>
+<h3 class="subsubhead">Video</h3>
+<ul>
+<li>iTunes U (<a href="http://itunes.apple.com/us/itunes-u/recitation-15-search-basics/id490181666?i=108667924">MP4 - 33MB</a>)</li>
+<li>Internet Archive (<a href="http://www.archive.org/download/MIT6.01SCS11/MIT6_01SC_rec15_300k.mp4">MP4 - 33MB</a>)</li>
+</ul>
+<br><h3 class="subsubhead">Subtitle</h3>
+<ul><li>English - US (<a href="../../../../contents/unit-4-probability-and-planning/search-algorithms/recitation-2-inheritance/MIT6_01SC_rec15_300k.srt">SRT</a>)</li></ul>
+</div>
+    
+   </div>  
+
+
+
+      					 
+        <div class="" id="parent-fieldname-bottom_html_area">
+            
+            
+        </div>
+    
+                    </main><!--Course_inner_chip tag close -->
+</div>
+<!--Course_wrapper tag close --> 
+            </div>
+<!--left tag close -->
+            <aside id="right"><!--Begin Right Portion --><div>
+    
+<div id="portletwrapper-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465" class="portletWrapper kssattr-portlethash-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465">
+<div class="portletStaticText portlet-static-donate"><p class="zero"><a href="http://ocw.mit.edu/give"><img src="../../../../common/images/button_donate-now.png" alt="Give Now." class="donate"></a></p></div>
+
+</div>
+
+
+
+
+</div>
+
+                	<div>
+    
+
+
+
+</div>
+
+
+        <div class="" id="parent-fieldname-rsi_top_html_area">
+            
+            
+        </div>
+    
+
+<!-- RSI google ad space-->
+
+
+<div id="google_ads">    
+    <script type="text/javascript" src="https://partner.googleadservices.com/gampad/google_service.js"></script><script type="text/javascript">GS_googleAddAdSenseService("ca-pub-6588555046597237");GS_googleEnableAllServices();</script><script type="text/javascript">GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_A_DL");GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_B_DL");GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_C_DL");</script><script type="text/javascript">GA_googleFetchAds();</script><script language="javascript" type="text/javascript">
+GA_googleAddAttr("TYPE","HOUSE");
+GA_googleAddAttr("DEPARTMENT","6");
+GA_googleAddAttr("CRS_BEG2","01");
+GA_googleAddAttr("CRS_END","SC");
+GA_googleAddAttr("SESSION","S");
+GA_googleAddAttr("YEAR","11");
+</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_A_DL");</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_B_DL");</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_C_DL");</script>
+</div>
+
+<!-- End RSI ads--> 
+
+<div>
+    
+
+
+
+</div>
+
+            </aside><!--Right div close --><div class="clear"></div> 
+        </div>
+<!--grid tag close --> 
+      </div>
+		
+		<footer id="bottom"><div id="grid">
+				
+<div id="portletwrapper-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572" class="portletWrapper kssattr-portlethash-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572">
+<div class="portletStaticText portlet-static-site-footer"><div id="footer">
+<nav aria-label="Footer"><nav id="foot-c1" class="grid_2 alpha" aria-labelledby="f-find-courses"><span class="footer" id="f-find-courses" aria-hidden="true">Find Courses</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Find by Topic</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-number/">Find by Course Number</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-department/">Find by Department</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+    <li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/subtitled/">Courses with Subtitles</a></li>
+    <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+    <li><a href="https://ocw.mit.edu/courses/instructor-insights/">Instructor Insights</a></li>
+    <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+    <li><a href="https://ocw.mit.edu/courses/translated-courses/">Translated Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-footer&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+</ul></nav><div id="foot-c2" class="grid_2">
+<nav aria-labelledby="f-about"><span id="f-about" class="footer" aria-hidden="true">About</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About OpenCourseWare</a></li>
+    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+    <li><a href="https://ocw.mit.edu/about/media-coverage/press-releases/">Press Releases</a></li>
+</ul></nav><!--about--><nav aria-labelledby="f-tools"><span id="f-tools" class="footer" aria-hidden="true">Tools</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/help/">Help &amp; FAQs</a></li>
+    <li><a href="../../../../common/jsp/feedback.htm">Contact Us</a></li>
+    <li><a href="../../../../common/search/AdvancedSearch.htm">Advanced Search</a></li>
+    <li><a href="https://ocw.mit.edu/help/site-map/">Site Map</a></li>
+    <li><a href="../../../../common/terms/index.htm">Privacy &amp; Terms of Use</a></li>
+    <li><a href="https://ocw.mit.edu/help/rss/">RSS Feeds</a></li>
+</ul></nav><!--tools-->
+</div>
+<nav class="grid_2" id="foot-c3" aria-labelledby="f-donate"><span id="f-donate" class="footer" aria-hidden="true">Give Now</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/give/">Make a Donation</a></li>
+    <li><a href="https://ocw.mit.edu/give/why-give/">Why Give?</a></li>
+    <li><a href="https://ocw.mit.edu/give/our-supporters/">Our Supporters</a></li>
+    <li><a href="https://ocw.mit.edu/give/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+    <li><a href="https://ocw.mit.edu/give/shop-ocw/">Shop OCW</a></li>
+    <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+</ul></nav><div class="grid_2" id="foot-c4"><nav aria-labelledby="f-featured-sites"><span id="f-featured-sites" class="footer" aria-hidden="true">Featured Sites</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=featured-sites">OCW Educator</a></li>
+    <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+    <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+    <li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT+K12 Videos">MIT+K12 Videos</a></li>
+    <li><a href="http://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+    <li><a href="https://outreach.mit.edu/" aria-label="External Link: Outreach at MIT">Outreach@MIT</a></li>
+    <li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+</ul></nav></div>
+</nav><aside style="min-height: 289px;" aria-labelledby="f-our-corporate-supporters" class="grid_4 omega" id="foot-c5"><span aria-hidden="true" class="footer" id="f-our-corporate-supporters">Our Corporate Supporters</span>           <!-- HOME_CORP_LOGO_1 -->
+<div id="div-gpt-ad-1388181177156-0" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-0'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_2 -->
+<div id="div-gpt-ad-1388181177156-1" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-1'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_3 -->
+<div id="div-gpt-ad-1388181177156-2" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-2'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_4 -->
+<div id="div-gpt-ad-1388181177156-3" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-3'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_5 -->
+<div id="div-gpt-ad-1388181177156-4" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-4'); });
+              </script></div>
+<!-- HOME_CORP_LOGO_6 -->
+<div id="div-gpt-ad-1388181177156-5" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-5'); });
+              </script></div>
+</aside><div class="grid_12 alpha omega" itemprop="publisher" itemscope="" itemtype="http://schema.org/CollegeOrUniversity">
+<h4 class="footer" style="border-top: thin solid #d5c9ba; padding-top: 10px; margin-bottom: 10px;">About <span itemprop="name">MIT OpenCourseWare</span>
+</h4>
+<p style="color: #999; font-size: 1em; line-height: 1.5em; margin-top: 10px;" itemprop="description">MIT OpenCourseWare makes the materials used in the teaching of almost all of MIT's subjects available on the Web, free of charge. With more than 2,400 courses available, OCW is delivering on the promise of open sharing of knowledge. <a href="http://ocw.mit.edu/about/">Learn more »</a></p>
+</div>
+<div id="foot-copy" class="grid_12 alpha omega" style="border-top: none;">
+<a href="http://web.mit.edu"><img src="../../../../common/images/logo_mit.png" alt="Massachusetts Institute of Technology logo and name." style="width: 195; height: 44;"></a><a href="http://odl.mit.edu"><img src="https://ocw.mit.edu/images/logo_odl.png" alt="MIT Office of Digital Learning logo and name." style="width: 289; height: 54; vertical-align: top;"></a><a href="http://www.oeconsortium.org/"><img src="https://ocw.mit.edu/images/logo_oec.png" alt="Open Education Consortium logo." style="width: 219px; height: 59px; vertical-align: top;"></a><a rel="license" itemprop="useRightsUrl" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="../../../../common/images/cc_by-nc-sa.png" alt="Creative Commons logo with terms BY-NC-SA." style="width: 126px; height: 44px; margin-right: 0; margin-left: 13px;"></a>
+<p class="copyright">© 2001–2017<br>
+Massachusetts Institute of Technology</p>
+<p style="font-size: 0.9em; margin-bottom: 15px;">Your use of the MIT OpenCourseWare site and materials is subject to our <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license">Creative Commons License</a> and other <a href="../../../../common/terms/index.htm" rel="cc:morePermissions">terms of use</a>.</p>
+</div>
+</div></div>
+
+</div>
+
+
+
+
+
+                
+			</div> <!-- bottom grid end -->
+		</footer><!-- footer bottom end -->
+</body>
+</html>

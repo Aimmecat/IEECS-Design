@@ -1,0 +1,6442 @@
+1
+00:00:00,000 --> 00:00:00,040
+
+2
+00:00:00,040 --> 00:00:02,460
+The following content is
+provided under a Creative
+
+3
+00:00:02,460 --> 00:00:03,870
+Commons license.
+
+4
+00:00:03,870 --> 00:00:06,910
+Your support will help MIT
+OpenCourseWare continue to
+
+5
+00:00:06,910 --> 00:00:10,560
+offer high-quality educational
+resources for free.
+
+6
+00:00:10,560 --> 00:00:13,460
+To make a donation or view
+additional materials from
+
+7
+00:00:13,460 --> 00:00:18,090
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+8
+00:00:18,090 --> 00:00:19,340
+ocw.mit.edu.
+
+9
+00:00:19,340 --> 00:00:24,190
+
+10
+00:00:24,190 --> 00:00:26,785
+PROFESSOR: So today I want to
+start a new topic, circuits.
+
+11
+00:00:26,785 --> 00:00:29,430
+
+12
+00:00:29,430 --> 00:00:30,130
+No, that's good.
+
+13
+00:00:30,130 --> 00:00:31,390
+That's good.
+
+14
+00:00:31,390 --> 00:00:33,662
+Circuits are good.
+
+15
+00:00:33,662 --> 00:00:34,590
+AUDIENCE: Yay.
+
+16
+00:00:34,590 --> 00:00:35,280
+PROFESSOR: Thank
+you, thank you.
+
+17
+00:00:35,280 --> 00:00:37,880
+Much better.
+
+18
+00:00:37,880 --> 00:00:42,290
+So just to provide some
+perspective, I want to remind
+
+19
+00:00:42,290 --> 00:00:45,500
+you where we are, how we got
+here, and where we're going.
+
+20
+00:00:45,500 --> 00:00:48,170
+So at the beginning of the
+course, we promised that there
+
+21
+00:00:48,170 --> 00:00:49,830
+were several intellectual
+themes that
+
+22
+00:00:49,830 --> 00:00:52,400
+we would talk about.
+
+23
+00:00:52,400 --> 00:00:54,850
+Probably the most important
+one there is
+
+24
+00:00:54,850 --> 00:00:57,450
+designing complex systems.
+
+25
+00:00:57,450 --> 00:00:59,000
+That's what we're
+really about.
+
+26
+00:00:59,000 --> 00:01:00,920
+We would like you to
+be able to make
+
+27
+00:01:00,920 --> 00:01:02,670
+very complicated systems.
+
+28
+00:01:02,670 --> 00:01:04,220
+How do you think about parts?
+
+29
+00:01:04,220 --> 00:01:06,040
+How do you think about
+connecting them?
+
+30
+00:01:06,040 --> 00:01:07,730
+How do you think about things
+when you want to make
+
+31
+00:01:07,730 --> 00:01:11,170
+something that's very
+complicated?
+
+32
+00:01:11,170 --> 00:01:13,740
+Part of that is modeling.
+
+33
+00:01:13,740 --> 00:01:16,510
+We just finished a module
+on modeling.
+
+34
+00:01:16,510 --> 00:01:19,550
+So in order to make a complex
+system, we'd like to be able
+
+35
+00:01:19,550 --> 00:01:23,850
+to predict how it will behave
+before we completely build it.
+
+36
+00:01:23,850 --> 00:01:26,220
+Sometimes it's impossible
+to build the
+
+37
+00:01:26,220 --> 00:01:27,670
+entire system before.
+
+38
+00:01:27,670 --> 00:01:30,210
+
+39
+00:01:30,210 --> 00:01:34,030
+Sometimes it's impossible
+to build prototypes.
+
+40
+00:01:34,030 --> 00:01:38,190
+Sometimes you're stuck with
+going with the design at
+
+41
+00:01:38,190 --> 00:01:41,270
+launch, and figuring
+out how it works.
+
+42
+00:01:41,270 --> 00:01:44,340
+In those cases in specific, it's
+very important to be able
+
+43
+00:01:44,340 --> 00:01:47,850
+to model it, to have some
+confidence that the thing's
+
+44
+00:01:47,850 --> 00:01:49,500
+going to work.
+
+45
+00:01:49,500 --> 00:01:52,090
+We're going to talk about
+augmenting physical systems
+
+46
+00:01:52,090 --> 00:01:52,990
+with computation.
+
+47
+00:01:52,990 --> 00:01:55,320
+That's the module we're
+about to begin.
+
+48
+00:01:55,320 --> 00:01:58,060
+And we'll conclude by talking
+about how to build systems
+
+49
+00:01:58,060 --> 00:02:00,900
+that are robust to change.
+
+50
+00:02:00,900 --> 00:02:05,240
+So we started with the idea
+of, how do you make
+
+51
+00:02:05,240 --> 00:02:06,320
+complicated systems?
+
+52
+00:02:06,320 --> 00:02:08,840
+And we introduced this notion
+of primitives, combination,
+
+53
+00:02:08,840 --> 00:02:12,350
+abstraction, and pattern in
+terms of software engineering.
+
+54
+00:02:12,350 --> 00:02:14,600
+We did that because that's the
+simplest possible way of
+
+55
+00:02:14,600 --> 00:02:16,350
+getting started.
+
+56
+00:02:16,350 --> 00:02:20,810
+It provided a very good
+illustration of PCAP at the
+
+57
+00:02:20,810 --> 00:02:25,650
+low level by thinking about
+Python, by thinking about the
+
+58
+00:02:25,650 --> 00:02:29,330
+primitive structures that Python
+gives you, how those
+
+59
+00:02:29,330 --> 00:02:31,830
+can be combined, how you can
+abstract, how you can
+
+60
+00:02:31,830 --> 00:02:33,450
+recognize patterns.
+
+61
+00:02:33,450 --> 00:02:36,120
+But then we also built a higher
+level abstraction,
+
+62
+00:02:36,120 --> 00:02:39,130
+which was the state
+machine idea.
+
+63
+00:02:39,130 --> 00:02:42,110
+There the idea was you didn't
+have to have state machines in
+
+64
+00:02:42,110 --> 00:02:45,140
+order to build the brain for a
+robot, but it actually turns
+
+65
+00:02:45,140 --> 00:02:47,430
+out to be easy if you
+do because there's
+
+66
+00:02:47,430 --> 00:02:49,530
+a modularity there.
+
+67
+00:02:49,530 --> 00:02:52,550
+You can figure out if each part
+works independent of the
+
+68
+00:02:52,550 --> 00:02:53,530
+other parts.
+
+69
+00:02:53,530 --> 00:02:55,510
+And then you can be pretty sure
+when you put it together
+
+70
+00:02:55,510 --> 00:02:57,750
+the whole thing's
+going to work.
+
+71
+00:02:57,750 --> 00:02:59,810
+So that was kind of our
+introduction to
+
+72
+00:02:59,810 --> 00:03:01,570
+this notion of PCAP.
+
+73
+00:03:01,570 --> 00:03:03,820
+Then we went on to think about
+signals and systems.
+
+74
+00:03:03,820 --> 00:03:06,730
+And that was kind of our
+introduction to modeling.
+
+75
+00:03:06,730 --> 00:03:08,070
+How do you make a model
+of something
+
+76
+00:03:08,070 --> 00:03:09,690
+that predicts behavior?
+
+77
+00:03:09,690 --> 00:03:12,890
+So we transitioned from thinking
+about, how do you
+
+78
+00:03:12,890 --> 00:03:16,940
+structure a design to how do
+you think about behavior.
+
+79
+00:03:16,940 --> 00:03:19,350
+Today we're going to start
+to think about circuits.
+
+80
+00:03:19,350 --> 00:03:24,240
+Circuits are really going to a
+more primitive physical layer.
+
+81
+00:03:24,240 --> 00:03:28,210
+How do you think about actually
+making a device?
+
+82
+00:03:28,210 --> 00:03:32,460
+So the device that we'll think
+about is a thing to augment
+
+83
+00:03:32,460 --> 00:03:33,350
+the capabilities --
+
+84
+00:03:33,350 --> 00:03:36,340
+the sensor capabilities
+of the robot.
+
+85
+00:03:36,340 --> 00:03:38,490
+We'll think about making a
+light tracking system.
+
+86
+00:03:38,490 --> 00:03:42,420
+And the idea is going to be
+that you'll build a head.
+
+87
+00:03:42,420 --> 00:03:46,480
+The head has a neck, so you'll
+have to control the neck.
+
+88
+00:03:46,480 --> 00:03:48,900
+The head has eyes.
+
+89
+00:03:48,900 --> 00:03:52,250
+It will mount on top of the
+robot, and that'll let you
+
+90
+00:03:52,250 --> 00:03:55,960
+drive the robot around
+looking for light.
+
+91
+00:03:55,960 --> 00:03:59,120
+And you'll do that by
+designing a circuit.
+
+92
+00:03:59,120 --> 00:04:03,200
+So that's kind of the game plan
+for the next three weeks.
+
+93
+00:04:03,200 --> 00:04:06,020
+So today, what I want to do
+is introduce the notion of
+
+94
+00:04:06,020 --> 00:04:09,570
+circuits, introduce
+the theory for how
+
+95
+00:04:09,570 --> 00:04:11,400
+we think about circuits.
+
+96
+00:04:11,400 --> 00:04:15,100
+And then in the two labs this
+week, the idea will be to
+
+97
+00:04:15,100 --> 00:04:18,410
+become familiar with the
+practice of circuits.
+
+98
+00:04:18,410 --> 00:04:19,750
+How do you actually
+build something?
+
+99
+00:04:19,750 --> 00:04:22,780
+How do you actually make
+something work?
+
+100
+00:04:22,780 --> 00:04:23,990
+So today's the theory.
+
+101
+00:04:23,990 --> 00:04:27,390
+So the theory, the idea in
+circuits is to think about a
+
+102
+00:04:27,390 --> 00:04:34,070
+physical system as the
+interconnection of parts and
+
+103
+00:04:34,070 --> 00:04:36,650
+rules that connect them.
+
+104
+00:04:36,650 --> 00:04:39,180
+In fact, the rules fall
+into two categories.
+
+105
+00:04:39,180 --> 00:04:44,490
+We're going to think about the
+currents that go through parts
+
+106
+00:04:44,490 --> 00:04:47,410
+and the voltage that develops
+across parts.
+
+107
+00:04:47,410 --> 00:04:50,140
+And we'll see that there's a
+way of thinking about the
+
+108
+00:04:50,140 --> 00:04:53,310
+behavior of the entire circuit
+that integrates all of those
+
+109
+00:04:53,310 --> 00:04:54,160
+three pieces.
+
+110
+00:04:54,160 --> 00:04:55,670
+How does the part work?
+
+111
+00:04:55,670 --> 00:04:59,640
+How do the currents that go
+through the part work?
+
+112
+00:04:59,640 --> 00:05:02,750
+And how do the voltages
+that are produced
+
+113
+00:05:02,750 --> 00:05:03,710
+across the part --
+
+114
+00:05:03,710 --> 00:05:06,820
+how do they work?
+
+115
+00:05:06,820 --> 00:05:08,880
+So I'll just start with two
+very simple examples.
+
+116
+00:05:08,880 --> 00:05:11,735
+The first is the most trivial
+example you can think about.
+
+117
+00:05:11,735 --> 00:05:14,750
+You can think about a flashlight
+as a circuit.
+
+118
+00:05:14,750 --> 00:05:17,700
+You close the switch,
+current flows.
+
+119
+00:05:17,700 --> 00:05:19,450
+Very simple idea.
+
+120
+00:05:19,450 --> 00:05:23,100
+We will make a model of that
+that looks like this.
+
+121
+00:05:23,100 --> 00:05:25,600
+We'll think about the battery
+being a source.
+
+122
+00:05:25,600 --> 00:05:27,640
+In this case, a voltage
+source.
+
+123
+00:05:27,640 --> 00:05:31,020
+We'll think about the light
+bulb being a resistor.
+
+124
+00:05:31,020 --> 00:05:32,020
+We'll have two parts.
+
+125
+00:05:32,020 --> 00:05:34,480
+We'll have to know the
+current-voltage relationships
+
+126
+00:05:34,480 --> 00:05:35,880
+for both of the parts.
+
+127
+00:05:35,880 --> 00:05:37,670
+And we'll have to know the
+ramifications for those
+
+128
+00:05:37,670 --> 00:05:40,400
+currents and voltages when
+you put them together.
+
+129
+00:05:40,400 --> 00:05:42,620
+Very, very simple.
+
+130
+00:05:42,620 --> 00:05:46,330
+The other simple example that
+I want to illustrate is this
+
+131
+00:05:46,330 --> 00:05:48,790
+idea of a leaky tank.
+
+132
+00:05:48,790 --> 00:05:52,600
+Here the idea that I want to get
+across is that the circuit
+
+133
+00:05:52,600 --> 00:05:56,810
+idea is quite general.
+
+134
+00:05:56,810 --> 00:05:58,770
+When we talk about circuits,
+we almost always talk about
+
+135
+00:05:58,770 --> 00:06:01,220
+electronic circuits.
+
+136
+00:06:01,220 --> 00:06:05,400
+But the theory is by no means
+limited to electronics.
+
+137
+00:06:05,400 --> 00:06:07,870
+So for example, if we think
+about a leaky tank, we think
+
+138
+00:06:07,870 --> 00:06:10,840
+about a pipe spewing water
+into a reservoir.
+
+139
+00:06:10,840 --> 00:06:12,730
+Maybe that's the Cambridge
+Reservoir.
+
+140
+00:06:12,730 --> 00:06:15,680
+Maybe that's the water coming
+out of the Woburn Reservoir.
+
+141
+00:06:15,680 --> 00:06:18,120
+Maybe that's the demand put on
+by the Cambridge people trying
+
+142
+00:06:18,120 --> 00:06:20,310
+to take showers in
+the morning --
+
+143
+00:06:20,310 --> 00:06:21,830
+I don't know.
+
+144
+00:06:21,830 --> 00:06:24,160
+So we think about flow
+into a tank, a
+
+145
+00:06:24,160 --> 00:06:25,880
+reservoir, and flow out.
+
+146
+00:06:25,880 --> 00:06:29,790
+And we can make a model for that
+in terms of a circuit.
+
+147
+00:06:29,790 --> 00:06:31,220
+In the circuit there
+are through
+
+148
+00:06:31,220 --> 00:06:34,370
+variables and across variables.
+
+149
+00:06:34,370 --> 00:06:37,510
+In an electronic circuit, the
+through variable is current.
+
+150
+00:06:37,510 --> 00:06:40,000
+Here the through variable
+is the flow rate.
+
+151
+00:06:40,000 --> 00:06:42,420
+So it's the flow of water in
+and the flow of water out,
+
+152
+00:06:42,420 --> 00:06:43,990
+represented here
+by these things
+
+153
+00:06:43,990 --> 00:06:46,840
+that look like currents.
+
+154
+00:06:46,840 --> 00:06:51,000
+And the across variable for an
+electronic device is voltage.
+
+155
+00:06:51,000 --> 00:06:53,870
+The across variable for this
+kind of a fluidic device, the
+
+156
+00:06:53,870 --> 00:06:56,180
+across variable is pressure.
+
+157
+00:06:56,180 --> 00:06:59,520
+So we think as this thing gets
+ahead of that thing, as
+
+158
+00:06:59,520 --> 00:07:02,720
+there's more stuff coming in
+than going out, the height
+
+159
+00:07:02,720 --> 00:07:05,870
+goes up and the pressure
+builds.
+
+160
+00:07:05,870 --> 00:07:06,690
+Same idea.
+
+161
+00:07:06,690 --> 00:07:09,070
+So the point is that we'll
+develop the theory for
+
+162
+00:07:09,070 --> 00:07:11,260
+circuits in terms
+of electronics.
+
+163
+00:07:11,260 --> 00:07:13,640
+But you should keep in the back
+of your mind that it's a
+
+164
+00:07:13,640 --> 00:07:16,980
+lot more general idea than
+just electronics.
+
+165
+00:07:16,980 --> 00:07:20,070
+In fact, there are two
+completely distinct reasons
+
+166
+00:07:20,070 --> 00:07:22,660
+why we even bother
+with circuits.
+
+167
+00:07:22,660 --> 00:07:27,120
+One is that they're very
+important to physical systems.
+
+168
+00:07:27,120 --> 00:07:29,430
+If you're designing a power
+network, of course you have to
+
+169
+00:07:29,430 --> 00:07:32,170
+think about the way the power
+network, the power grid works
+
+170
+00:07:32,170 --> 00:07:34,130
+as a circuit.
+
+171
+00:07:34,130 --> 00:07:35,430
+That's obvious.
+
+172
+00:07:35,430 --> 00:07:37,950
+In electronics, of course, if
+you're going to build a cell
+
+173
+00:07:37,950 --> 00:07:40,090
+phone, you have to know how
+the parts interconnect
+
+174
+00:07:40,090 --> 00:07:40,710
+electronically.
+
+175
+00:07:40,710 --> 00:07:42,750
+That's obvious.
+
+176
+00:07:42,750 --> 00:07:46,540
+But probably the biggest use for
+circuits these days is not
+
+177
+00:07:46,540 --> 00:07:49,800
+those applications, although
+those are very important.
+
+178
+00:07:49,800 --> 00:07:53,720
+Circuits are also used
+as models of things.
+
+179
+00:07:53,720 --> 00:07:58,360
+So many models for complex
+behaviors are in
+
+180
+00:07:58,360 --> 00:08:00,820
+fact circuit models.
+
+181
+00:08:00,820 --> 00:08:04,760
+So in terms of electronics, the
+idea is that we want to
+
+182
+00:08:04,760 --> 00:08:06,100
+get on top of electronics.
+
+183
+00:08:06,100 --> 00:08:08,240
+We want to understand how
+circuits work, so we can
+
+184
+00:08:08,240 --> 00:08:11,170
+understand things like that.
+
+185
+00:08:11,170 --> 00:08:16,110
+If you look at how complex
+processors have got over my
+
+186
+00:08:16,110 --> 00:08:19,970
+professional life, we start with
+my professional life down
+
+187
+00:08:19,970 --> 00:08:25,090
+at about 1,000 transistors
+per processor.
+
+188
+00:08:25,090 --> 00:08:28,990
+And today, we're up at
+about a billion.
+
+189
+00:08:28,990 --> 00:08:31,420
+That's enormous.
+
+190
+00:08:31,420 --> 00:08:36,380
+Even in the stone ages when we
+were designing things that had
+
+191
+00:08:36,380 --> 00:08:41,549
+a thousand parts, we still had
+trouble thinking about those
+
+192
+00:08:41,549 --> 00:08:43,070
+thousands parts all at once.
+
+193
+00:08:43,070 --> 00:08:44,790
+We still need PCAP.
+
+194
+00:08:44,790 --> 00:08:48,040
+We still needed ways of
+combining the activities of
+
+195
+00:08:48,040 --> 00:08:51,340
+many things into a conceptual
+unit that was bigger.
+
+196
+00:08:51,340 --> 00:08:57,030
+Here, it's just impossible
+if you don't have that.
+
+197
+00:08:57,030 --> 00:08:59,760
+So that's one of the reasons
+we study circuits.
+
+198
+00:08:59,760 --> 00:09:01,390
+And the other reason is here.
+
+199
+00:09:01,390 --> 00:09:04,680
+So here I'm showing a
+model for the way
+
+200
+00:09:04,680 --> 00:09:05,800
+a nerve cell works.
+
+201
+00:09:05,800 --> 00:09:09,860
+This model is taken
+from 6.021.
+
+202
+00:09:09,860 --> 00:09:15,280
+The idea, this comes from the
+study of the Hodgkin-Huxley
+
+203
+00:09:15,280 --> 00:09:19,810
+model for neural conduction,
+arguably the most successful
+
+204
+00:09:19,810 --> 00:09:23,020
+mathematical theory
+in biophysics.
+
+205
+00:09:23,020 --> 00:09:27,510
+Which explains the completely
+non-trivial relationship
+
+206
+00:09:27,510 --> 00:09:33,260
+between how the parts from
+biology works and the behavior
+
+207
+00:09:33,260 --> 00:09:37,460
+in terms of propagated action
+potentials works.
+
+208
+00:09:37,460 --> 00:09:41,500
+So the idea is that we
+understand how this biological
+
+209
+00:09:41,500 --> 00:09:43,740
+system works because
+we think about it
+
+210
+00:09:43,740 --> 00:09:45,470
+in terms of a circuit.
+
+211
+00:09:45,470 --> 00:09:51,430
+That's the only successful way
+we have to think about that.
+
+212
+00:09:51,430 --> 00:09:55,430
+So what I want to do then is
+spend today figuring out
+
+213
+00:09:55,430 --> 00:09:59,650
+circuits At the very most
+primitive level.
+
+214
+00:09:59,650 --> 00:10:01,330
+The level that I'm going to
+talk about in terms of
+
+215
+00:10:01,330 --> 00:10:04,530
+circuits is roughly analogous
+to the level that we talked
+
+216
+00:10:04,530 --> 00:10:09,020
+about with Python when we were
+thinking about how Python
+
+217
+00:10:09,020 --> 00:10:14,590
+provides utilities for
+primitives, combinations,
+
+218
+00:10:14,590 --> 00:10:17,260
+abstractions, and patterns.
+
+219
+00:10:17,260 --> 00:10:19,220
+So I'm going to start at the
+very lowest level and think
+
+220
+00:10:19,220 --> 00:10:23,290
+about, what are the basic
+primitives, the smallest units
+
+221
+00:10:23,290 --> 00:10:25,740
+we'll ever think about
+in terms of circuits?
+
+222
+00:10:25,740 --> 00:10:29,450
+And what are the rules by
+which we combine them?
+
+223
+00:10:29,450 --> 00:10:33,090
+So I'll start with the very
+simplest ideas, the very
+
+224
+00:10:33,090 --> 00:10:35,020
+simplest elements.
+
+225
+00:10:35,020 --> 00:10:37,720
+We will oversimplify things
+and think about the very
+
+226
+00:10:37,720 --> 00:10:41,010
+simplest kind of electronic
+elements as resistors that
+
+227
+00:10:41,010 --> 00:10:42,640
+obey Ohm's Law, V equals iR.
+
+228
+00:10:42,640 --> 00:10:45,420
+
+229
+00:10:45,420 --> 00:10:48,610
+Voltage sources, things that
+maintain a constant voltage
+
+230
+00:10:48,610 --> 00:10:50,740
+regardless of what you do.
+
+231
+00:10:50,740 --> 00:10:53,290
+And current sources, things
+that maintain a constant
+
+232
+00:10:53,290 --> 00:10:56,810
+current regardless
+of what you do.
+
+233
+00:10:56,810 --> 00:10:59,640
+These things are, as I said,
+analogous to the primitive
+
+234
+00:10:59,640 --> 00:11:00,890
+things that we looked
+at in Python.
+
+235
+00:11:00,890 --> 00:11:02,750
+They're also analogous to the
+primitive things that we
+
+236
+00:11:02,750 --> 00:11:05,470
+looked at in system functions.
+
+237
+00:11:05,470 --> 00:11:07,900
+Can somebody think of, when
+we were doing difference
+
+238
+00:11:07,900 --> 00:11:10,880
+equations, what were the
+primitives that we
+
+239
+00:11:10,880 --> 00:11:12,680
+started with --
+
+240
+00:11:12,680 --> 00:11:15,770
+when we started to study
+difference equations?
+
+241
+00:11:15,770 --> 00:11:17,260
+What's the most primitive
+elements
+
+242
+00:11:17,260 --> 00:11:18,510
+that we thought about?
+
+243
+00:11:18,510 --> 00:11:20,937
+
+244
+00:11:20,937 --> 00:11:22,320
+AUDIENCE: Delay.
+
+245
+00:11:22,320 --> 00:11:23,340
+PROFESSOR: Delay, yeah.
+
+246
+00:11:23,340 --> 00:11:24,740
+So we thought about
+things like--
+
+247
+00:11:24,740 --> 00:11:27,390
+
+248
+00:11:27,390 --> 00:11:28,640
+so we had delay.
+
+249
+00:11:28,640 --> 00:11:31,810
+
+250
+00:11:31,810 --> 00:11:32,600
+Anything else?
+
+251
+00:11:32,600 --> 00:11:33,330
+AUDIENCE: Gain.
+
+252
+00:11:33,330 --> 00:11:34,300
+PROFESSOR: Gain.
+
+253
+00:11:34,300 --> 00:11:35,550
+Anything else?
+
+254
+00:11:35,550 --> 00:11:38,463
+
+255
+00:11:38,463 --> 00:11:40,960
+Add.
+
+256
+00:11:40,960 --> 00:11:44,130
+So we had exactly three
+primitives.
+
+257
+00:11:44,130 --> 00:11:47,850
+And we got pretty far with
+those three primitives.
+
+258
+00:11:47,850 --> 00:11:51,000
+We learned the rules for
+interconnection.
+
+259
+00:11:51,000 --> 00:11:52,340
+We didn't really make a
+big deal out of it.
+
+260
+00:11:52,340 --> 00:11:54,320
+We didn't formalize it, but the
+rules for interconnection
+
+261
+00:11:54,320 --> 00:11:58,430
+were something like
+every node has to
+
+262
+00:11:58,430 --> 00:12:01,810
+have exactly one generator.
+
+263
+00:12:01,810 --> 00:12:03,830
+You can't connect the
+output of this to
+
+264
+00:12:03,830 --> 00:12:06,890
+this, that's illegal.
+
+265
+00:12:06,890 --> 00:12:09,220
+Every node has to
+have one source.
+
+266
+00:12:09,220 --> 00:12:12,010
+And every node can source
+lots of inputs.
+
+267
+00:12:12,010 --> 00:12:14,050
+That was kind of the rules
+of the interconnect.
+
+268
+00:12:14,050 --> 00:12:15,505
+The interconnects here will be a
+little bit more complicated.
+
+269
+00:12:15,505 --> 00:12:18,340
+
+270
+00:12:18,340 --> 00:12:20,960
+So those are the elements
+that we'll think about.
+
+271
+00:12:20,960 --> 00:12:23,370
+And the first step's going to be
+to think about, how do they
+
+272
+00:12:23,370 --> 00:12:25,800
+interconnect?
+
+273
+00:12:25,800 --> 00:12:29,160
+The simplest possible
+interconnections are trivial.
+
+274
+00:12:29,160 --> 00:12:31,580
+In the case of the battery, you
+hook up the voltage source
+
+275
+00:12:31,580 --> 00:12:33,280
+to the resistor.
+
+276
+00:12:33,280 --> 00:12:35,100
+The voltage source makes
+the voltage across
+
+277
+00:12:35,100 --> 00:12:37,220
+this resistor 1 Volt.
+
+278
+00:12:37,220 --> 00:12:39,910
+If we say the resistor is 1
+Ohm, then there's 1 Amp
+
+279
+00:12:39,910 --> 00:12:40,745
+current period.
+
+280
+00:12:40,745 --> 00:12:41,510
+Done.
+
+281
+00:12:41,510 --> 00:12:43,750
+Easy.
+
+282
+00:12:43,750 --> 00:12:47,160
+Similarly, if we were to hook
+up the resistor to a current
+
+283
+00:12:47,160 --> 00:12:49,120
+source, we would get something
+equally easy.
+
+284
+00:12:49,120 --> 00:12:51,060
+Except now the current source
+would guarantee that the
+
+285
+00:12:51,060 --> 00:12:56,450
+current through the resistor
+is an amp.
+
+286
+00:12:56,450 --> 00:12:59,360
+Therefore, the voltage across
+the resistor, by Ohm's law,
+
+287
+00:12:59,360 --> 00:13:00,700
+would be a Volt.
+
+288
+00:13:00,700 --> 00:13:02,830
+So we would end up with the same
+solution for a completely
+
+289
+00:13:02,830 --> 00:13:04,940
+different reason.
+
+290
+00:13:04,940 --> 00:13:06,340
+Here the voltage
+is constrained.
+
+291
+00:13:06,340 --> 00:13:07,590
+Here the current's
+constrained.
+
+292
+00:13:07,590 --> 00:13:10,390
+
+293
+00:13:10,390 --> 00:13:16,090
+Just to make sure everybody's
+with me, figure out, what's
+
+294
+00:13:16,090 --> 00:13:19,450
+the current i that goes
+through this resistor?
+
+295
+00:13:19,450 --> 00:13:22,040
+Slightly more complicated
+system.
+
+296
+00:13:22,040 --> 00:13:24,120
+Take 20 seconds, talk to your
+neighbor, figure out a number
+
+297
+00:13:24,120 --> 00:13:25,820
+between (1) and (5).
+
+298
+00:13:25,820 --> 00:15:23,520
+
+299
+00:15:23,520 --> 00:15:24,690
+OK, so what's the answer?
+
+300
+00:15:24,690 --> 00:15:27,630
+Everybody raise your hand with
+a number (1) through (5).
+
+301
+00:15:27,630 --> 00:15:28,980
+Come on, everybody vote.
+
+302
+00:15:28,980 --> 00:15:29,920
+Come on.
+
+303
+00:15:29,920 --> 00:15:32,020
+You can blame it on your
+neighbor, that's the rules.
+
+304
+00:15:32,020 --> 00:15:33,790
+You talk to your neighbor,
+then you can blame dumb
+
+305
+00:15:33,790 --> 00:15:36,150
+answers on your neighbor.
+
+306
+00:15:36,150 --> 00:15:41,100
+OK, about 80% correct I'd say.
+
+307
+00:15:41,100 --> 00:15:42,410
+So how do you think
+about this?
+
+308
+00:15:42,410 --> 00:15:43,450
+What's going to be
+the current?
+
+309
+00:15:43,450 --> 00:15:44,420
+How would you calculate
+the current?
+
+310
+00:15:44,420 --> 00:15:45,670
+What do I do first?
+
+311
+00:15:45,670 --> 00:15:48,462
+
+312
+00:15:48,462 --> 00:15:48,930
+Shout.
+
+313
+00:15:48,930 --> 00:15:52,772
+If you shout, and especially
+if my head's turned away I
+
+314
+00:15:52,772 --> 00:15:55,260
+don't know who you are.
+
+315
+00:15:55,260 --> 00:15:56,200
+AUDIENCE: Kirchhoff's law.
+
+316
+00:15:56,200 --> 00:15:57,240
+PROFESSOR: Kirchoff's
+law, wonderful.
+
+317
+00:15:57,240 --> 00:15:57,717
+Which one?
+
+318
+00:15:57,717 --> 00:16:00,102
+There's two of them.
+
+319
+00:16:00,102 --> 00:16:02,964
+AUDIENCE: [UNINTELLIGIBLE].
+
+320
+00:16:02,964 --> 00:16:04,130
+PROFESSOR: [UNINTELLIGIBLE].
+
+321
+00:16:04,130 --> 00:16:05,663
+What loop do you want to use?
+
+322
+00:16:05,663 --> 00:16:06,430
+AUDIENCE: Left.
+
+323
+00:16:06,430 --> 00:16:07,220
+PROFESSOR: Left side.
+
+324
+00:16:07,220 --> 00:16:10,960
+So if we use the left side loop,
+we would conclude that
+
+325
+00:16:10,960 --> 00:16:12,310
+there's a volt across
+the resistor.
+
+326
+00:16:12,310 --> 00:16:15,288
+So the current would be?
+
+327
+00:16:15,288 --> 00:16:16,764
+AUDIENCE: 1 Amp.
+
+328
+00:16:16,764 --> 00:16:17,748
+PROFESSOR: An amp.
+
+329
+00:16:17,748 --> 00:16:21,684
+Where's the current come from?
+
+330
+00:16:21,684 --> 00:16:23,160
+AUDIENCE: The voltage.
+
+331
+00:16:23,160 --> 00:16:28,080
+PROFESSOR: The voltage source
+just like before.
+
+332
+00:16:28,080 --> 00:16:29,880
+So not quite.
+
+333
+00:16:29,880 --> 00:16:32,210
+So the voltage source
+establishes this
+
+334
+00:16:32,210 --> 00:16:33,710
+voltage would be 1.
+
+335
+00:16:33,710 --> 00:16:36,850
+That makes this current be 1.
+
+336
+00:16:36,850 --> 00:16:39,220
+That would be consistent with
+the current coming out of
+
+337
+00:16:39,220 --> 00:16:42,250
+here, except we have to also
+think about that 1 Amp source.
+
+338
+00:16:42,250 --> 00:16:44,810
+
+339
+00:16:44,810 --> 00:16:46,780
+So the question is, what's
+does the 1 Amp source do?
+
+340
+00:16:46,780 --> 00:16:48,370
+Nothing?
+
+341
+00:16:48,370 --> 00:16:52,240
+It's just there sort of
+for decoration or for
+
+342
+00:16:52,240 --> 00:16:55,170
+[UNINTELLIGIBLE] so that we
+can make an interesting
+
+343
+00:16:55,170 --> 00:16:56,580
+question to ask in lecture?
+
+344
+00:16:56,580 --> 00:16:57,830
+Maybe.
+
+345
+00:16:57,830 --> 00:16:59,870
+
+346
+00:16:59,870 --> 00:17:01,040
+So where's the current?
+
+347
+00:17:01,040 --> 00:17:02,689
+Where's the 1 Amp that
+goes through the
+
+348
+00:17:02,689 --> 00:17:05,184
+resistor come from?
+
+349
+00:17:05,184 --> 00:17:07,180
+AUDIENCE: [UNINTELLIGIBLE]
+on the right.
+
+350
+00:17:07,180 --> 00:17:09,176
+PROFESSOR: It comes
+from the right.
+
+351
+00:17:09,176 --> 00:17:11,080
+It comes from the current
+over here.
+
+352
+00:17:11,080 --> 00:17:13,130
+So the idea is that if this
+current, ignore the voltage
+
+353
+00:17:13,130 --> 00:17:14,150
+over here for the moment.
+
+354
+00:17:14,150 --> 00:17:16,560
+If this current flowed through
+the resistor, then you'd have
+
+355
+00:17:16,560 --> 00:17:19,130
+1 Amp going through there, and
+you'd have 1 Volt generated by
+
+356
+00:17:19,130 --> 00:17:22,069
+that current which just happens
+to be exactly the
+
+357
+00:17:22,069 --> 00:17:25,900
+right voltage to match
+the voltage
+
+358
+00:17:25,900 --> 00:17:28,930
+from the voltage source.
+
+359
+00:17:28,930 --> 00:17:31,640
+So if you think about this, the
+voltage guarantees that
+
+360
+00:17:31,640 --> 00:17:35,720
+this is 1 Volt, but so
+does the current.
+
+361
+00:17:35,720 --> 00:17:38,980
+In order to simultaneously
+satisfy everything, all you
+
+362
+00:17:38,980 --> 00:17:41,310
+need to do is have all of this
+current go around and come
+
+363
+00:17:41,310 --> 00:17:44,240
+down through that resistor.
+
+364
+00:17:44,240 --> 00:17:47,070
+That will generate the volt, so
+there's no propensity for
+
+365
+00:17:47,070 --> 00:17:50,020
+more current to flow out of the
+source because the source
+
+366
+00:17:50,020 --> 00:17:54,580
+is 1 Volt and it's facing a
+circuit that's already 1 Volt.
+
+367
+00:17:54,580 --> 00:17:56,310
+So the idea was to try to give
+you something that's
+
+368
+00:17:56,310 --> 00:18:00,260
+relatively simple that you can
+think through on your own, but
+
+369
+00:18:00,260 --> 00:18:01,530
+not trivial.
+
+370
+00:18:01,530 --> 00:18:03,060
+So the answer was 1 Amp.
+
+371
+00:18:03,060 --> 00:18:05,870
+But the 1 Amp was not for
+the trivial reason.
+
+372
+00:18:05,870 --> 00:18:10,280
+The 1 Amp is because the current
+from the right flows
+
+373
+00:18:10,280 --> 00:18:14,470
+through the resistor and
+makes the voltage be 1.
+
+374
+00:18:14,470 --> 00:18:15,900
+So the right answer is 1.
+
+375
+00:18:15,900 --> 00:18:17,290
+But for the reason that
+you might not
+
+376
+00:18:17,290 --> 00:18:19,490
+have originally thought.
+
+377
+00:18:19,490 --> 00:18:22,140
+But more importantly, I wanted
+to use that as a motivation
+
+378
+00:18:22,140 --> 00:18:25,013
+for thinking about, how do we
+think about bigger circuits?
+
+379
+00:18:25,013 --> 00:18:27,670
+
+380
+00:18:27,670 --> 00:18:30,240
+So when the simple circuit,
+like two parts, it's no
+
+381
+00:18:30,240 --> 00:18:32,260
+problem figuring out what the
+answer's going to be.
+
+382
+00:18:32,260 --> 00:18:35,430
+But when the circuit has even
+three parts, it may require
+
+383
+00:18:35,430 --> 00:18:36,290
+more thinking.
+
+384
+00:18:36,290 --> 00:18:38,480
+And you may want to have a
+more structured way of
+
+385
+00:18:38,480 --> 00:18:39,630
+thinking about the solution.
+
+386
+00:18:39,630 --> 00:18:40,487
+Yes?
+
+387
+00:18:40,487 --> 00:18:43,409
+AUDIENCE: What would have
+occurred if the current
+
+388
+00:18:43,409 --> 00:18:45,844
+provider on the right
+side was 2 Amps?
+
+389
+00:18:45,844 --> 00:18:47,792
+PROFESSOR: Great question.
+
+390
+00:18:47,792 --> 00:18:51,660
+Had this been 2 Amps, you can't
+violate this voltage.
+
+391
+00:18:51,660 --> 00:18:54,570
+So that would have
+been 1 Volt.
+
+392
+00:18:54,570 --> 00:18:57,790
+So that would have been 1 Amp
+through the resistor.
+
+393
+00:18:57,790 --> 00:18:59,560
+So then you're left with the
+problem with this guy's
+
+394
+00:18:59,560 --> 00:19:03,330
+pushing 2 and that guy's
+only eating 1.
+
+395
+00:19:03,330 --> 00:19:06,660
+But the rules for the voltage
+source say eat or source
+
+396
+00:19:06,660 --> 00:19:10,140
+however much current is
+necessary in order to make the
+
+397
+00:19:10,140 --> 00:19:11,900
+voltage equal to 1.
+
+398
+00:19:11,900 --> 00:19:16,070
+So the excess amp goes through
+the voltage source.
+
+399
+00:19:16,070 --> 00:19:20,400
+So the voltage source is, in
+fact, being supplied power
+
+400
+00:19:20,400 --> 00:19:23,350
+rather than supplying
+power itself.
+
+401
+00:19:23,350 --> 00:19:27,400
+Had this been 2 Amps, some of
+the power from this source
+
+402
+00:19:27,400 --> 00:19:30,060
+would have gone into
+the resistor.
+
+403
+00:19:30,060 --> 00:19:31,730
+And some of the power from
+this source would have
+
+404
+00:19:31,730 --> 00:19:34,030
+actually gone into the
+voltage source.
+
+405
+00:19:34,030 --> 00:19:38,150
+So if the voltage source were,
+for example, a model for a
+
+406
+00:19:38,150 --> 00:19:41,250
+rechargeable battery,
+that rechargeable
+
+407
+00:19:41,250 --> 00:19:43,720
+battery would be charging.
+
+408
+00:19:43,720 --> 00:19:44,905
+Does that make sense?
+
+409
+00:19:44,905 --> 00:19:47,240
+So if there had been a mismatch
+in the conditions,
+
+410
+00:19:47,240 --> 00:19:52,210
+you still have to satisfy all
+the relationships from all of
+
+411
+00:19:52,210 --> 00:19:54,470
+the sources.
+
+412
+00:19:54,470 --> 00:19:56,770
+AUDIENCE: What if the
+voltage was larger?
+
+413
+00:19:56,770 --> 00:19:58,609
+PROFESSOR: The same thing
+would have happened.
+
+414
+00:19:58,609 --> 00:20:01,265
+Except now the flowing
+current would be in
+
+415
+00:20:01,265 --> 00:20:01,990
+the opposite direction.
+
+416
+00:20:01,990 --> 00:20:04,620
+Let's say that if the voltage
+here had been 2 Volts, then
+
+417
+00:20:04,620 --> 00:20:07,530
+the voltage would have required
+that there is 2 Amps
+
+418
+00:20:07,530 --> 00:20:09,730
+flowing here.
+
+419
+00:20:09,730 --> 00:20:13,590
+1 Amp would come from here,
+but another Amp
+
+420
+00:20:13,590 --> 00:20:15,130
+would come from here.
+
+421
+00:20:15,130 --> 00:20:18,020
+This voltage source will supply
+whatever current is
+
+422
+00:20:18,020 --> 00:20:21,521
+necessary to make its
+voltage law real.
+
+423
+00:20:21,521 --> 00:20:26,420
+
+424
+00:20:26,420 --> 00:20:26,495
+Ok.
+
+425
+00:20:26,495 --> 00:20:30,570
+In fact, what we'll do now is
+turn toward a discussion of
+
+426
+00:20:30,570 --> 00:20:33,960
+more complicated systems that
+will let you go back and in
+
+427
+00:20:33,960 --> 00:20:37,430
+retrospect, analyze all those
+cases that we just did.
+
+428
+00:20:37,430 --> 00:20:39,240
+And you'll be able to see
+trivially how that has to be
+
+429
+00:20:39,240 --> 00:20:40,460
+the right answer.
+
+430
+00:20:40,460 --> 00:20:46,460
+So what I want to do now is
+generate a formal structure
+
+431
+00:20:46,460 --> 00:20:47,960
+for how you would
+solve circuits.
+
+432
+00:20:47,960 --> 00:20:49,352
+Yes?
+
+433
+00:20:49,352 --> 00:20:53,240
+AUDIENCE: So did we know of
+anything that could generate a
+
+434
+00:20:53,240 --> 00:20:56,800
+current without generating a
+voltage, like in real life?
+
+435
+00:20:56,800 --> 00:20:58,310
+PROFESSOR: Can anything generate
+a current without
+
+436
+00:20:58,310 --> 00:20:59,080
+generating a voltage?
+
+437
+00:20:59,080 --> 00:21:01,130
+That's a tricky question.
+
+438
+00:21:01,130 --> 00:21:05,280
+If you think about something as
+generating a current, then
+
+439
+00:21:05,280 --> 00:21:09,700
+the voltage is not necessarily
+determined by that part.
+
+440
+00:21:09,700 --> 00:21:12,030
+So that's kind of illustrated
+here.
+
+441
+00:21:12,030 --> 00:21:17,000
+If this guy is generating a
+current, this guy is not
+
+442
+00:21:17,000 --> 00:21:21,755
+actually the element that is
+controlling its own voltage.
+
+443
+00:21:21,755 --> 00:21:24,560
+
+444
+00:21:24,560 --> 00:21:27,470
+In general, if you want to speak
+simultaneously about the
+
+445
+00:21:27,470 --> 00:21:32,000
+current and voltage across the
+device, you have to know what
+
+446
+00:21:32,000 --> 00:21:34,600
+it was connected to.
+
+447
+00:21:34,600 --> 00:21:36,020
+Each part--
+
+448
+00:21:36,020 --> 00:21:37,790
+we'll get to this in a moment
+in case some of you are
+
+449
+00:21:37,790 --> 00:21:39,940
+worried about launching ahead.
+
+450
+00:21:39,940 --> 00:21:42,300
+We will cover this.
+
+451
+00:21:42,300 --> 00:21:44,300
+This is very good motivation for
+figuring out what's going
+
+452
+00:21:44,300 --> 00:21:46,690
+to happen in the next
+three slides.
+
+453
+00:21:46,690 --> 00:21:54,320
+So each part gets to tell you
+one relationship between
+
+454
+00:21:54,320 --> 00:21:55,790
+voltage and current.
+
+455
+00:21:55,790 --> 00:22:00,450
+Generally speaking, that's not
+enough to solve for voltage
+
+456
+00:22:00,450 --> 00:22:01,030
+and current.
+
+457
+00:22:01,030 --> 00:22:03,200
+Voltage and current is
+like two unknowns.
+
+458
+00:22:03,200 --> 00:22:06,300
+
+459
+00:22:06,300 --> 00:22:11,000
+Each element relationship
+is one equation.
+
+460
+00:22:11,000 --> 00:22:14,660
+So the current source gets to
+say current equals x, current
+
+461
+00:22:14,660 --> 00:22:16,000
+equals 1 Amp.
+
+462
+00:22:16,000 --> 00:22:20,400
+It doesn't get to tell you
+what the voltage is.
+
+463
+00:22:20,400 --> 00:22:22,850
+So being a little more physical
+to try to address
+
+464
+00:22:22,850 --> 00:22:27,480
+your question more physically,
+there are processes that can
+
+465
+00:22:27,480 --> 00:22:30,970
+be extremely well modeled
+as current generators.
+
+466
+00:22:30,970 --> 00:22:35,120
+In fact, many electronic
+semiconductor parts, like
+
+467
+00:22:35,120 --> 00:22:37,890
+transistors, work more like
+a current source than like
+
+468
+00:22:37,890 --> 00:22:39,790
+anything else.
+
+469
+00:22:39,790 --> 00:22:42,590
+So there are devices that behave
+as though they were
+
+470
+00:22:42,590 --> 00:22:46,570
+current sources, but they don't
+simultaneously get to
+
+471
+00:22:46,570 --> 00:22:49,390
+tell you what is their current
+and what is their voltage.
+
+472
+00:22:49,390 --> 00:22:51,245
+They only get to tell you
+what is their current.
+
+473
+00:22:51,245 --> 00:22:55,960
+
+474
+00:22:55,960 --> 00:22:58,630
+So let's think about now, if
+you had a more complicated
+
+475
+00:22:58,630 --> 00:23:02,930
+system, how could you
+systematically go about
+
+476
+00:23:02,930 --> 00:23:05,580
+finding the solution?
+
+477
+00:23:05,580 --> 00:23:07,430
+As was mentioned earlier,
+there's something called
+
+478
+00:23:07,430 --> 00:23:08,110
+Kirchhoff's law.
+
+479
+00:23:08,110 --> 00:23:10,060
+And in fact, there's
+two of them.
+
+480
+00:23:10,060 --> 00:23:12,500
+Kirchhoff's voltage law and
+Kirchhoff's current law.
+
+481
+00:23:12,500 --> 00:23:18,280
+Kirchhoff's voltage law, in its
+most elementary form, says
+
+482
+00:23:18,280 --> 00:23:21,790
+that if you trace the path
+around any closed path in a
+
+483
+00:23:21,790 --> 00:23:24,450
+circuit, regardless of
+what the path is--
+
+484
+00:23:24,450 --> 00:23:26,040
+every closed path--
+
+485
+00:23:26,040 --> 00:23:30,650
+the sum of the voltages going
+around that closed path is 0.
+
+486
+00:23:30,650 --> 00:23:35,830
+So for example in this
+circuit, the red path
+
+487
+00:23:35,830 --> 00:23:39,130
+illustrates one closed path
+through the circuit.
+
+488
+00:23:39,130 --> 00:23:41,680
+It goes up through the voltage
+source, down through this
+
+489
+00:23:41,680 --> 00:23:44,900
+resistor, and then down
+through that resistor.
+
+490
+00:23:44,900 --> 00:23:49,160
+Kirchhoff's voltage law says the
+sum of the voltages around
+
+491
+00:23:49,160 --> 00:23:51,990
+that loop is 0.
+
+492
+00:23:51,990 --> 00:23:56,150
+That's written mathematically
+here, minus v1 for here, plus
+
+493
+00:23:56,150 --> 00:23:59,850
+v2 for here, plus v4
+for here is 0.
+
+494
+00:23:59,850 --> 00:24:01,660
+OK, where do the signs
+come from?
+
+495
+00:24:01,660 --> 00:24:05,570
+The signs came from the
+reference directions that we
+
+496
+00:24:05,570 --> 00:24:09,730
+assigned arbitrarily
+to the elements.
+
+497
+00:24:09,730 --> 00:24:13,280
+Before I ever do a circuits
+question, I always assign a
+
+498
+00:24:13,280 --> 00:24:15,520
+reference direction.
+
+499
+00:24:15,520 --> 00:24:17,125
+Every voltage has a
+positive terminal
+
+500
+00:24:17,125 --> 00:24:19,120
+and a negative terminal.
+
+501
+00:24:19,120 --> 00:24:22,210
+And I must be consistent in
+order to apply these rules.
+
+502
+00:24:22,210 --> 00:24:27,800
+These rules only work if I
+declare a reference direction
+
+503
+00:24:27,800 --> 00:24:29,320
+and stick with it.
+
+504
+00:24:29,320 --> 00:24:31,350
+If midway through a problem
+I flip it, I'll
+
+505
+00:24:31,350 --> 00:24:33,810
+get the wrong answer.
+
+506
+00:24:33,810 --> 00:24:36,220
+So the minus sign has to do with
+the fact that as I trace
+
+507
+00:24:36,220 --> 00:24:41,730
+this path, I enter the minus
+part of this guy, but the plus
+
+508
+00:24:41,730 --> 00:24:43,200
+part of that guy and that guy.
+
+509
+00:24:43,200 --> 00:24:47,250
+So the sign of v1 is negated
+relative to the others.
+
+510
+00:24:47,250 --> 00:24:50,220
+
+511
+00:24:50,220 --> 00:24:53,510
+A different way to think about
+that is here, we can think
+
+512
+00:24:53,510 --> 00:24:56,330
+that v1 is the sum
+of v2 and v4.
+
+513
+00:24:56,330 --> 00:24:58,700
+That's sometimes more intuitive
+because if you
+
+514
+00:24:58,700 --> 00:25:03,280
+started here, going through
+this path you would end up
+
+515
+00:25:03,280 --> 00:25:08,540
+with a voltage that is v1 higher
+than where you started.
+
+516
+00:25:08,540 --> 00:25:11,580
+Whereas starting here, you would
+end up with a voltage
+
+517
+00:25:11,580 --> 00:25:15,030
+here that's v4 higher than
+where you started.
+
+518
+00:25:15,030 --> 00:25:17,400
+And then by the time you got to
+here, it would be v2 plus
+
+519
+00:25:17,400 --> 00:25:21,970
+v4 higher than where
+you started.
+
+520
+00:25:21,970 --> 00:25:25,030
+You start one place and on one
+route, you end up v1 higher.
+
+521
+00:25:25,030 --> 00:25:28,030
+And in the other route, you
+get v4 plus v2 higher.
+
+522
+00:25:28,030 --> 00:25:31,120
+So it must be the case that v1
+is the same as v2 plus v4.
+
+523
+00:25:31,120 --> 00:25:33,620
+
+524
+00:25:33,620 --> 00:25:35,710
+Those are absolutely
+equivalent ways of
+
+525
+00:25:35,710 --> 00:25:36,990
+thinking about it.
+
+526
+00:25:36,990 --> 00:25:38,650
+So those laws are equivalent.
+
+527
+00:25:38,650 --> 00:25:40,600
+If you think about it
+a path, you think
+
+528
+00:25:40,600 --> 00:25:43,305
+about some of the paths--
+
+529
+00:25:43,305 --> 00:25:43,780
+no.
+
+530
+00:25:43,780 --> 00:25:47,700
+The path coinciding with the
+negative direction of some of
+
+531
+00:25:47,700 --> 00:25:49,750
+the elements and the positive
+direction of others.
+
+532
+00:25:49,750 --> 00:25:53,030
+
+533
+00:25:53,030 --> 00:25:58,720
+OK, how many other
+paths are there?
+
+534
+00:25:58,720 --> 00:26:00,090
+Take 20 seconds, talk
+to your neighbor.
+
+535
+00:26:00,090 --> 00:26:04,630
+Figure out all of the
+possible paths for
+
+536
+00:26:04,630 --> 00:26:06,120
+which KVL has to apply.
+
+537
+00:26:06,120 --> 00:28:35,850
+
+538
+00:28:35,850 --> 00:28:39,450
+OK, so everybody raise your
+hand and show a number of
+
+539
+00:28:39,450 --> 00:28:44,130
+fingers equal to the number
+of KVL equations less two.
+
+540
+00:28:44,130 --> 00:28:49,060
+
+541
+00:28:49,060 --> 00:28:51,000
+Oh, very good.
+
+542
+00:28:51,000 --> 00:28:52,170
+Virtually 100% correct.
+
+543
+00:28:52,170 --> 00:28:53,420
+Why do you all say (5)?
+
+544
+00:28:53,420 --> 00:28:55,760
+
+545
+00:28:55,760 --> 00:28:57,760
+Which is to say 7.
+
+546
+00:28:57,760 --> 00:28:59,010
+Why do you all say 7?
+
+547
+00:28:59,010 --> 00:29:01,970
+
+548
+00:29:01,970 --> 00:29:03,650
+So there's 3 obvious ones.
+
+549
+00:29:03,650 --> 00:29:05,660
+I was expecting a
+couple of 3's.
+
+550
+00:29:05,660 --> 00:29:07,230
+This was supposed to be--
+
+551
+00:29:07,230 --> 00:29:09,930
+OK, yeah, I do plot
+against you.
+
+552
+00:29:09,930 --> 00:29:12,410
+I was expecting some 3's.
+
+553
+00:29:12,410 --> 00:29:14,770
+So there's 3 obvious paths
+that are analogous to the
+
+554
+00:29:14,770 --> 00:29:15,620
+first one we looked at.
+
+555
+00:29:15,620 --> 00:29:18,980
+If I call the first path A, then
+there's B and C which are
+
+556
+00:29:18,980 --> 00:29:22,030
+the excursions around here.
+
+557
+00:29:22,030 --> 00:29:23,850
+And you can write the equations
+just the same.
+
+558
+00:29:23,850 --> 00:29:26,030
+They each involve
+three voltages.
+
+559
+00:29:26,030 --> 00:29:28,620
+And they each go through, some
+starting at the negative side
+
+560
+00:29:28,620 --> 00:29:32,720
+and some starting at
+the positive side.
+
+561
+00:29:32,720 --> 00:29:35,230
+So those are in some sense,
+the obvious ones.
+
+562
+00:29:35,230 --> 00:29:39,040
+But there are others too.
+
+563
+00:29:39,040 --> 00:29:42,370
+So one way to think about it,
+what I'd like you to do is
+
+564
+00:29:42,370 --> 00:29:44,290
+enumerate all the paths
+through the circuit.
+
+565
+00:29:44,290 --> 00:29:46,640
+I should have said all the paths
+through the circuit that
+
+566
+00:29:46,640 --> 00:29:53,300
+go through each element
+one or fewer times.
+
+567
+00:29:53,300 --> 00:29:58,660
+I don't want you to go through
+the same element twice.
+
+568
+00:29:58,660 --> 00:30:02,280
+So here's another path that
+would go through elements at
+
+569
+00:30:02,280 --> 00:30:04,290
+most one time.
+
+570
+00:30:04,290 --> 00:30:07,230
+So up through here, over through
+here, which didn't go
+
+571
+00:30:07,230 --> 00:30:08,050
+through any elements.
+
+572
+00:30:08,050 --> 00:30:10,480
+Down through that element,
+across that, down through
+
+573
+00:30:10,480 --> 00:30:11,850
+here, et cetera.
+
+574
+00:30:11,850 --> 00:30:14,090
+And you get an equation
+for that.
+
+575
+00:30:14,090 --> 00:30:14,950
+Here's another.
+
+576
+00:30:14,950 --> 00:30:16,140
+Here's another.
+
+577
+00:30:16,140 --> 00:30:18,830
+Here's another.
+
+578
+00:30:18,830 --> 00:30:21,220
+And if you try to think about a
+general rule, a general rule
+
+579
+00:30:21,220 --> 00:30:24,410
+is something like, how many of
+those panels can you make and
+
+580
+00:30:24,410 --> 00:30:29,790
+piece together where the loop
+goes through the perimeter?
+
+581
+00:30:29,790 --> 00:30:31,970
+You're not allowed to go through
+an inner place because
+
+582
+00:30:31,970 --> 00:30:33,430
+if you went through an inner
+node, you'd have to
+
+583
+00:30:33,430 --> 00:30:34,770
+go through it twice.
+
+584
+00:30:34,770 --> 00:30:37,550
+If you wanted the path to go
+through an inner element,
+
+585
+00:30:37,550 --> 00:30:40,340
+you'd have to go through
+that element twice.
+
+586
+00:30:40,340 --> 00:30:41,810
+So in fact, the answer is 7.
+
+587
+00:30:41,810 --> 00:30:49,200
+There are 7 different paths
+according to Kirchhoff's
+
+588
+00:30:49,200 --> 00:30:51,970
+voltage law, all of which the
+sum of the voltages around
+
+589
+00:30:51,970 --> 00:30:53,505
+those paths has to be 0.
+
+590
+00:30:53,505 --> 00:30:56,080
+
+591
+00:30:56,080 --> 00:30:59,260
+The problem is, of course, that
+those equations are not
+
+592
+00:30:59,260 --> 00:31:00,625
+all linearly independent.
+
+593
+00:31:00,625 --> 00:31:04,030
+
+594
+00:31:04,030 --> 00:31:07,280
+So if you just had a general
+purpose equation solver-- and
+
+595
+00:31:07,280 --> 00:31:09,330
+by the way, we'll write
+one of those in week
+
+596
+00:31:09,330 --> 00:31:11,970
+8 for solving circuits.
+
+597
+00:31:11,970 --> 00:31:15,400
+If you just passed those 7
+equations into a general
+
+598
+00:31:15,400 --> 00:31:17,410
+purpose equation solver, it
+would tell you there's
+
+599
+00:31:17,410 --> 00:31:20,010
+something awry with your
+equations because they're not
+
+600
+00:31:20,010 --> 00:31:22,800
+linearly independent.
+
+601
+00:31:22,800 --> 00:31:27,140
+So you can, however, think about
+linearly independent in
+
+602
+00:31:27,140 --> 00:31:29,050
+particularly simple cases.
+
+603
+00:31:29,050 --> 00:31:32,140
+This network is a particular
+kind of network that we call a
+
+604
+00:31:32,140 --> 00:31:34,070
+planar network.
+
+605
+00:31:34,070 --> 00:31:37,680
+A planar network is one that I
+can draw on a sheet of paper
+
+606
+00:31:37,680 --> 00:31:41,570
+without crossing wires.
+
+607
+00:31:41,570 --> 00:31:44,040
+So I can draw this network
+without crossing wires.
+
+608
+00:31:44,040 --> 00:31:45,410
+I'll call it planar.
+
+609
+00:31:45,410 --> 00:31:49,080
+And it turns out that
+Kirchhoff's voltage laws for
+
+610
+00:31:49,080 --> 00:31:54,200
+the innermost loops are always
+independent of each other.
+
+611
+00:31:54,200 --> 00:31:56,490
+That's kind of obvious because
+as you go to a --
+
+612
+00:31:56,490 --> 00:31:58,940
+so each loop contains at least
+one element that some other
+
+613
+00:31:58,940 --> 00:32:01,460
+loop didn't have.
+
+614
+00:32:01,460 --> 00:32:04,620
+So that's kind of the reasoning
+for why it works.
+
+615
+00:32:04,620 --> 00:32:07,510
+So if you think about this
+particular loop, which we
+
+616
+00:32:07,510 --> 00:32:13,370
+included in the 7, you can think
+about that as being the
+
+617
+00:32:13,370 --> 00:32:17,020
+sum of the loops this way, the
+A loop and the B loop.
+
+618
+00:32:17,020 --> 00:32:20,360
+Because if you write KVL for the
+A loop and KVL for the B
+
+619
+00:32:20,360 --> 00:32:25,980
+loop and add them, you end up
+deriving KVL for the more
+
+620
+00:32:25,980 --> 00:32:28,220
+complicated path.
+
+621
+00:32:28,220 --> 00:32:30,190
+And if you think about what's
+going on, it's not anything
+
+622
+00:32:30,190 --> 00:32:31,880
+terribly magical.
+
+623
+00:32:31,880 --> 00:32:36,850
+This path is the same as the A
+path added to that path, where
+
+624
+00:32:36,850 --> 00:32:40,900
+I went through this element down
+when I did the A path and
+
+625
+00:32:40,900 --> 00:32:45,610
+up when I did the B path.
+
+626
+00:32:45,610 --> 00:32:48,230
+So those parts canceled out.
+
+627
+00:32:48,230 --> 00:32:50,420
+That was the rule that I was
+talking about how I don't
+
+628
+00:32:50,420 --> 00:32:54,480
+really want to go through the
+same element twice when I'm
+
+629
+00:32:54,480 --> 00:32:56,970
+applying KVL.
+
+630
+00:32:56,970 --> 00:33:00,280
+So the idea then is that there's
+a systematic way, an
+
+631
+00:33:00,280 --> 00:33:05,170
+easy way to figure out
+all the KVL loops.
+
+632
+00:33:05,170 --> 00:33:06,765
+You just think about
+all the possible
+
+633
+00:33:06,765 --> 00:33:08,360
+paths through the circuit.
+
+634
+00:33:08,360 --> 00:33:12,210
+You do have to worry about
+linearly independent.
+
+635
+00:33:12,210 --> 00:33:14,440
+In the case of planar networks,
+that's pretty
+
+636
+00:33:14,440 --> 00:33:15,220
+straightforward.
+
+637
+00:33:15,220 --> 00:33:18,510
+Planar networks, you can always
+figure out the linearly
+
+638
+00:33:18,510 --> 00:33:21,770
+independent KVL equations by
+looking at the smallest
+
+639
+00:33:21,770 --> 00:33:24,140
+possible loops.
+
+640
+00:33:24,140 --> 00:33:26,960
+The loops with small area.
+
+641
+00:33:26,960 --> 00:33:28,250
+OK, so that's half of it.
+
+642
+00:33:28,250 --> 00:33:28,960
+That's KVL.
+
+643
+00:33:28,960 --> 00:33:32,650
+The other Kirchhoff's law is
+KCL, Kirchhoff's Current Law.
+
+644
+00:33:32,650 --> 00:33:37,250
+
+645
+00:33:37,250 --> 00:33:41,760
+There we are thinking of
+the flow of current.
+
+646
+00:33:41,760 --> 00:33:44,770
+So the flow of current is
+analogous to the flow of
+
+647
+00:33:44,770 --> 00:33:47,560
+incompressible fluid.
+
+648
+00:33:47,560 --> 00:33:49,960
+Water, for example.
+
+649
+00:33:49,960 --> 00:33:52,310
+If you trace the amount of water
+that flows through a
+
+650
+00:33:52,310 --> 00:33:56,560
+pipe that goes into a Y, then
+the sum of the flows out has
+
+651
+00:33:56,560 --> 00:33:58,660
+to equal the flow in.
+
+652
+00:33:58,660 --> 00:34:02,710
+If that weren't true, the water
+would be building up.
+
+653
+00:34:02,710 --> 00:34:05,860
+So we think about pipes as
+transporting the flow of water
+
+654
+00:34:05,860 --> 00:34:08,270
+without allowing it to
+build up anywhere.
+
+655
+00:34:08,270 --> 00:34:10,956
+That's precisely how we
+think about wires
+
+656
+00:34:10,956 --> 00:34:13,650
+in electrical circuits.
+
+657
+00:34:13,650 --> 00:34:16,540
+The wires allow the transport
+of electrons but don't allow
+
+658
+00:34:16,540 --> 00:34:20,770
+the buildup of electrons.
+
+659
+00:34:20,770 --> 00:34:22,820
+OK, do electrons build up?
+
+660
+00:34:22,820 --> 00:34:24,000
+Sure.
+
+661
+00:34:24,000 --> 00:34:28,219
+But in our idealized world, we
+say they don't build up in the
+
+662
+00:34:28,219 --> 00:34:31,130
+wires, they build
+up in a part.
+
+663
+00:34:31,130 --> 00:34:33,010
+And we'll have a special
+part that allows the
+
+664
+00:34:33,010 --> 00:34:34,570
+electrons to build up.
+
+665
+00:34:34,570 --> 00:34:36,749
+So we're not excluding the
+possibility that they build
+
+666
+00:34:36,749 --> 00:34:41,840
+up, we're just saying that in
+this formalism, we don't allow
+
+667
+00:34:41,840 --> 00:34:44,540
+the electrons to build
+up in the wires.
+
+668
+00:34:44,540 --> 00:34:47,090
+So for the purpose of the wires,
+current in is equal to
+
+669
+00:34:47,090 --> 00:34:47,630
+the current out.
+
+670
+00:34:47,630 --> 00:34:50,949
+The net current in is 0.
+
+671
+00:34:50,949 --> 00:34:57,360
+So we will think then, about
+the circuit having nodes.
+
+672
+00:34:57,360 --> 00:35:01,300
+The nodes are the places where
+more than one element meets,
+
+673
+00:35:01,300 --> 00:35:03,980
+two or more elements meet.
+
+674
+00:35:03,980 --> 00:35:07,790
+And we will apply KCL
+at each node.
+
+675
+00:35:07,790 --> 00:35:10,650
+So for example, in this simple
+circuit where I would have
+
+676
+00:35:10,650 --> 00:35:18,010
+three parts connected in what
+we would call parallel, they
+
+677
+00:35:18,010 --> 00:35:20,330
+share a node at the
+top and they share
+
+678
+00:35:20,330 --> 00:35:22,620
+a node at the bottom.
+
+679
+00:35:22,620 --> 00:35:24,870
+So even though it looks like
+there's multiple interconnects
+
+680
+00:35:24,870 --> 00:35:27,290
+up here, we say that's
+one node.
+
+681
+00:35:27,290 --> 00:35:30,430
+
+682
+00:35:30,430 --> 00:35:32,940
+And we would say that the sum of
+the currents into the node
+
+683
+00:35:32,940 --> 00:35:35,810
+is equal to the sum of
+the currents out.
+
+684
+00:35:35,810 --> 00:35:38,960
+So if I lab all of the possible
+currents that come
+
+685
+00:35:38,960 --> 00:35:42,160
+out of that node, I would
+have i1, i2, i3.
+
+686
+00:35:42,160 --> 00:35:43,685
+i1 goes through the first
+one, the second one
+
+687
+00:35:43,685 --> 00:35:45,100
+and the third one.
+
+688
+00:35:45,100 --> 00:35:48,300
+And so I would conclude from
+Kirchhoff's current law that
+
+689
+00:35:48,300 --> 00:35:51,340
+the sum of i1, i2,
+and i3 is 0.
+
+690
+00:35:51,340 --> 00:35:51,720
+OK.
+
+691
+00:35:51,720 --> 00:35:53,670
+Easy, right?
+
+692
+00:35:53,670 --> 00:35:59,380
+As I said, we're going to make
+an abstraction where the
+
+693
+00:35:59,380 --> 00:36:03,620
+electrons don't build
+up in the wires.
+
+694
+00:36:03,620 --> 00:36:06,190
+They don't even build
+up in the parts.
+
+695
+00:36:06,190 --> 00:36:07,330
+They do get stored
+in the parts.
+
+696
+00:36:07,330 --> 00:36:10,230
+That's a little confusing,
+we'll come back to that.
+
+697
+00:36:10,230 --> 00:36:12,540
+If they don't build up in the
+parts, then the current that
+
+698
+00:36:12,540 --> 00:36:14,720
+goes in this leg has to
+come out that leg.
+
+699
+00:36:14,720 --> 00:36:17,920
+
+700
+00:36:17,920 --> 00:36:23,930
+If that's true, then i1 is i4,
+i2 is i5, i3 is i6, and we end
+
+701
+00:36:23,930 --> 00:36:27,030
+up with another equation down
+here, which turns out to be
+
+702
+00:36:27,030 --> 00:36:28,900
+precisely the same as
+the one at the top.
+
+703
+00:36:28,900 --> 00:36:33,380
+
+704
+00:36:33,380 --> 00:36:35,790
+Everybody's happy with that?
+
+705
+00:36:35,790 --> 00:36:37,550
+So we're thinking about this
+just the way we would think
+
+706
+00:36:37,550 --> 00:36:39,650
+about water flow.
+
+707
+00:36:39,650 --> 00:36:42,840
+If there's water flow into a
+part, it better be coming out.
+
+708
+00:36:42,840 --> 00:36:46,750
+If there's water flow in a pipe,
+the water that goes into
+
+709
+00:36:46,750 --> 00:36:49,830
+the pipe better come out
+of the pipe someplace.
+
+710
+00:36:49,830 --> 00:36:51,700
+So here is an arbitrary network
+
+711
+00:36:51,700 --> 00:36:53,340
+made out of four parts.
+
+712
+00:36:53,340 --> 00:36:57,070
+How many linearly independent
+KCL equations are there?
+
+713
+00:36:57,070 --> 00:38:20,810
+
+714
+00:38:20,810 --> 00:38:24,740
+So how many linearly independent
+KCL equations are
+
+715
+00:38:24,740 --> 00:38:26,280
+in that network?
+
+716
+00:38:26,280 --> 00:38:30,280
+Everyone raise your hand, some
+number of KCL equations.
+
+717
+00:38:30,280 --> 00:38:34,125
+
+718
+00:38:34,125 --> 00:38:36,250
+OK, I'm seeing a
+bigger variety.
+
+719
+00:38:36,250 --> 00:38:38,170
+I see (1)'s, (2)'s, and (3)'s.
+
+720
+00:38:38,170 --> 00:38:39,200
+I don't see any (4)'s.
+
+721
+00:38:39,200 --> 00:38:40,515
+That's probably good.
+
+722
+00:38:40,515 --> 00:38:43,400
+
+723
+00:38:43,400 --> 00:38:46,600
+So how do you think about the
+number of linearly independent
+
+724
+00:38:46,600 --> 00:38:47,850
+KCL equations?
+
+725
+00:38:47,850 --> 00:38:52,945
+
+726
+00:38:52,945 --> 00:38:55,860
+So the first thing to do
+is to label things.
+
+727
+00:38:55,860 --> 00:38:59,430
+
+728
+00:38:59,430 --> 00:39:01,660
+So you have to have reference
+directions before you can sort
+
+729
+00:39:01,660 --> 00:39:03,250
+of think about things.
+
+730
+00:39:03,250 --> 00:39:04,540
+So we have four elements.
+
+731
+00:39:04,540 --> 00:39:08,900
+We would be expecting to see
+four element currents.
+
+732
+00:39:08,900 --> 00:39:10,800
+The same current that goes
+into an element has
+
+733
+00:39:10,800 --> 00:39:12,460
+to come out of it.
+
+734
+00:39:12,460 --> 00:39:14,080
+So there's element current
+1, 2, 3, and 4.
+
+735
+00:39:14,080 --> 00:39:17,490
+
+736
+00:39:17,490 --> 00:39:21,230
+There are three nodes,
+so we might be
+
+737
+00:39:21,230 --> 00:39:24,680
+expecting three KCL equations.
+
+738
+00:39:24,680 --> 00:39:28,190
+Here's one node from which you
+would conclude that the sum of
+
+739
+00:39:28,190 --> 00:39:31,520
+i1 and i2 better be 0.
+
+740
+00:39:31,520 --> 00:39:33,520
+Here's a node from which you
+would conclude that the
+
+741
+00:39:33,520 --> 00:39:38,890
+current in i2 better
+be i3 plus i4.
+
+742
+00:39:38,890 --> 00:39:41,440
+And here is a node from which
+you would conclude that i1
+
+743
+00:39:41,440 --> 00:39:45,230
+plus i3 plus i4 is 0.
+
+744
+00:39:45,230 --> 00:39:48,380
+So I can write one KCL equation
+for every node,
+
+745
+00:39:48,380 --> 00:39:50,840
+that's not surprising.
+
+746
+00:39:50,840 --> 00:39:52,820
+But if you look at those
+equations, you'll see that
+
+747
+00:39:52,820 --> 00:39:54,390
+they're not linearly
+independent.
+
+748
+00:39:54,390 --> 00:39:57,710
+In fact, if you solve
+this one for i2--
+
+749
+00:39:57,710 --> 00:39:59,150
+it's already solved for i2.
+
+750
+00:39:59,150 --> 00:40:03,910
+Stick that answer up here, you
+get i3 plus i4 added to i1 is
+
+751
+00:40:03,910 --> 00:40:06,590
+0, which is just the same
+as that equation.
+
+752
+00:40:06,590 --> 00:40:11,540
+So of those three equations,
+only two of them are linearly
+
+753
+00:40:11,540 --> 00:40:13,090
+independent.
+
+754
+00:40:13,090 --> 00:40:14,525
+The answer to that
+problem was (2).
+
+755
+00:40:14,525 --> 00:40:18,820
+
+756
+00:40:18,820 --> 00:40:20,920
+And there's a pattern.
+
+757
+00:40:20,920 --> 00:40:23,690
+So think about the pattern in
+terms of figuring out the
+
+758
+00:40:23,690 --> 00:40:26,320
+number of linearly independent
+KCL equations that are in a
+
+759
+00:40:26,320 --> 00:40:27,735
+slightly more complicated
+network.
+
+760
+00:40:27,735 --> 00:42:00,512
+
+761
+00:42:00,512 --> 00:42:05,880
+So what's the answer
+here, how many KCL
+
+762
+00:42:05,880 --> 00:42:07,270
+equations are in this network?
+
+763
+00:42:07,270 --> 00:42:10,040
+
+764
+00:42:10,040 --> 00:42:11,290
+Wow.
+
+765
+00:42:11,290 --> 00:42:13,160
+
+766
+00:42:13,160 --> 00:42:18,020
+Well, I'm not getting any of the
+answers I would have said.
+
+767
+00:42:18,020 --> 00:42:20,776
+What does that mean?
+
+768
+00:42:20,776 --> 00:42:23,550
+Ah, I'm forgetting to add 2.
+
+769
+00:42:23,550 --> 00:42:24,270
+That's my problem.
+
+770
+00:42:24,270 --> 00:42:27,370
+OK, now I'm getting some of
+the answers that I would
+
+771
+00:42:27,370 --> 00:42:27,980
+expect to get.
+
+772
+00:42:27,980 --> 00:42:30,080
+OK, got it.
+
+773
+00:42:30,080 --> 00:42:31,730
+I confused myself.
+
+774
+00:42:31,730 --> 00:42:33,910
+OK, the vast majority say (1).
+
+775
+00:42:33,910 --> 00:42:35,640
+How do you get that?
+
+776
+00:42:35,640 --> 00:42:36,890
+Which is 3.
+
+777
+00:42:36,890 --> 00:42:42,574
+
+778
+00:42:42,574 --> 00:42:45,740
+So again, you think of how in
+this circuit there are four
+
+779
+00:42:45,740 --> 00:42:51,880
+nodes, A, B, C, D. So we can
+think about writing a KCL
+
+780
+00:42:51,880 --> 00:42:53,060
+equation for each one.
+
+781
+00:42:53,060 --> 00:42:56,450
+If we go to A, A has three
+currents coming out of it --
+
+782
+00:42:56,450 --> 00:42:57,360
+1, 2, 3.
+
+783
+00:42:57,360 --> 00:43:02,910
+So the sum of those has
+to be 0, et cetera.
+
+784
+00:43:02,910 --> 00:43:05,010
+And if you think about those
+equations, they're not
+
+785
+00:43:05,010 --> 00:43:06,450
+linearly independent either.
+
+786
+00:43:06,450 --> 00:43:09,010
+
+787
+00:43:09,010 --> 00:43:11,250
+If you work through the math,
+you see that there's exactly
+
+788
+00:43:11,250 --> 00:43:15,330
+one of those equations that
+you can eliminate.
+
+789
+00:43:15,330 --> 00:43:17,350
+So you're left with
+three linearly
+
+790
+00:43:17,350 --> 00:43:20,250
+independent KCL equations.
+
+791
+00:43:20,250 --> 00:43:22,210
+And so there's a pattern
+emerging here.
+
+792
+00:43:22,210 --> 00:43:23,460
+Somebody see the pattern?
+
+793
+00:43:23,460 --> 00:43:25,540
+
+794
+00:43:25,540 --> 00:43:26,520
+1 minus.
+
+795
+00:43:26,520 --> 00:43:27,770
+Can somebody prove
+the pattern?
+
+796
+00:43:27,770 --> 00:43:30,560
+
+797
+00:43:30,560 --> 00:43:31,520
+So there's a pattern here.
+
+798
+00:43:31,520 --> 00:43:35,810
+The pattern is take the number
+of nodes and the number of
+
+799
+00:43:35,810 --> 00:43:37,910
+independent KCL equations
+as one less.
+
+800
+00:43:37,910 --> 00:43:41,480
+
+801
+00:43:41,480 --> 00:43:43,398
+So the challenge is,
+can you prove it?
+
+802
+00:43:43,398 --> 00:43:46,390
+
+803
+00:43:46,390 --> 00:43:47,640
+And by the theory
+of lectures--
+
+804
+00:43:47,640 --> 00:43:50,858
+
+805
+00:43:50,858 --> 00:43:51,356
+AUDIENCE: Yes.
+
+806
+00:43:51,356 --> 00:43:53,350
+PROFESSOR: Yes.
+
+807
+00:43:53,350 --> 00:43:55,510
+And by a corollary of the theory
+of lectures, the way
+
+808
+00:43:55,510 --> 00:43:57,010
+you would prove it is?
+
+809
+00:43:57,010 --> 00:43:57,970
+AUDIENCE: On the next slide.
+
+810
+00:43:57,970 --> 00:43:58,980
+PROFESSOR: On the next slide.
+
+811
+00:43:58,980 --> 00:44:00,230
+Exactly.
+
+812
+00:44:00,230 --> 00:44:02,960
+
+813
+00:44:02,960 --> 00:44:04,210
+So how do I prove it?
+
+814
+00:44:04,210 --> 00:44:06,958
+
+815
+00:44:06,958 --> 00:44:08,930
+Yeah?
+
+816
+00:44:08,930 --> 00:44:11,395
+AUDIENCE: Whenever you take
+minus 1, you just add all the
+
+817
+00:44:11,395 --> 00:44:12,650
+[UNINTELLIGIBLE] together
+[UNINTELLIGIBLE].
+
+818
+00:44:12,650 --> 00:44:12,910
+PROFESSOR: Yeah.
+
+819
+00:44:12,910 --> 00:44:15,312
+So there's something special
+about the last one.
+
+820
+00:44:15,312 --> 00:44:17,304
+Why should there be something
+special about the last one.
+
+821
+00:44:17,304 --> 00:44:19,296
+AUDIENCE: Because the
+circuit's closed.
+
+822
+00:44:19,296 --> 00:44:22,504
+PROFESSOR: Because the
+circuit's closed.
+
+823
+00:44:22,504 --> 00:44:23,760
+That's right.
+
+824
+00:44:23,760 --> 00:44:26,230
+So the idea is to sort
+of generalize the way
+
+825
+00:44:26,230 --> 00:44:27,480
+we think about KCL.
+
+826
+00:44:27,480 --> 00:44:29,690
+
+827
+00:44:29,690 --> 00:44:30,710
+So we start with a circuit.
+
+828
+00:44:30,710 --> 00:44:33,840
+We think about having
+four nodes here.
+
+829
+00:44:33,840 --> 00:44:37,270
+It's certainly the case that
+KCL holds for each node.
+
+830
+00:44:37,270 --> 00:44:41,376
+So here's KCL for that node.
+
+831
+00:44:41,376 --> 00:44:46,830
+But now if you think about KCL
+for this node, and then add
+
+832
+00:44:46,830 --> 00:44:51,180
+them, that looks like
+a KCL equation.
+
+833
+00:44:51,180 --> 00:44:53,850
+
+834
+00:44:53,850 --> 00:44:57,200
+But it applies to
+a super node.
+
+835
+00:44:57,200 --> 00:45:02,520
+Imagine the node defined by the
+black box, and think about
+
+836
+00:45:02,520 --> 00:45:05,293
+the net currents into or
+out of the black node.
+
+837
+00:45:05,293 --> 00:45:08,470
+
+838
+00:45:08,470 --> 00:45:13,940
+This current i2, which leaves
+the red node, enters the green
+
+839
+00:45:13,940 --> 00:45:17,890
+node, but doesn't go through
+the surface of the
+
+840
+00:45:17,890 --> 00:45:20,520
+black node at all.
+
+841
+00:45:20,520 --> 00:45:23,600
+That's exactly the current
+that's subtracted out when we
+
+842
+00:45:23,600 --> 00:45:26,986
+added the red equation to
+the green equation.
+
+843
+00:45:26,986 --> 00:45:28,940
+Does that make sense?
+
+844
+00:45:28,940 --> 00:45:34,090
+So KCL says, oh, if all the
+currents at a node have to sum
+
+845
+00:45:34,090 --> 00:45:40,380
+to 0, and if elements have the
+same current coming out and
+
+846
+00:45:40,380 --> 00:45:48,560
+going in, then if you draw a
+box around an element, what
+
+847
+00:45:48,560 --> 00:45:51,000
+goes into the element
+is the same as what
+
+848
+00:45:51,000 --> 00:45:52,240
+comes out of the element.
+
+849
+00:45:52,240 --> 00:45:55,340
+It doesn't change the net
+current through the surface.
+
+850
+00:45:55,340 --> 00:45:58,890
+So the generalization of the KCL
+equation, KCL says the sum
+
+851
+00:45:58,890 --> 00:46:00,450
+of the currents into
+a node is 0.
+
+852
+00:46:00,450 --> 00:46:06,690
+The generalization says take any
+closed path in a circuit,
+
+853
+00:46:06,690 --> 00:46:11,630
+the sum of the currents going
+across that closed path is 0.
+
+854
+00:46:11,630 --> 00:46:16,600
+So if we apply that rule again,
+think about node 3.
+
+855
+00:46:16,600 --> 00:46:20,470
+If we add the result of node 3
+to the black node, which was
+
+856
+00:46:20,470 --> 00:46:25,170
+the sum of 1 and 2, we get
+the new green curve.
+
+857
+00:46:25,170 --> 00:46:27,340
+We get the new green equation.
+
+858
+00:46:27,340 --> 00:46:29,720
+And what that says is the sum
+of the currents going across
+
+859
+00:46:29,720 --> 00:46:33,120
+the green super node--
+
+860
+00:46:33,120 --> 00:46:36,530
+OK, so what's going on? i1 is
+coming out of it, i4 is coming
+
+861
+00:46:36,530 --> 00:46:38,330
+out of it, i5 is coming
+out of it.
+
+862
+00:46:38,330 --> 00:46:41,540
+So the sum of i1, i4,
+and i5 has to be 0.
+
+863
+00:46:41,540 --> 00:46:46,570
+
+864
+00:46:46,570 --> 00:46:49,030
+Well, KCL says the sum of the
+currents coming out of a
+
+865
+00:46:49,030 --> 00:46:50,890
+node must be 0.
+
+866
+00:46:50,890 --> 00:46:54,990
+The super KCL says the sum of
+the currents coming out of any
+
+867
+00:46:54,990 --> 00:47:00,180
+closed region is also 0.
+
+868
+00:47:00,180 --> 00:47:03,840
+But the interesting thing about
+this closed region is
+
+869
+00:47:03,840 --> 00:47:06,425
+that it encloses all but
+one of the nodes.
+
+870
+00:47:06,425 --> 00:47:09,230
+
+871
+00:47:09,230 --> 00:47:11,310
+That's always true.
+
+872
+00:47:11,310 --> 00:47:14,150
+Regardless of the system,
+regardless of the circuit, you
+
+873
+00:47:14,150 --> 00:47:19,090
+can always draw a line that will
+isolate one node from all
+
+874
+00:47:19,090 --> 00:47:22,030
+the others.
+
+875
+00:47:22,030 --> 00:47:25,825
+So what that proves is that you
+can always write KCL for
+
+876
+00:47:25,825 --> 00:47:28,920
+this node in terms of
+KCL for those nodes.
+
+877
+00:47:28,920 --> 00:47:31,870
+
+878
+00:47:31,870 --> 00:47:31,965
+Ok.
+
+879
+00:47:31,965 --> 00:47:34,770
+So there's a generalization then
+that says that you can
+
+880
+00:47:34,770 --> 00:47:40,120
+always write KCL
+for every node.
+
+881
+00:47:40,120 --> 00:47:42,130
+They will always be linearly
+dependent.
+
+882
+00:47:42,130 --> 00:47:43,580
+So you can always
+throw away one.
+
+883
+00:47:43,580 --> 00:47:47,780
+
+884
+00:47:47,780 --> 00:47:49,690
+So in some sense now,
+we're done.
+
+885
+00:47:49,690 --> 00:47:51,840
+We've just finished
+circuit theory.
+
+886
+00:47:51,840 --> 00:47:55,060
+We talked about how every
+element has to have a law.
+
+887
+00:47:55,060 --> 00:47:56,470
+A resistor is Ohm's Law.
+
+888
+00:47:56,470 --> 00:47:58,820
+A voltage source says that the
+voltage across the terminals
+
+889
+00:47:58,820 --> 00:48:00,295
+is always a constant.
+
+890
+00:48:00,295 --> 00:48:02,730
+A current source says that the
+current through the current
+
+891
+00:48:02,730 --> 00:48:04,530
+source is always a constant.
+
+892
+00:48:04,530 --> 00:48:07,380
+So every element tells
+you one law.
+
+893
+00:48:07,380 --> 00:48:10,170
+
+894
+00:48:10,170 --> 00:48:12,760
+We know how to think
+about KVL.
+
+895
+00:48:12,760 --> 00:48:18,930
+So we know the rule for how the
+across variables behave.
+
+896
+00:48:18,930 --> 00:48:21,230
+What's the aggregate behavior
+of all the across variables?
+
+897
+00:48:21,230 --> 00:48:24,140
+Well, KVL has to be satisfied
+for every possible loop.
+
+898
+00:48:24,140 --> 00:48:26,430
+The loops don't have
+to be independent.
+
+899
+00:48:26,430 --> 00:48:28,620
+You have to worry about whether
+they're independent.
+
+900
+00:48:28,620 --> 00:48:31,020
+The only simple rule we came up
+with-- we'll come up with
+
+901
+00:48:31,020 --> 00:48:32,415
+another one in a moment.
+
+902
+00:48:32,415 --> 00:48:35,340
+The only simple rule that we
+came up with was for planar
+
+903
+00:48:35,340 --> 00:48:38,410
+circuits, where the innermost
+loops were linearly
+
+904
+00:48:38,410 --> 00:48:39,720
+independent of each other.
+
+905
+00:48:39,720 --> 00:48:44,280
+And you have to write KCL for
+all the nodes, except one.
+
+906
+00:48:44,280 --> 00:48:45,530
+One of them never matters.
+
+907
+00:48:45,530 --> 00:48:48,110
+
+908
+00:48:48,110 --> 00:48:50,210
+So in some sense, we're done.
+
+909
+00:48:50,210 --> 00:48:52,450
+What we would do to
+solve the circuit,
+
+910
+00:48:52,450 --> 00:48:54,310
+think about every element.
+
+911
+00:48:54,310 --> 00:48:59,240
+For every element assign a
+voltage, a reference voltage.
+
+912
+00:48:59,240 --> 00:49:02,570
+For every element,
+assign a current.
+
+913
+00:49:02,570 --> 00:49:04,460
+Make sure they go in the
+right direction.
+
+914
+00:49:04,460 --> 00:49:07,460
+We always define currents
+to go down
+
+915
+00:49:07,460 --> 00:49:09,070
+the potential gradient.
+
+916
+00:49:09,070 --> 00:49:11,920
+They always go in the directions
+through the element
+
+917
+00:49:11,920 --> 00:49:14,840
+from the positive
+to the negative.
+
+918
+00:49:14,840 --> 00:49:18,610
+So for every element, assign
+a current and a voltage.
+
+919
+00:49:18,610 --> 00:49:22,420
+We have 6 elements, that's
+12 unknowns.
+
+920
+00:49:22,420 --> 00:49:25,370
+Now we dig and we find
+12 equations.
+
+921
+00:49:25,370 --> 00:49:28,980
+In this particular circuit, we
+found those 12 equations.
+
+922
+00:49:28,980 --> 00:49:31,505
+There were three KCL equations,
+one for each of the
+
+923
+00:49:31,505 --> 00:49:32,550
+inner loops.
+
+924
+00:49:32,550 --> 00:49:35,420
+There were three KCL equations,
+one for each node
+
+925
+00:49:35,420 --> 00:49:38,080
+except one.
+
+926
+00:49:38,080 --> 00:49:41,020
+There were 5 Ohm's law
+equations, one for each one of
+
+927
+00:49:41,020 --> 00:49:41,750
+the resistors.
+
+928
+00:49:41,750 --> 00:49:45,390
+There was one source equation
+for the voltage source.
+
+929
+00:49:45,390 --> 00:49:49,120
+12 equations, 12 unknowns,
+we're done.
+
+930
+00:49:49,120 --> 00:49:52,900
+The only problem is a
+lot of equations.
+
+931
+00:49:52,900 --> 00:49:54,500
+It's not a very complicated
+circuit.
+
+932
+00:49:54,500 --> 00:49:56,430
+We've only got 6 elements.
+
+933
+00:49:56,430 --> 00:49:59,580
+I tried to motivate this in
+terms of studying networks
+
+934
+00:49:59,580 --> 00:50:04,390
+that had 10 to the 9 elements.
+
+935
+00:50:04,390 --> 00:50:06,750
+This technique is not
+particularly great
+
+936
+00:50:06,750 --> 00:50:08,920
+at 10 to the 9.
+
+937
+00:50:08,920 --> 00:50:11,240
+It would probably work.
+
+938
+00:50:11,240 --> 00:50:13,130
+But we would probably
+be interested in
+
+939
+00:50:13,130 --> 00:50:15,970
+finding simpler ways.
+
+940
+00:50:15,970 --> 00:50:20,430
+So there are simpler ways you
+might imagine, and we'll
+
+941
+00:50:20,430 --> 00:50:24,680
+discuss two of them
+just very briefly.
+
+942
+00:50:24,680 --> 00:50:27,160
+The dumb way that I just talked
+about is what we call
+
+943
+00:50:27,160 --> 00:50:30,190
+primitive variables,
+element variables.
+
+944
+00:50:30,190 --> 00:50:33,600
+If you write all the element
+variables, v1, v2, v3, v4, v5
+
+945
+00:50:33,600 --> 00:50:37,480
+v6, all of the element currents,
+i1, i2, i3, i4, i5,
+
+946
+00:50:37,480 --> 00:50:40,630
+i6, write all the equations,
+you can solve it.
+
+947
+00:50:40,630 --> 00:50:43,620
+However, if you're judicious,
+you can figure out a smaller
+
+948
+00:50:43,620 --> 00:50:46,600
+number of unknowns and a
+correspondingly smaller number
+
+949
+00:50:46,600 --> 00:50:47,340
+of equations.
+
+950
+00:50:47,340 --> 00:50:49,640
+One method is called
+the node method.
+
+951
+00:50:49,640 --> 00:50:52,180
+
+952
+00:50:52,180 --> 00:50:54,400
+When we're thinking about the
+individual elements, the thing
+
+953
+00:50:54,400 --> 00:50:56,465
+that matters is the voltage
+across the element.
+
+954
+00:50:56,465 --> 00:50:59,230
+
+955
+00:50:59,230 --> 00:51:02,130
+However, that's not
+the easy way to
+
+956
+00:51:02,130 --> 00:51:06,140
+write the circuit equations.
+
+957
+00:51:06,140 --> 00:51:10,110
+A much easier way is not to tell
+me the voltage across an
+
+958
+00:51:10,110 --> 00:51:13,360
+element, but instead tell me
+the voltage associated with
+
+959
+00:51:13,360 --> 00:51:14,610
+each of the nodes.
+
+960
+00:51:14,610 --> 00:51:18,710
+
+961
+00:51:18,710 --> 00:51:23,400
+If I tell you the voltage
+associated with every node,
+
+962
+00:51:23,400 --> 00:51:25,930
+the important thing about that
+way of defining the variables
+
+963
+00:51:25,930 --> 00:51:29,040
+is that you're guaranteed that
+from those variables, you can
+
+964
+00:51:29,040 --> 00:51:32,360
+tell me the voltage
+across every part.
+
+965
+00:51:32,360 --> 00:51:35,630
+So for example, in this circuit,
+this voltage source--
+
+966
+00:51:35,630 --> 00:51:42,140
+so if I call this one ground,
+we'll always have a magic node
+
+967
+00:51:42,140 --> 00:51:43,410
+called ground.
+
+968
+00:51:43,410 --> 00:51:47,490
+It is not special
+in the least.
+
+969
+00:51:47,490 --> 00:51:50,780
+It's just the reference
+voltage.
+
+970
+00:51:50,780 --> 00:51:51,610
+I'll come back to that.
+
+971
+00:51:51,610 --> 00:51:54,400
+I'll say words in a minute about
+what the reference is.
+
+972
+00:51:54,400 --> 00:51:58,100
+We always get to declare
+one node to be ground.
+
+973
+00:51:58,100 --> 00:52:01,270
+We get one free node.
+
+974
+00:52:01,270 --> 00:52:04,830
+It's a node whose voltage we
+don't care about because it's
+
+975
+00:52:04,830 --> 00:52:06,380
+the reference for
+all voltages.
+
+976
+00:52:06,380 --> 00:52:09,260
+It's a node whose current we
+don't care about because we
+
+977
+00:52:09,260 --> 00:52:12,370
+get to throw away one node when
+we do current equations.
+
+978
+00:52:12,370 --> 00:52:15,400
+So we have one special mode
+called ground, about which we
+
+979
+00:52:15,400 --> 00:52:16,660
+don't care too much.
+
+980
+00:52:16,660 --> 00:52:18,900
+Except that it's the most
+important node in the circuit.
+
+981
+00:52:18,900 --> 00:52:20,650
+Except for that, we don't
+care about it.
+
+982
+00:52:20,650 --> 00:52:23,430
+So this guy's ground.
+
+983
+00:52:23,430 --> 00:52:26,080
+We think about its
+voltage being 0.
+
+984
+00:52:26,080 --> 00:52:30,360
+Then this voltage supply
+makes that node be v0.
+
+985
+00:52:30,360 --> 00:52:32,250
+I don't know what that is,
+so I'll call it e1.
+
+986
+00:52:32,250 --> 00:52:36,340
+And I don't know what that
+is, so I'll call it e2.
+
+987
+00:52:36,340 --> 00:52:39,600
+So if I tell you the voltage on
+all of those nodes, ground
+
+988
+00:52:39,600 --> 00:52:44,550
+voltage is 0, the top voltage is
+v0, the left voltage is e1,
+
+989
+00:52:44,550 --> 00:52:45,670
+the right voltage is e2.
+
+990
+00:52:45,670 --> 00:52:51,700
+From those four numbers, 0 and
+3 nontrivial numbers, you can
+
+991
+00:52:51,700 --> 00:52:54,940
+find all of the component
+voltages.
+
+992
+00:52:54,940 --> 00:52:59,460
+So for example, the voltage v6,
+the voltage across R6 is
+
+993
+00:52:59,460 --> 00:53:00,710
+e2 minus e1.
+
+994
+00:53:00,710 --> 00:53:03,420
+
+995
+00:53:03,420 --> 00:53:06,740
+The voltage v4, the voltage
+across the R4
+
+996
+00:53:06,740 --> 00:53:10,470
+resistor is e1 minus 0.
+
+997
+00:53:10,470 --> 00:53:15,690
+So if I tell you all the node
+voltages, you can tell me all
+
+998
+00:53:15,690 --> 00:53:17,250
+of the element voltages.
+
+999
+00:53:17,250 --> 00:53:20,530
+And in general, there's fewer
+nodes than there are
+
+1000
+00:53:20,530 --> 00:53:21,560
+components.
+
+1001
+00:53:21,560 --> 00:53:23,820
+OK, that's great.
+
+1002
+00:53:23,820 --> 00:53:26,990
+So instead of naming the volts
+across the elements, we'll
+
+1003
+00:53:26,990 --> 00:53:30,115
+name the voltages at the nodes
+because there's fewer of them.
+
+1004
+00:53:30,115 --> 00:53:32,750
+
+1005
+00:53:32,750 --> 00:53:36,620
+Then, all we need to do in the
+node method is write the
+
+1006
+00:53:36,620 --> 00:53:42,780
+minimum number of
+KCL equations.
+
+1007
+00:53:42,780 --> 00:53:46,060
+We know we only have two
+unknowns, e1 and e2.
+
+1008
+00:53:46,060 --> 00:53:47,970
+And it turns out-- and you
+can prove this, but I
+
+1009
+00:53:47,970 --> 00:53:50,990
+won't prove it today.
+
+1010
+00:53:50,990 --> 00:53:54,000
+It turns out that you need
+two KCL equations.
+
+1011
+00:53:54,000 --> 00:53:57,670
+Two unknowns, e1, e2,
+two KCL equations.
+
+1012
+00:53:57,670 --> 00:54:01,400
+And it turns out those two KCL
+equations are exactly the KCL
+
+1013
+00:54:01,400 --> 00:54:03,400
+equations associated
+with the two nodes.
+
+1014
+00:54:03,400 --> 00:54:05,950
+
+1015
+00:54:05,950 --> 00:54:10,990
+So the current leaving
+e1, so KCL at e1 --
+
+1016
+00:54:10,990 --> 00:54:14,780
+well, there's a current
+that goes that way.
+
+1017
+00:54:14,780 --> 00:54:19,080
+Well, that's the voltage drop
+in going from e1 to v0, e1
+
+1018
+00:54:19,080 --> 00:54:21,380
+minus v0, divided by R2.
+
+1019
+00:54:21,380 --> 00:54:23,610
+That's Ohm's law.
+
+1020
+00:54:23,610 --> 00:54:28,600
+So this term represents the
+current going up that leg plus
+
+1021
+00:54:28,600 --> 00:54:30,930
+the current that goes through
+this leg, which is e1
+
+1022
+00:54:30,930 --> 00:54:33,780
+minus e2 over R6.
+
+1023
+00:54:33,780 --> 00:54:36,450
+Plus the current going in
+that leg, which is e1
+
+1024
+00:54:36,450 --> 00:54:39,250
+minus 0 over R4.
+
+1025
+00:54:39,250 --> 00:54:40,980
+The sum of those three
+currents better be 0.
+
+1026
+00:54:40,980 --> 00:54:43,640
+
+1027
+00:54:43,640 --> 00:54:46,460
+Analogously, the sum of the
+currents at this node must be
+
+1028
+00:54:46,460 --> 00:54:50,070
+0, and the equation looks
+virtually the same.
+
+1029
+00:54:50,070 --> 00:54:56,230
+Because v0 is known, so it
+didn't add an unknown.
+
+1030
+00:54:56,230 --> 00:55:00,250
+v0 was set by the voltage,
+by the voltage source.
+
+1031
+00:55:00,250 --> 00:55:04,000
+So I have two equations,
+two unknowns, solved.
+
+1032
+00:55:04,000 --> 00:55:04,630
+Done.
+
+1033
+00:55:04,630 --> 00:55:07,040
+So rather than solving 12
+equations and 12 unknowns, I
+
+1034
+00:55:07,040 --> 00:55:09,300
+can do it with two equations
+and two unknowns.
+
+1035
+00:55:09,300 --> 00:55:11,640
+That's called the node method.
+
+1036
+00:55:11,640 --> 00:55:15,610
+One of the most interesting
+theories about circuits is
+
+1037
+00:55:15,610 --> 00:55:19,110
+that every simplification that
+you can think about for
+
+1038
+00:55:19,110 --> 00:55:22,250
+voltage has an analogous
+simplification that you can
+
+1039
+00:55:22,250 --> 00:55:23,050
+think about in current.
+
+1040
+00:55:23,050 --> 00:55:24,030
+That's called duality.
+
+1041
+00:55:24,030 --> 00:55:26,430
+We won't do that because it's
+kind of complicated.
+
+1042
+00:55:26,430 --> 00:55:27,790
+But it's kind of
+a cute result.
+
+1043
+00:55:27,790 --> 00:55:29,500
+If you can think of a
+simplification that works in
+
+1044
+00:55:29,500 --> 00:55:31,920
+voltage, then there is
+an analogous one, and
+
+1045
+00:55:31,920 --> 00:55:33,200
+you can prove it.
+
+1046
+00:55:33,200 --> 00:55:36,860
+In fact, you can formally derive
+what it must have been.
+
+1047
+00:55:36,860 --> 00:55:40,090
+
+1048
+00:55:40,090 --> 00:55:42,970
+This is a rule for how you can
+simplify things by thinking
+
+1049
+00:55:42,970 --> 00:55:45,115
+about voltages in aggregate.
+
+1050
+00:55:45,115 --> 00:55:47,640
+
+1051
+00:55:47,640 --> 00:55:50,480
+Rather than thinking about the
+element voltages, think about
+
+1052
+00:55:50,480 --> 00:55:51,890
+the node voltages.
+
+1053
+00:55:51,890 --> 00:55:56,510
+The analogous current law is
+rather than thinking about the
+
+1054
+00:55:56,510 --> 00:55:59,770
+currents through the elements,
+the element currents, think
+
+1055
+00:55:59,770 --> 00:56:01,950
+about loop currents.
+
+1056
+00:56:01,950 --> 00:56:04,110
+OK, that's a little bizarre.
+
+1057
+00:56:04,110 --> 00:56:07,430
+So we name the loop, the current
+that flows in this
+
+1058
+00:56:07,430 --> 00:56:12,590
+loop, IA, the current that flows
+in this loop, IB, and
+
+1059
+00:56:12,590 --> 00:56:14,780
+the current hat flows
+in this loop, IC.
+
+1060
+00:56:14,780 --> 00:56:16,280
+What on earth is he doing?
+
+1061
+00:56:16,280 --> 00:56:20,250
+Well, the element voltages are
+some linear combination of
+
+1062
+00:56:20,250 --> 00:56:24,070
+those loop currents.
+
+1063
+00:56:24,070 --> 00:56:26,460
+And in fact, the coefficients in
+the linear combination are
+
+1064
+00:56:26,460 --> 00:56:27,660
+one and minus one.
+
+1065
+00:56:27,660 --> 00:56:32,320
+So the element current I4, the
+current that flows through the
+
+1066
+00:56:32,320 --> 00:56:37,780
+R4 resistor is the sum of
+IA coming down minus IC,
+
+1067
+00:56:37,780 --> 00:56:39,670
+which is going up.
+
+1068
+00:56:39,670 --> 00:56:45,500
+So there's a way of thinking
+about each element current as
+
+1069
+00:56:45,500 --> 00:56:49,790
+a sum or difference of
+the loop currents.
+
+1070
+00:56:49,790 --> 00:56:52,180
+Everybody get that?
+
+1071
+00:56:52,180 --> 00:56:54,600
+So instead of thinking about
+the individual element
+
+1072
+00:56:54,600 --> 00:56:56,190
+currents, I think about
+the loop currents.
+
+1073
+00:56:56,190 --> 00:57:00,900
+And now, I need to write
+three KVL equations.
+
+1074
+00:57:00,900 --> 00:57:06,730
+So in the node method, I named
+the nodes and had to write two
+
+1075
+00:57:06,730 --> 00:57:08,480
+KCL equations.
+
+1076
+00:57:08,480 --> 00:57:11,205
+Here, I named the loop currents
+and I have to write
+
+1077
+00:57:11,205 --> 00:57:15,590
+three KVL equations,
+one for each loop.
+
+1078
+00:57:15,590 --> 00:57:16,760
+It's completely analogous.
+
+1079
+00:57:16,760 --> 00:57:19,420
+If you write out a sentence,
+what did you do?
+
+1080
+00:57:19,420 --> 00:57:21,760
+I assigned a voltage to every
+node, and I wrote
+
+1081
+00:57:21,760 --> 00:57:22,910
+KCL of all the nodes.
+
+1082
+00:57:22,910 --> 00:57:26,040
+Then if you turn the word
+"current" into the word
+
+1083
+00:57:26,040 --> 00:57:30,540
+"voltage," the word "node"
+into the word "loop," you
+
+1084
+00:57:30,540 --> 00:57:33,920
+derive this new method.
+
+1085
+00:57:33,920 --> 00:57:37,340
+So this says that if I write KVL
+at the A loop, think about
+
+1086
+00:57:37,340 --> 00:57:40,580
+spinning around this loop, as
+I go up through the voltage
+
+1087
+00:57:40,580 --> 00:57:43,910
+source, so I go in the negative
+terminal here.
+
+1088
+00:57:43,910 --> 00:57:46,090
+So that's minus v0.
+
+1089
+00:57:46,090 --> 00:57:48,940
+As I go down through this
+resistor, I have to use Ohm's
+
+1090
+00:57:48,940 --> 00:57:51,770
+law, so that's R2 times
+the down current.
+
+1091
+00:57:51,770 --> 00:57:57,610
+Well, the down current is
+IA down minus IB up.
+
+1092
+00:57:57,610 --> 00:57:59,380
+So I went up through here,
+down through here.
+
+1093
+00:57:59,380 --> 00:58:01,160
+Now I go down through
+this one.
+
+1094
+00:58:01,160 --> 00:58:04,580
+When I go down through that one,
+according to Ohm's law,
+
+1095
+00:58:04,580 --> 00:58:07,530
+that's R4 times the current
+through that element.
+
+1096
+00:58:07,530 --> 00:58:13,490
+That current-- well, it's
+IA down and it's IC up.
+
+1097
+00:58:13,490 --> 00:58:18,650
+So this is the KVL equation
+for that loop.
+
+1098
+00:58:18,650 --> 00:58:23,030
+I write two more of them, and I
+end up with three equations
+
+1099
+00:58:23,030 --> 00:58:25,590
+and three unknowns.
+
+1100
+00:58:25,590 --> 00:58:29,410
+Both the node method and the
+loop method resulted in a lot
+
+1101
+00:58:29,410 --> 00:58:33,330
+fewer equations than
+the primitives did.
+
+1102
+00:58:33,330 --> 00:58:38,400
+I had 12 primitive unknowns,
+6 voltages and 6 currents.
+
+1103
+00:58:38,400 --> 00:58:42,670
+In the node method, I get the
+number of independent nodes as
+
+1104
+00:58:42,670 --> 00:58:44,910
+the number of equations and
+unknowns, which is less than
+
+1105
+00:58:44,910 --> 00:58:46,520
+the number of primitive
+variables.
+
+1106
+00:58:46,520 --> 00:58:49,280
+In the loop method, I have the
+number of independent loops.
+
+1107
+00:58:49,280 --> 00:58:51,840
+
+1108
+00:58:51,840 --> 00:58:55,100
+Which is again, smaller.
+
+1109
+00:58:55,100 --> 00:58:57,220
+So the idea then is that we have
+a couple of ways to think
+
+1110
+00:58:57,220 --> 00:59:00,360
+about solving circuits.
+
+1111
+00:59:00,360 --> 00:59:04,450
+Fundamentally, all we have are
+the element relationships and
+
+1112
+00:59:04,450 --> 00:59:05,846
+the rules for combination.
+
+1113
+00:59:05,846 --> 00:59:09,180
+Oh, this is starting to sound
+like PCAP, primitives and
+
+1114
+00:59:09,180 --> 00:59:10,380
+combinations.
+
+1115
+00:59:10,380 --> 00:59:14,860
+So the primitives are, how does
+the element constrain the
+
+1116
+00:59:14,860 --> 00:59:17,260
+voltages and currents?
+
+1117
+00:59:17,260 --> 00:59:19,470
+We know three of those,
+Ohm's law, voltage
+
+1118
+00:59:19,470 --> 00:59:21,480
+source, current source.
+
+1119
+00:59:21,480 --> 00:59:24,380
+And what are the rules
+for combination?
+
+1120
+00:59:24,380 --> 00:59:27,010
+Well, the currents add to the
+node, and the voltages add
+
+1121
+00:59:27,010 --> 00:59:30,070
+around loops.
+
+1122
+00:59:30,070 --> 00:59:33,720
+OK, just to make sure you've
+absorb all that, figure out
+
+1123
+00:59:33,720 --> 00:59:35,535
+the current I for
+this circuit.
+
+1124
+00:59:35,535 --> 01:02:31,840
+
+1125
+01:02:31,840 --> 01:02:33,810
+OK, what's a good
+way to start?
+
+1126
+01:02:33,810 --> 01:02:38,830
+What should I do to start
+thinking about calculating I?
+
+1127
+01:02:38,830 --> 01:02:40,190
+OK, bad way.
+
+1128
+01:02:40,190 --> 01:02:42,520
+Assign voltages and currents
+to everything.
+
+1129
+01:02:42,520 --> 01:02:46,150
+4 elements, that's 4 voltages,
+4 currents.
+
+1130
+01:02:46,150 --> 01:02:47,620
+That's 8 unknowns.
+
+1131
+01:02:47,620 --> 01:02:48,990
+Find 8 equations, solve.
+
+1132
+01:02:48,990 --> 01:02:50,200
+That'll work.
+
+1133
+01:02:50,200 --> 01:02:50,980
+Bad way.
+
+1134
+01:02:50,980 --> 01:02:52,230
+What's a better way?
+
+1135
+01:02:52,230 --> 01:02:56,146
+
+1136
+01:02:56,146 --> 01:02:57,396
+OK, [UNINTELLIGIBLE PHRASE].
+
+1137
+01:02:57,396 --> 01:03:00,986
+
+1138
+01:03:00,986 --> 01:03:01,954
+AUDIENCE:
+[UNINTELLIGIBLE PHRASE].
+
+1139
+01:03:01,954 --> 01:03:03,890
+PROFESSOR: It was on
+the previous sheet.
+
+1140
+01:03:03,890 --> 01:03:06,820
+[UNINTELLIGIBLE PHRASE].
+
+1141
+01:03:06,820 --> 01:03:08,020
+AUDIENCE: KVL [UNINTELLIGIBLE].
+
+1142
+01:03:08,020 --> 01:03:09,660
+PROFESSOR: KVL for where?
+
+1143
+01:03:09,660 --> 01:03:11,616
+AUDIENCE: Loops.
+
+1144
+01:03:11,616 --> 01:03:12,594
+PROFESSOR: Which loop?
+
+1145
+01:03:12,594 --> 01:03:13,572
+AUDIENCE: Left loop.
+
+1146
+01:03:13,572 --> 01:03:16,506
+PROFESSOR: So do KVL
+on the left loop?
+
+1147
+01:03:16,506 --> 01:03:17,973
+AUDIENCE: Yes.
+
+1148
+01:03:17,973 --> 01:03:19,440
+PROFESSOR: OK, that's good.
+
+1149
+01:03:19,440 --> 01:03:22,090
+But you have to tell me how
+to assign variables.
+
+1150
+01:03:22,090 --> 01:03:24,273
+Do you want 8 primitive
+variables?
+
+1151
+01:03:24,273 --> 01:03:28,540
+
+1152
+01:03:28,540 --> 01:03:30,920
+8 primitive variables are v1,
+i1, v2, i2, v3, i3, v4, i4.
+
+1153
+01:03:30,920 --> 01:03:36,130
+
+1154
+01:03:36,130 --> 01:03:38,540
+So that's what I mean by
+primitive variables.
+
+1155
+01:03:38,540 --> 01:03:42,700
+Or element variables is
+another word for it.
+
+1156
+01:03:42,700 --> 01:03:44,555
+What's a better way than using
+element variables?
+
+1157
+01:03:44,555 --> 01:03:47,552
+
+1158
+01:03:47,552 --> 01:03:48,000
+Yeah.
+
+1159
+01:03:48,000 --> 01:03:49,908
+AUDIENCE: Create 2
+loop equations.
+
+1160
+01:03:49,908 --> 01:03:52,902
+PROFESSOR: Create 2 loop
+equations, that's fantastic.
+
+1161
+01:03:52,902 --> 01:03:54,950
+AUDIENCE: I1 for the first loop,
+I2 for the second loop.
+
+1162
+01:03:54,950 --> 01:03:58,750
+PROFESSOR: So if you do I1 going
+around here, then I1 is
+
+1163
+01:03:58,750 --> 01:04:05,915
+actually I. And if you do I2
+going around here, what's I2?
+
+1164
+01:04:05,915 --> 01:04:10,673
+
+1165
+01:04:10,673 --> 01:04:11,670
+AUDIENCE: [INAUDIBLE].
+
+1166
+01:04:11,670 --> 01:04:16,490
+PROFESSOR: So if I think about
+I2 spinning around this loop,
+
+1167
+01:04:16,490 --> 01:04:20,920
+so the sum of I1 and I2
+goes through that box.
+
+1168
+01:04:20,920 --> 01:04:23,200
+But the only current that goes
+through this box is?
+
+1169
+01:04:23,200 --> 01:04:26,556
+
+1170
+01:04:26,556 --> 01:04:27,806
+AUDIENCE: [INAUDIBLE].
+
+1171
+01:04:27,806 --> 01:04:29,993
+
+1172
+01:04:29,993 --> 01:04:31,957
+PROFESSOR: So the suggestion
+is that I think about--
+
+1173
+01:04:31,957 --> 01:04:43,250
+
+1174
+01:04:43,250 --> 01:04:49,790
+so if I have I1 here, but I know
+that's I. Then I can see
+
+1175
+01:04:49,790 --> 01:04:51,310
+immediately that since
+the only current that
+
+1176
+01:04:51,310 --> 01:04:52,380
+goes through here--
+
+1177
+01:04:52,380 --> 01:04:54,100
+so if I have I1 and I2.
+
+1178
+01:04:54,100 --> 01:04:56,010
+That was a very clever idea.
+
+1179
+01:04:56,010 --> 01:04:58,090
+If you have I1 and I2, the only
+current that goes through
+
+1180
+01:04:58,090 --> 01:05:02,470
+here is I. So I1
+must've been I.
+
+1181
+01:05:02,470 --> 01:05:04,640
+The only current that
+goes over here
+
+1182
+01:05:04,640 --> 01:05:07,390
+must've been this guy.
+
+1183
+01:05:07,390 --> 01:05:11,340
+So this must be minus 10.
+
+1184
+01:05:11,340 --> 01:05:14,130
+So I could redo that this way.
+
+1185
+01:05:14,130 --> 01:05:19,130
+I could say I've got
+10 going that way.
+
+1186
+01:05:19,130 --> 01:05:21,410
+That make sense?
+
+1187
+01:05:21,410 --> 01:05:26,340
+So now I only have one unknown
+which is I. So that's a very
+
+1188
+01:05:26,340 --> 01:05:28,310
+clever way of doing it.
+
+1189
+01:05:28,310 --> 01:05:31,720
+So what I could do
+is showed here.
+
+1190
+01:05:31,720 --> 01:05:35,180
+I have I going around one
+loop and I have 10
+
+1191
+01:05:35,180 --> 01:05:37,950
+going around that loop.
+
+1192
+01:05:37,950 --> 01:05:39,950
+That completely specifies
+all the currents.
+
+1193
+01:05:39,950 --> 01:05:43,080
+So now all I need to
+do is write KVL for
+
+1194
+01:05:43,080 --> 01:05:45,980
+these different cases.
+
+1195
+01:05:45,980 --> 01:05:50,810
+So if I write KVL for the left
+loop, then I get going up
+
+1196
+01:05:50,810 --> 01:05:55,160
+through here, that's minus 15,
+and going down through here,
+
+1197
+01:05:55,160 --> 01:05:58,360
+going to the right through
+this guy is 3I.
+
+1198
+01:05:58,360 --> 01:06:03,090
+Going down through this guy
+is 2 times I plus 10.
+
+1199
+01:06:03,090 --> 01:06:05,450
+Both of these are going down,
+so you have to add them.
+
+1200
+01:06:05,450 --> 01:06:10,010
+
+1201
+01:06:10,010 --> 01:06:11,960
+So I get one equation
+and one unknown.
+
+1202
+01:06:11,960 --> 01:06:15,160
+And when I solve it,
+I get minus one.
+
+1203
+01:06:15,160 --> 01:06:16,410
+That make sense?
+
+1204
+01:06:16,410 --> 01:06:18,470
+
+1205
+01:06:18,470 --> 01:06:19,900
+There's an analogous
+way you could have
+
+1206
+01:06:19,900 --> 01:06:21,150
+done it with one node.
+
+1207
+01:06:21,150 --> 01:06:24,080
+
+1208
+01:06:24,080 --> 01:06:28,130
+You could have said that the
+circuit has a single node and
+
+1209
+01:06:28,130 --> 01:06:31,860
+figured out KCL for
+that one node.
+
+1210
+01:06:31,860 --> 01:06:34,170
+KCL would be the sum of
+the currents here.
+
+1211
+01:06:34,170 --> 01:06:35,770
+There's a current that
+goes that way, that
+
+1212
+01:06:35,770 --> 01:06:36,880
+way, and that way.
+
+1213
+01:06:36,880 --> 01:06:39,240
+And again, you end up with
+1 equation and 1 unknown.
+
+1214
+01:06:39,240 --> 01:06:40,069
+Yes?
+
+1215
+01:06:40,069 --> 01:06:41,319
+AUDIENCE:
+[UNINTELLIGIBLE PHRASE].
+
+1216
+01:06:41,319 --> 01:06:45,558
+
+1217
+01:06:45,558 --> 01:06:46,808
+PROFESSOR: Correct.
+
+1218
+01:06:46,808 --> 01:06:49,051
+
+1219
+01:06:49,051 --> 01:06:51,430
+If I thought about this current
+going this way, it
+
+1220
+01:06:51,430 --> 01:06:53,890
+would be minus 10.
+
+1221
+01:06:53,890 --> 01:06:59,050
+If I flipped the direction,
+then it's plus 10.
+
+1222
+01:06:59,050 --> 01:07:03,820
+So the loop current has the
+property that it's the only
+
+1223
+01:07:03,820 --> 01:07:05,290
+current through this element.
+
+1224
+01:07:05,290 --> 01:07:07,220
+So that has to match.
+
+1225
+01:07:07,220 --> 01:07:11,234
+It's one of two currents that
+go through this element.
+
+1226
+01:07:11,234 --> 01:07:13,186
+AUDIENCE: You said that
+everything that
+
+1227
+01:07:13,186 --> 01:07:15,626
+[UNINTELLIGIBLE PHRASE].
+
+1228
+01:07:15,626 --> 01:07:17,578
+PROFESSOR: This loop is
+[UNINTELLIGIBLE].
+
+1229
+01:07:17,578 --> 01:07:18,066
+Yes.
+
+1230
+01:07:18,066 --> 01:07:20,018
+AUDIENCE: So why is the
+[UNINTELLIGIBLE PHRASE].
+
+1231
+01:07:20,018 --> 01:07:23,434
+
+1232
+01:07:23,434 --> 01:07:24,410
+PROFESSOR: Correct.
+
+1233
+01:07:24,410 --> 01:07:26,880
+I want to have this
+picture now.
+
+1234
+01:07:26,880 --> 01:07:29,570
+So if I'm doing it with loops,
+I have two loops.
+
+1235
+01:07:29,570 --> 01:07:32,390
+
+1236
+01:07:32,390 --> 01:07:35,100
+The current through this element
+is just I. The current
+
+1237
+01:07:35,100 --> 01:07:37,720
+through this element is just
+I. The current through this
+
+1238
+01:07:37,720 --> 01:07:40,020
+element is just 10.
+
+1239
+01:07:40,020 --> 01:07:42,040
+The current through this
+element-- well, the sum of
+
+1240
+01:07:42,040 --> 01:07:43,560
+these two currents go through
+that element.
+
+1241
+01:07:43,560 --> 01:07:46,730
+
+1242
+01:07:46,730 --> 01:07:49,512
+Does that make sense?
+
+1243
+01:07:49,512 --> 01:07:50,762
+AUDIENCE: [INAUDIBLE]
+
+1244
+01:07:50,762 --> 01:07:55,428
+
+1245
+01:07:55,428 --> 01:07:57,893
+PROFESSOR: This loop current
+is just a fraction of the
+
+1246
+01:07:57,893 --> 01:08:01,344
+current in the whole system.
+
+1247
+01:08:01,344 --> 01:08:05,550
+So this loop current goes
+through this element and
+
+1248
+01:08:05,550 --> 01:08:07,150
+contributes to this element.
+
+1249
+01:08:07,150 --> 01:08:08,400
+But so does that one.
+
+1250
+01:08:08,400 --> 01:08:12,074
+
+1251
+01:08:12,074 --> 01:08:15,150
+OK, if you're still confused,
+you should try to get it
+
+1252
+01:08:15,150 --> 01:08:17,170
+straightened out in one of the
+software labs or the hardware
+
+1253
+01:08:17,170 --> 01:08:18,670
+lab, or talk to me
+after lecture.
+
+1254
+01:08:18,670 --> 01:08:20,760
+But the idea is to
+decompose in the
+
+1255
+01:08:20,760 --> 01:08:22,720
+case of the node voltages.
+
+1256
+01:08:22,720 --> 01:08:25,380
+Think about the element
+voltages in terms of
+
+1257
+01:08:25,380 --> 01:08:27,000
+differences in the
+node voltages.
+
+1258
+01:08:27,000 --> 01:08:30,580
+
+1259
+01:08:30,580 --> 01:08:32,439
+In the case of the loop
+currents, think about the
+
+1260
+01:08:32,439 --> 01:08:36,100
+element currents in terms of
+a sum of loop currents.
+
+1261
+01:08:36,100 --> 01:08:40,029
+
+1262
+01:08:40,029 --> 01:08:43,600
+OK, so the answer is minus 1
+regardless of how you do it.
+
+1263
+01:08:43,600 --> 01:08:46,345
+
+1264
+01:08:46,345 --> 01:08:46,472
+Ok.
+
+1265
+01:08:46,472 --> 01:08:49,439
+The remaining thing I want to
+do today is think about
+
+1266
+01:08:49,439 --> 01:08:52,140
+abstraction.
+
+1267
+01:08:52,140 --> 01:08:55,180
+We've talked about the
+primitives, which are things
+
+1268
+01:08:55,180 --> 01:08:59,750
+like resistors, voltage sources,
+and current sources.
+
+1269
+01:08:59,750 --> 01:09:03,100
+Means of combinations,
+that's KVL and KCL.
+
+1270
+01:09:03,100 --> 01:09:05,090
+Now we want to think
+about abstraction.
+
+1271
+01:09:05,090 --> 01:09:07,700
+And the first abstraction that
+we'll talk about is, how do
+
+1272
+01:09:07,700 --> 01:09:11,510
+you think about one element
+that represents
+
+1273
+01:09:11,510 --> 01:09:13,680
+more than one element?
+
+1274
+01:09:13,680 --> 01:09:15,740
+This is the same thing that we
+did when we thought about
+
+1275
+01:09:15,740 --> 01:09:18,770
+linear systems, when we did
+signals and systems.
+
+1276
+01:09:18,770 --> 01:09:23,270
+We started with R's and K's and
+pluses, and we made single
+
+1277
+01:09:23,270 --> 01:09:29,020
+boxes that had lots of R's and
+pluses and gains in them.
+
+1278
+01:09:29,020 --> 01:09:32,590
+What was the name of the thing
+that was inside the box?
+
+1279
+01:09:32,590 --> 01:09:36,270
+If we combined lots of R's,
+gains, and pluses into a
+
+1280
+01:09:36,270 --> 01:09:39,860
+single box, what would we call
+the thing that's in the box?
+
+1281
+01:09:39,860 --> 01:09:41,019
+AUDIENCE: [INAUDIBLE].
+
+1282
+01:09:41,019 --> 01:09:41,789
+PROFESSOR: Shout again.
+
+1283
+01:09:41,789 --> 01:09:42,260
+AUDIENCE: System function.
+
+1284
+01:09:42,260 --> 01:09:44,930
+PROFESSOR: System function.
+
+1285
+01:09:44,930 --> 01:09:45,019
+Right?
+
+1286
+01:09:45,019 --> 01:09:47,609
+So we started with boxes
+that only had
+
+1287
+01:09:47,609 --> 01:09:49,580
+things like R's in them.
+
+1288
+01:09:49,580 --> 01:09:53,920
+But eventually, we got boxes
+that looked like much more
+
+1289
+01:09:53,920 --> 01:10:00,000
+complicated things like that.
+
+1290
+01:10:00,000 --> 01:10:02,170
+We thought about a system
+function which was a
+
+1291
+01:10:02,170 --> 01:10:06,580
+generalized box, that could have
+lots of R's, or lots of
+
+1292
+01:10:06,580 --> 01:10:08,890
+gains, or lots of
+pluses in it.
+
+1293
+01:10:08,890 --> 01:10:14,810
+And that was a way of
+abstracting complicated
+
+1294
+01:10:14,810 --> 01:10:17,140
+systems so they looked
+like simple systems.
+
+1295
+01:10:17,140 --> 01:10:18,900
+What we want to do here is the
+same thing for circuits.
+
+1296
+01:10:18,900 --> 01:10:21,530
+We want to have a single
+element, a single circuit
+
+1297
+01:10:21,530 --> 01:10:25,620
+element, that represents
+many circuit elements.
+
+1298
+01:10:25,620 --> 01:10:29,240
+And the simplest case of that
+is for series in parallel
+
+1299
+01:10:29,240 --> 01:10:31,050
+combinations of resistors.
+
+1300
+01:10:31,050 --> 01:10:34,890
+It's very simple to think about
+how if you had two Ohm's
+
+1301
+01:10:34,890 --> 01:10:39,220
+law devices connected in series,
+you could replace
+
+1302
+01:10:39,220 --> 01:10:42,490
+those two with a single
+resistor.
+
+1303
+01:10:42,490 --> 01:10:45,520
+And the voltage-current
+relationships measured at the
+
+1304
+01:10:45,520 --> 01:10:48,460
+outside of the box would
+be the same.
+
+1305
+01:10:48,460 --> 01:10:51,140
+
+1306
+01:10:51,140 --> 01:10:53,930
+That's how we think about an
+abstraction in circuits.
+
+1307
+01:10:53,930 --> 01:10:59,730
+When is it that you can draw
+a box around a piece of a
+
+1308
+01:10:59,730 --> 01:11:03,590
+circuit and think about
+that as one element?
+
+1309
+01:11:03,590 --> 01:11:06,350
+The very simplest cases, the
+series combination of two
+
+1310
+01:11:06,350 --> 01:11:09,940
+resistors, same sort of thing
+happens for the parallel
+
+1311
+01:11:09,940 --> 01:11:11,830
+combination.
+
+1312
+01:11:11,830 --> 01:11:15,870
+And that simple abstraction
+makes some things very easy.
+
+1313
+01:11:15,870 --> 01:11:19,370
+What would be the equivalent
+resistance for a complicated
+
+1314
+01:11:19,370 --> 01:11:21,350
+system like that?
+
+1315
+01:11:21,350 --> 01:11:24,070
+Well, that's easy.
+
+1316
+01:11:24,070 --> 01:11:29,440
+All you need to do is think
+about successively reducing
+
+1317
+01:11:29,440 --> 01:11:32,170
+the pieces.
+
+1318
+01:11:32,170 --> 01:11:35,050
+Here I'm thinking about that
+having four resistors.
+
+1319
+01:11:35,050 --> 01:11:39,020
+I can just successively apply
+series and parallel in order
+
+1320
+01:11:39,020 --> 01:11:41,760
+to reduce that, make it
+less complicated.
+
+1321
+01:11:41,760 --> 01:11:47,660
+So I can think about combining
+these two in series to get,
+
+1322
+01:11:47,660 --> 01:11:50,025
+instead of two 1 Ohm resistors,
+one 2 Ohm resistor.
+
+1323
+01:11:50,025 --> 01:11:52,580
+
+1324
+01:11:52,580 --> 01:11:56,640
+Then I can think about these
+two 2 Ohm resistors being
+
+1325
+01:11:56,640 --> 01:11:59,170
+equivalently one parallel
+1 Ohm resistor.
+
+1326
+01:11:59,170 --> 01:12:02,810
+
+1327
+01:12:02,810 --> 01:12:06,170
+And so this whole thing looks
+as though it's just 2 Ohms
+
+1328
+01:12:06,170 --> 01:12:09,560
+from the outside world.
+
+1329
+01:12:09,560 --> 01:12:11,220
+That's what we mean
+by an abstraction.
+
+1330
+01:12:11,220 --> 01:12:15,430
+What we're trying to do and what
+we will do over the next
+
+1331
+01:12:15,430 --> 01:12:18,380
+two weeks, is we'll think
+about ways of combining
+
+1332
+01:12:18,380 --> 01:12:22,630
+circuits so that we can reduce
+the complexity this way.
+
+1333
+01:12:22,630 --> 01:12:25,250
+
+1334
+01:12:25,250 --> 01:12:28,070
+Another convenient way of
+thinking about reducing the
+
+1335
+01:12:28,070 --> 01:12:31,120
+work that you need to do is to
+think about common patterns
+
+1336
+01:12:31,120 --> 01:12:33,130
+that result.
+
+1337
+01:12:33,130 --> 01:12:37,740
+PCAP, Primitives, Combinations,
+Abstractions.
+
+1338
+01:12:37,740 --> 01:12:40,120
+So the series of parallel
+idea was an abstraction.
+
+1339
+01:12:40,120 --> 01:12:42,330
+A pattern, here's a
+common pattern.
+
+1340
+01:12:42,330 --> 01:12:48,930
+If you've got two resistors in
+series, if the same current
+
+1341
+01:12:48,930 --> 01:12:52,250
+flows through two resistors,
+then there's a way of very
+
+1342
+01:12:52,250 --> 01:12:56,170
+simply calculating the voltage
+that falls across each.
+
+1343
+01:12:56,170 --> 01:13:01,090
+So you can think about the sum
+resistor, R1 plus R2 since
+
+1344
+01:13:01,090 --> 01:13:03,290
+they're in series.
+
+1345
+01:13:03,290 --> 01:13:05,190
+So that allows you then
+to compute the
+
+1346
+01:13:05,190 --> 01:13:08,390
+current from the voltage.
+
+1347
+01:13:08,390 --> 01:13:11,240
+Then the voltage that falls
+across this guy is by Ohm's
+
+1348
+01:13:11,240 --> 01:13:16,000
+law, just the current
+times its resistor,
+
+1349
+01:13:16,000 --> 01:13:18,150
+which is like that.
+
+1350
+01:13:18,150 --> 01:13:19,970
+And similarly with this one.
+
+1351
+01:13:19,970 --> 01:13:24,560
+So you can see that some
+fraction of this voltage v
+
+1352
+01:13:24,560 --> 01:13:26,930
+occurs across the v1 terminal.
+
+1353
+01:13:26,930 --> 01:13:30,100
+And some different fraction
+appears across the v2
+
+1354
+01:13:30,100 --> 01:13:34,770
+terminal, such that the sum of
+the fractions is, of course,
+
+1355
+01:13:34,770 --> 01:13:38,280
+v. That's what has to
+happen for the two.
+
+1356
+01:13:38,280 --> 01:13:40,260
+And there's a proportional
+drop.
+
+1357
+01:13:40,260 --> 01:13:43,350
+The bigger R1, the bigger is the
+proportion of the voltage
+
+1358
+01:13:43,350 --> 01:13:45,860
+that falls across R1.
+
+1359
+01:13:45,860 --> 01:13:49,620
+So it's a simple way of thinking
+about how voltage
+
+1360
+01:13:49,620 --> 01:13:51,120
+drops across two resistors.
+
+1361
+01:13:51,120 --> 01:13:53,610
+There's a completely analogous
+way of thinking about how
+
+1362
+01:13:53,610 --> 01:13:58,690
+current splits between
+two resistors.
+
+1363
+01:13:58,690 --> 01:14:02,440
+Here the result looks virtually
+the same, except it
+
+1364
+01:14:02,440 --> 01:14:06,710
+has kind of the unintuitive
+property that most of the
+
+1365
+01:14:06,710 --> 01:14:11,710
+current goes through the
+resistor that is the smallest.
+
+1366
+01:14:11,710 --> 01:14:19,910
+So you get a bigger current in
+i1 in proportion to the R2.
+
+1367
+01:14:19,910 --> 01:14:23,040
+So it works very much like the
+voltage case, except that it
+
+1368
+01:14:23,040 --> 01:14:26,060
+has this inversion in it, that
+the current likes to go
+
+1369
+01:14:26,060 --> 01:14:29,870
+through the smaller resistor.
+
+1370
+01:14:29,870 --> 01:14:33,670
+OK, so last problem.
+
+1371
+01:14:33,670 --> 01:14:38,880
+Using those kinds of ideas,
+think about how you could
+
+1372
+01:14:38,880 --> 01:14:42,855
+compute the voltage v0 and
+determine what's the answer.
+
+1373
+01:14:42,855 --> 01:16:30,480
+
+1374
+01:16:30,480 --> 01:16:33,910
+So what's the easy way to
+think about this answer?
+
+1375
+01:16:33,910 --> 01:16:35,160
+What do I do first?
+
+1376
+01:16:35,160 --> 01:16:38,912
+
+1377
+01:16:38,912 --> 01:16:40,409
+AUDIENCE: Superposition.
+
+1378
+01:16:40,409 --> 01:16:41,407
+PROFESSOR: So superposition?
+
+1379
+01:16:41,407 --> 01:16:43,902
+That's one thing.
+
+1380
+01:16:43,902 --> 01:16:46,397
+AUDIENCE: Simplify
+[UNINTELLIGIBLE].
+
+1381
+01:16:46,397 --> 01:16:47,395
+PROFESSOR: Simplify.
+
+1382
+01:16:47,395 --> 01:16:51,886
+So what's a good
+simplification?
+
+1383
+01:16:51,886 --> 01:16:52,884
+Collapse?
+
+1384
+01:16:52,884 --> 01:16:56,127
+AUDIENCE: You can put the two
+[UNINTELLIGIBLE] in series and
+
+1385
+01:16:56,127 --> 01:16:57,375
+treat them as one.
+
+1386
+01:16:57,375 --> 01:17:01,780
+PROFESSOR: So you can treat this
+as a series combination,
+
+1387
+01:17:01,780 --> 01:17:06,025
+and you can replace the series
+of 1 and 3 with a?
+
+1388
+01:17:06,025 --> 01:17:06,995
+AUDIENCE:
+[UNINTELLIGIBLE PHRASE].
+
+1389
+01:17:06,995 --> 01:17:07,480
+AUDIENCE: 4..
+
+1390
+01:17:07,480 --> 01:17:08,935
+PROFESSOR: 4.
+
+1391
+01:17:08,935 --> 01:17:12,330
+So this can be replaced by
+four [UNINTELLIGIBLE]
+
+1392
+01:17:12,330 --> 01:17:12,815
+resistor.
+
+1393
+01:17:12,815 --> 01:17:13,300
+Now what?
+
+1394
+01:17:13,300 --> 01:17:15,725
+AUDIENCE: You can do the same
+on the parallel one.
+
+1395
+01:17:15,725 --> 01:17:18,343
+PROFESSOR: So you can replace
+the parallel of the 6
+
+1396
+01:17:18,343 --> 01:17:19,506
+and a 12 with a?
+
+1397
+01:17:19,506 --> 01:17:20,342
+AUDIENCE: 4.
+
+1398
+01:17:20,342 --> 01:17:22,653
+PROFESSOR: Amazing
+-- with a 4.
+
+1399
+01:17:22,653 --> 01:17:25,599
+So there's a 4 there and
+there's a 4 there.
+
+1400
+01:17:25,599 --> 01:17:26,090
+And the answer is?
+
+1401
+01:17:26,090 --> 01:17:27,072
+AUDIENCE: It's half.
+
+1402
+01:17:27,072 --> 01:17:28,545
+PROFESSOR: Half of whatever
+it was by voltage
+
+1403
+01:17:28,545 --> 01:17:30,020
+[UNINTELLIGIBLE] relationship.
+
+1404
+01:17:30,020 --> 01:17:32,760
+So you think about this
+becoming that.
+
+1405
+01:17:32,760 --> 01:17:35,120
+You think about the parallel
+becoming that.
+
+1406
+01:17:35,120 --> 01:17:38,200
+You get a simple divide
+by 2 voltage divider.
+
+1407
+01:17:38,200 --> 01:17:46,660
+So the answer is 7 and 1/2,
+which was the middle answer.
+
+1408
+01:17:46,660 --> 01:17:51,780
+And so what we did today was
+basically a whirlwind tour of
+
+1409
+01:17:51,780 --> 01:17:54,790
+the theory of circuits.
+
+1410
+01:17:54,790 --> 01:17:58,060
+And the goal for the rest of the
+week is to go to the lab
+
+1411
+01:17:58,060 --> 01:18:00,580
+and do the same sort of thing
+with practical where you build
+
+1412
+01:18:00,580 --> 01:18:03,440
+a circuit, and try to use some
+of these ideas to understand
+
+1413
+01:18:03,440 --> 01:18:04,690
+what it does.
+
+1414
+01:18:04,690 --> 01:18:13,295

@@ -1,0 +1,995 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<title>Lecture 5: Characterizing System Performance | Characterizing System Performance | Unit 2: Signals and Systems | Introduction to Electrical Engineering and Computer Science I | Electrical Engineering and Computer Science | MIT OpenCourseWare</title>
+<!-- Begin Automatic Metadata Insertion --><meta content="6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011" name="WT.cg_n">
+<meta content="Lecture 5: Characterizing System Performance" name="WT.cg_s">
+<meta content="" name="Description">
+<meta content="Kaelbling, Leslie" name="Author">
+<meta content="White, Jacob" name="Author">
+<meta content="Abelson, Harold" name="Author">
+<meta content="Freeman, Dennis" name="Author">
+<meta content="Lozano-Pérez, Tomás" name="Author">
+<meta content="Chuang, Isaac" name="Author">
+<meta content="6.01SC,6.01,Python programming,object-oriented programming,state machines,signals and systems,linear time-invariant,LTI,poles,circuits,op-amps,Thevenin,Norton,superposition,probability,state estimation,search algorithms,Software Design and Engineering,Robotics and Control Systems,Artificial Intelligence" name="keywords">
+<meta content="6.01SC Introduction to Electrical Engineering and Computer Science I | Lecture 5: Characterizing System Performance" name="Search_Display">
+<meta content="Software Design and Engineering" itemprop="about">
+<meta content="Robotics and Control Systems" itemprop="about">
+<meta content="Artificial Intelligence" itemprop="about">
+<!-- End Automatic Metadata Insertion --><link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/grid.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/base.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/menu.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/jquery.bubblepopup.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/courses.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/courses_new.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/jquery.jscrollpane.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/media_tabs.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../../common/styles/scholar2.css">
+<link href="https://ocw.mit.edu/xml/ocwcc.rdf" type="application/rdf+xml" rel="metadata">
+<link rel="canonical" href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming">
+<link rel="apple-touch-icon" href="../../../../common/images/apple-touch-icon.png">
+<script type="text/javascript" src="../../../../common/scripts/jquery.js"></script><script type="text/javascript" src="../../../../common/scripts/ocw-media-utils-offline.js"></script><script type="text/javascript" src="../../../../common/scripts/ocw-offline.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery.bubblepopup.min.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery-ui.min.js"></script><script type="text/javascript" src="../../../../common/scripts/jquery.jscrollpane.min.js"></script><script type="text/javascript" src="../../../../common/scripts/expandy.js"></script><script type="text/javascript" src="../../../../common/scripts/bubble-popup-offline.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $("#tabs").tabs();
+        IpadScroller();
+      });
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+        
+	
+
+        <header id="top"><div id="grid">
+				
+				
+					
+<div id="portletwrapper-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572" class="portletWrapper kssattr-portlethash-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572">
+<div class="portletStaticText portlet-static-site-header">
+<!--googleoff: index-->
+<div class="grid_6 alpha" id="banner"><a href="https://ocw.mit.edu/"><img src="../../../../common/images/ocw_mast.png" class="logo" alt="MIT OpenCourseWare, Massachusetts Institute of Technology"></a></div>
+<div class="grid_6 omega" id="subscribe">
+<aside class="module" aria-label="Connect with OCW"><table class="social"><tbody><tr>
+<td class="socialbutton"><a aria-label="Subscribe to the OCW Newsletter" href="https://ocw.mit.edu/subscribe/index.htm?utm_source=header"><img src="../../../../common/images/trans.gif" alt="An icon depicting an envelope.">Subscribe to the OCW Newsletter</a></td>
+            <td>
+<a aria-label="Google+" href="https://plus.google.com/104567381989352550847/posts"><img src="../../../../common/images/icon_gp.png" alt="Click to visit our Google+ page."></a>                   <a aria-label="Pinterest" href="https://www.pinterest.com/mitocw/pins/"><img src="../../../../common/images/icon_pin.png" alt="Click to visit our Pinterest page."></a>                   <a aria-label="Facebook" href="https://facebook.com/mitocw"><img src="../../../../common/images/icon_fb.png" alt="Click to visit our Facebook page."></a>                   <a aria-label="Twitter" href="https://twitter.com/mitocw"><img src="../../../../common/images/icon_tw.png" alt="Click to visit our Twitter feed."></a>
+</td>
+        </tr></tbody></table></aside><nav aria-label="Help Links" class="helplinks"><a aria-label="OCW Site Help" href="https://ocw.mit.edu/help">Help</a><span aria-hidden="true">|</span>     <a href="../../../../common/jsp/feedback.htm">Contact Us</a>   </nav>
+</div>
+<div class="clear"> </div>
+<!--googleon: index-->
+</div>
+
+</div>
+
+
+
+
+
+<!--googleoff: index-->
+<nav id="mega" class="grid_8 alpha" aria-label="Site"><ul id="menu" role="presentation">
+<li id="menu_home">
+        <a href="https://ocw.mit.edu/" aria-label="Homepage"><img src="../../../../common/images/top-nav_home.png" class="home_icon" alt="Click for site home page."></a><!-- Begin Home Item -->
+    </li>
+<!-- End Home Item -->
+    
+    <li id="drop_1" class="selected" aria-label="Find Courses">
+     <a href="#" aria-hidden="true">Find Courses</a><!-- Begin 5 columns Item -->
+      <div class="dropdown_5columns-a mega-courses">
+        <div class="col_1a">
+          <div class="row_1a">
+            <nav aria-labelledby="mm-find-courses-by"><span id="mm-find-courses-by" class="nav" aria-hidden="true">Find courses by:</span>
+              <ul class="find_by" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Topic</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-number/">MIT Course Number</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-department/">Department</a></li>
+				<li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+				<li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+            	<li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-megamenu&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+			   </ul></nav><nav aria-labelledby="mm-collections"><span id="mm-collections" class="nav" aria-hidden="true">Collections</span>
+              <ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Lectures</a></li>
+                <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+                <li><a href="https://ocw.mit.edu/courses/instructor-insights/">Instructor Insights</a></li>
+                <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+              </ul></nav><nav class="col_1b" aria-labelledby="mm-translated-courses"><span id="mm-translated-courses" class="nav" aria-hidden="true" style="line-height: 1.3;">Cross-Disciplinary Topic Lists</span>
+							<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/energy-courses">Energy</a></li>
+                				<li><a href="https://ocw.mit.edu/courses/entrepreneurship">Entrepreneurship</a></li>
+				                <li><a href="https://ocw.mit.edu/courses/environment-courses">Environment</a></li>
+				              	<li><a href="https://ocw.mit.edu/courses/intro-programming">Introductory Programming</a></li>
+				                <li><a href="https://ocw.mit.edu/courses/life-sciences">Life Sciences</a></li>
+                				<li><a href="https://ocw.mit.edu/courses/transportation-courses">Transportation</a></li>
+							</ul></nav>
+</div>
+          <div class="row_1b">
+            <nav aria-labelledby="mm-cross-disciplinary-topic-lists"><span id="mm-cross-disciplinary-topic-lists" class="nav" aria-hidden="true">Translated Courses</span>
+            	<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/translated-courses/traditional-chinese" aria-label="Traditional Chinese">繁體字 / Traditional Chinese</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/spanish" aria-label="Spanish">Español / Spanish</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/portuguese" aria-label="Portuguese">Português / Portuguese</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/persian" aria-label="Persian">فارسی / Persian</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/turkish" aria-label="Turkish">Türkçe / Turkish</a></li>
+					<li><a href="https://ocw.mit.edu/courses/translated-courses/korean" aria-label="Korean">(비디오)한국 / Korean</a></li>
+              </ul></nav>
+</div>
+        </div>
+
+      </div>
+    </li>
+    <li id="drop_2">
+        <a href="" aria-hidden="true">About</a>
+        <div class="dropdown_1column-a">
+            <nav class="col_1" aria-label="About"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About MIT OpenCourseWare</a></li>
+                    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+                    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+                    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+                </ul></nav>
+</div>
+    </li>
+    <li id="drop_3">
+        <a href="" aria-hidden="true">Give Now</a>
+        <div class="dropdown_1column-a">
+          <nav class="col_1" aria-label="Donate"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/give/">Make a Donation</a></li>
+              <li><a href="https://ocw.mit.edu/give/why-give/">Why Give?</a></li>
+              <li><a href="https://ocw.mit.edu/give/our-supporters/">Our Supporters</a></li>
+              <li><a href="https://ocw.mit.edu/give/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+              <li><a href="https://ocw.mit.edu/give/shop-ocw">Shop OCW</a></li>
+              <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+            </ul></nav>
+</div>
+    </li>
+    <li id="drop_4">
+      <a href="" aria-hidden="true">Featured Sites</a>
+      <div class="dropdown_1column-a">
+        <nav class="col_1" aria-labelledby="mm-featured-sites"><span id="mm-featured-sites" class="nav" aria-hidden="true">OCW Initiatives</span>
+          <ul role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+            <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=featured-sites">OCW Educator</a></li>
+            <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+            <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+					</ul></nav><nav class="col_1" aria-labelledby="mm-featured-external-links"><span id="mm-featured-external-links" class="nav" aria-hidden="true">Beyond OCW</span>
+					<ul>
+<li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT Plus K12 Videos">MIT+K12 Videos</a></li>
+            <li><a href="https://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+						<li><a href="https://outreach.mit.edu" aria-label="External Link: Outreach at MIT">Outreach @ MIT</a></li>
+						<li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+          </ul></nav>
+</div>
+    </li>
+  </ul></nav><div id="search" role="search" class="grid_4 omega">
+  
+    <form aria-label="Advanced Search" method="get" action="../../../../common/search/AdvancedSearch.htm">
+		  <table class="search"><tbody><tr>
+<td class="black"><input type="text" onblur="fillSearchBox()" onfocus="clearSearchBox()" maxlength="255" value="Search" name="q" class="greytext searchField" id="terms"></td>
+            <td class="black"><input type="image" src="../../../../common/images/button_search.png" name="btnG" class="sub_button"></td>
+            <td class="text2"><a href="../../../../common/search/AdvancedSearch.htm">Advanced<br>Search</a></td>
+          </tr></tbody></table>
+</form>
+</div>
+<div class="clear"></div>
+<!--googleon: index-->
+<!-- *end header* -->
+
+				
+				
+			</div>
+<!-- top grid end -->
+		</header><!-- top end --><div id="center_media">
+      	<div id="grid">
+      		<div id="left">
+        		<nav id="breadcrumb_media" aria-label="Breadcrumb"><p>
+
+    <a href="https://ocw.mit.edu/">Home</a>
+    
+        »
+        
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses">Courses</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science">Electrical Engineering and Computer Science</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/index.htm">Introduction to Electrical Engineering and Computer Science I</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/unit-2-signals-and-systems/index.htm">Unit 2: Signals and Systems</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../../contents/unit-2-signals-and-systems/characterizing-system-performance/index.htm">Characterizing System Performance</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            
+            
+            Lecture 5: Characterizing System Performance
+         
+    
+</p>
+
+            	</nav><div class="clear"></div>
+        		<div id="media_title">
+        		<h1 class="title" itemprop="name" property="dct:title">
+        <span class="" id="parent-fieldname-title">
+            Lecture 5: Characterizing System Performance
+        </span>
+    </h1>
+        		</div>
+           		<div class="clear"></div>
+           		<div id="course_wrapper_media">
+           			<nav id="course_nav" aria-label="Course"><script language="javascript" type="text/javascript">
+function toggleMenu(objID) {
+  if (!document.getElementById) return;
+  var ob = document.getElementById(objID);
+  ob.className = (ob.className == 'selected')?'': 'selected';
+}
+function toggleClass(id)
+{
+  var divtoggleClass= document.getElementById(id);
+  divtoggleClass.className = (divtoggleClass.className == 'mO')?'mC': 'mO';
+  return false;
+}
+function changeAlt(id)
+{
+  id.alt = (id.alt == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+  id.title = (id.title == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+}
+</script><!--Left Nav Starts --><ul>
+<li class="">
+			   			<a href="../../../../contents/index.htm">
+		                  Course Home  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/syllabus/index.htm">
+		                  Syllabus  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="this-course-at-mit" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuthis-course-at-mit'); toggleClass('this-course-at-mit'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/this-course-at-mit/index.htm" class="">
+		                  This Course at MIT  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuthis-course-at-mit" class="">
+<li class="">
+				 		<a href="../../../../contents/this-course-at-mit/shifting-to-a-practice-theory-practice-approach/index.htm" class="">Shifting to a Practice-Theory-Practice Approach</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/becoming-more-cognizant-of-students2019-learning/index.htm" class="">Becoming More Cognizant of Students’ Learning</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/flipping-the-classroom-to-facilitate-active-learning/index.htm" class="">Flipping the Classroom to Facilitate Active Learning</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/using-an-online-tutoring-environment-to-promote-student-self-assessment/index.htm" class="">Online Tutoring Environment</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/formative-assessment-during-design-labs/index.htm" class="">Formative Assessment during Design Labs</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/reflecting-on-assessment/index.htm" class="">Reflecting on Assessment</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/this-course-at-mit/co-teaching-the-course/index.htm" class="">Co-Teaching the Course</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/software-and-tools/index.htm">
+		                  Software and Tools  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="python-tutorial" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menupython-tutorial'); toggleClass('python-tutorial'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/python-tutorial/index.htm" class="">
+		                  Python Tutorial  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menupython-tutorial" class="">
+<li class="">
+				 		<a href="../../../../contents/python-tutorial/part-i/index.htm" class="">Types, Values, Expressions; Variables and Binding</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-2/index.htm" class="">Functions and Scope</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-3/index.htm" class="">Using if, else, and while</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-4/index.htm" class="">Quadratic Roots</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-5/index.htm" class="">Loops and List Comprehensions</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-6/index.htm" class="">Arrays as Lists of Lists</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/python-tutorial/part-7/index.htm" class="">Association Lists</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-1-software-engineering" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-1-software-engineering'); toggleClass('unit-1-software-engineering'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-1-software-engineering/index.htm" class="">
+		                  Unit 1: Software Engineering  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-1-software-engineering" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-1-software-engineering/object-oriented-programming/index.htm" class="">Object-Oriented Programming</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-1-software-engineering/state-machines/index.htm" class="">State Machines</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-2-signals-and-systems" class="mC">
+						<a href="#" class="" onclick="toggleMenu('menuunit-2-signals-and-systems'); toggleClass('unit-2-signals-and-systems'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Collapse Menu" title="Collapse Menu"></a>
+		                <a href="../../../../contents/unit-2-signals-and-systems/index.htm" class="">
+		                  Unit 2: Signals and Systems  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-2-signals-and-systems" class="selected">
+<li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/signals-and-systems/index.htm" class="">Signals and Systems</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/lti-signals-and-systems/index.htm" class="">LTI Signals and Systems</a>
+		            </li>
+		            <li class="selected">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/characterizing-system-performance/index.htm" class="selected">Characterizing System Performance</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-2-signals-and-systems/designing-control-systems/index.htm" class="">Designing Control Systems</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/midterm-exam-1/index.htm">
+		                  Midterm Exam 1  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-3-circuits" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-3-circuits'); toggleClass('unit-3-circuits'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-3-circuits/index.htm" class="">
+		                  Unit 3: Circuits  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-3-circuits" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-3-circuits/circuits/index.htm" class="">Circuits</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-3-circuits/op-amps/index.htm" class="">Op-Amps</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-3-circuits/circuit-abstractions/index.htm" class="">Circuit Abstractions</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/midterm-exam-2/index.htm">
+		                  Midterm Exam 2  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+         	<li class="">
+       		<div class="tlp_links">
+	        	<div id="unit-4-probability-and-planning" class="mO">
+						<a href="#" class="" onclick="toggleMenu('menuunit-4-probability-and-planning'); toggleClass('unit-4-probability-and-planning'); return false">
+		                  <img src="../../../../common/images/trans.gif" class="expandCollapseTrans" border="0" width="10" height="12" onclick="changeAlt(this)" alt="Expand Menu" title="Expand Menu"></a>
+		                <a href="../../../../contents/unit-4-probability-and-planning/index.htm" class="">
+		                  Unit 4: Probability and Planning  			                
+	                    </a>
+	                 			                
+	            </div>
+			    
+	        	<ul id="menuunit-4-probability-and-planning" class="">
+<li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/discrete-probability/index.htm" class="">Discrete Probability</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/state-estimation/index.htm" class="">State Estimation</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/search-algorithms/index.htm" class="">Search Algorithms</a>
+		            </li>
+		            <li class="">
+				 		<a href="../../../../contents/unit-4-probability-and-planning/optimizing-a-search/index.htm" class="">Optimizing a Search</a>
+		            </li>
+			    </ul>
+</div>
+			</li>
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/final-exam/index.htm">
+		                  Final Exam  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../../contents/resource-index/index.htm">
+		                  Resource Index  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    
+		    
+         	
+	<!--second tal block close-->  
+	
+</ul>
+<!--Left Nav Ends --></nav><main id="course_inner_media" aria-labelledby="media_title"><p><img src="../../../../common/images/scholar_bar_chp.png" style="width: 543px; height: 32px; border: 1px solid #790835; margin-top: -16px;" alt="OCW Scholar"></p>
+      					 
+        <div class="" id="parent-fieldname-text">
+            
+            
+        </div>
+    
+      					 
+
+<script type="text/javascript">var caption_embed_1 ={'English - US': '/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming/MIT6_01SC_S11_lec05_300k.srt'}</script><div id="media-embed">
+         <div class="attention_message" id="embed_1">
+<p>Flash and JavaScript are required for this feature.</p>
+<p>Download the video from <a href="http://itunes.apple.com/us/itunes-u/lecture-5-characterizing-system/id490181666?i=109416117">iTunes U</a> or the <a href="http://www.archive.org/download/MIT6.01SCS11/MIT6_01SC_S11_lec05_300k.mp4">Internet Archive</a>.</p>
+</div>
+     </div>
+    
+     <script type="text/javascript">ocw_embed_chapter_media('embed_1', 'https://www.youtube.com/v/qB5wq5L6EL4', 'youtube', '/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming', 'https://img.youtube.com/vi/qB5wq5L6EL4/0.jpg',0,0, 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming/MIT6_01SC_S11_lec05_300k.srt')</script><script type="text/javascript">
+		window.onload=function(){
+		init();
+		
+		}
+		var tabLinks = new Array();
+		var contentDivs = new Array();
+		function init() {
+		  // Grab the tab links and content divs from the page
+		  var tabListItems = document.getElementById('tabs').childNodes;
+		  for ( var i = 0; i < tabListItems.length; i++ ) {
+			if ( tabListItems[i].nodeName == "LI" ) {
+			  var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+			  var id = getHash( tabLink.getAttribute('href') );
+			  tabLinks[id] = tabLink;
+			  contentDivs[id] = document.getElementById( id );
+			}
+		  }
+		  // Assign onclick events to the tab links, and
+		  // highlight the first tab
+		  var i = 0;
+		  for ( var id in tabLinks ) {
+			tabLinks[id].onclick = showTab;
+			tabLinks[id].onfocus = function() { this.blur() };
+			if ( i == 0 ) tabLinks[id].className = 'selected';
+			i++;
+		  }
+		  // Hide all content divs except the first
+		  var i = 0;
+		  for ( var id in contentDivs ) {
+			if ( i != 0 ) contentDivs[id].className = 'tabContent hide';
+			i++;
+		  }
+		}
+		function showTab() {
+		  var selectedId = getHash( this.getAttribute('href') );
+		  // Highlight the selected tab, and dim all others.
+		  // Also show the selected content div, and hide all others.
+		  for ( var id in contentDivs ) {
+			if ( id == selectedId ) {
+			  tabLinks[id].className = 'selected';
+			  contentDivs[id].className = 'tabContent';
+			} else {
+			  tabLinks[id].className = '';
+			  contentDivs[id].className = 'tabContent hide';
+			}
+		  }
+		  // Stop the browser following the link
+		  return false;
+		}
+		function getFirstChildWithTagName( element, tagName ) {
+		  for ( var i = 0; i < element.childNodes.length; i++ ) {
+			if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
+		  }
+		}
+		function getHash( url ) {
+		  var hashPos = url.lastIndexOf ( '#' );
+		  return url.substring( hashPos + 1 );
+		}
+ </script><div id="media_tabs">
+     
+        <ul id="tabs">
+<li class="first">
+                <a href="#vid_about" class="selected">Transcript</a>
+            </li>
+            <li class="">
+                <a href="#vid_index" class="">Download this Video</a>
+            </li>
+        </ul>
+<div id="vid_about" itemprop="description" class="tabContent">
+<ul><li><a class="transcript-link" title="Open in a new window." alt="Open in a new window." style="text-decoration: none; font-size: 1.0em;" target="_blank" text-decoration: none font-size: href="../../../../contents/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming/MIT6_01SC_S11_lec05_300k.pdf"> Download this transcript - PDF (English - US)</a></li></ul>
+<p>The following content is provided under a Creative Commons license. Your support will help MIT OpenCourseWare continue to offer high quality educational resources for free. To make a donation or view additional materials from hundreds of MIT courses, visit MIT OpenCourseWare at ocw.mit.edu.</p>
+<p>PROFESSOR: Last time, which is now two weeks ago, we started the talk about the signals and systems approach, by which I mean, think about a system by the way it transforms its input signal into an output signal. That's kind of a bizarre way of thinking about systems. I demonstrated that last time by thinking about a mass and a spring, something you have a lot of experience with, but you probably didn't use this kind of approach for thinking about it. Over this lecture and over the next lecture, what I'd like to do is show you the advantages of this kind of approach. And so for today, what I'd like to do is talk about how to think about feedback within this structure, and I'd like to also think about how you can use this structure to characterize the performance of a system in a quantitative fashion.</p>
+<p>So first off, I want to just think about feedback. Feedback is so pervasive that you don't notice it most of the time. You use feedback in virtually everything that you do.</p>
+<p>Here is a very simple example of driving a car. If you want to keep the car in the center of your lane, something that many people outside of Boston, at least, think is a good idea, then you are mentally doing feedback. You're constantly comparing where you are to where you'd like to be and making small adjustments to the system based on that.</p>
+<p>When you think of even the most simple of systems, like the thermostat in a house-- I'm not talking about a cheap motel. The cheap motels don't do this. But in a real house, there's a thermostat, which regulates the temperature. That's important, because if the temperature suddenly drops, it would never do that of course, but if the temperature ever dropped, it could compensate for it.</p>
+<p>Here's one of my favorite examples. Feedback is enormously pervasive in biology. There's no general rules in biology, but to a first cut, everything is regulated. And in many cases, the regulation is amazing.</p>
+<p>Here's an example from 6.021, where it's illustrating the system that your body uses to regulate glucose delivery from food sources to every cell in your body, which is crucial to your being cognizant and mobile. And the idea is that it does that with amazing precision despite the fact that eating and exercise are enormously episodic. In order for you to remain healthy and functional, you need to have something between approximately two and ten millimoles per liter of glucose in your blood at all times. Were it to go higher than that, systematically, you would develop cardiac problems and could lead to even congestive heart failure. If you were to have lower than two millimoles per liter, you would go comatose.</p>
+<p>That's a very narrow range, two to five, especially because what we eat is so episodic, when we exercise is so episodic. It's amazing, and just to dramatize how amazing it is, how much sugar do you think circulates in your blood right now? Well, if you convert five millimoles per liter, and if you assume the average person has about three liters of blood, which is true, and if you calculate it, that comes out to 2.7 grams. That's this much. This is 2.7 grams of table sugar.</p>
+<p>So this is how much sugar is in your blood, now. This is what's keeping you healthy. This is what's keeping you from becoming comatose. Or not. How much sugar do you think is in this?</p>
+<p>AUDIENCE: The amount in that other cup.</p>
+<p>PROFESSOR: Exactly. We call that the Theory of Lectures. I don't want to look like an idiot, so my problems make sense. This is the amount of sugar in a can of soda. Numerically, this is 39 grams. That's more than 13 times this much.</p>
+<p>So when you down one of these, it's very important that the sugar gets taken out of the blood quickly, and it does. And that happens by way of a feedback system, and the feedback system is illustrated here. Basically, the feedback involves the hormone insulin, and that's why insulin deficiency is such a devastating disease.</p>
+<p>Finally, everything we do has feedback in it. Think about how your life would be different if it didn't. Even a simple task, like removing a light bulb, would be virtually impossible except for the fact that you get feedback from everything.</p>
+<p>Your hand's amazing. You have touch sensors, you have proprioceptive sensors, you have stress sensors on the muscles and ligaments, and they all coordinate to tell you when to stop squeezing on the light bulb so you don't break it. That's all completely amazing, and what we'd like to do, then, is think about that kind of a system, a feedback system, within the signals and systems construct.</p>
+<p>As an example, I want to think through the WallFinder problem that you did last week in Design Lab. I'm sure you all remember that, in that problem, we were trying to move the robot to a fixed distance away from the wall, and we thought about that as a feedback system comprised of three parts, a controller, a plant, and a sensor. We wrote difference equations to characterize each of those parts, and then we figured out how to solve those difference equations to make some meaningful prediction about how the robot would work.</p>
+<p>So just to make sure you're all on board with me, now, here's a question for you. These are the equations that describe the WallFinder problem. How many equations and how many unknowns are there? Take 20 seconds, talk to your neighbor, figure out an answer between (1) and (5). Unlike during the exam next week, you are allowed to talk.</p>
+<p>[CLASSROOM SIDE CONVERSATIONS]</p>
+<p>PROFESSOR: T and K are no.</p>
+<p>[CLASSROOM SIDE CONVERSATIONS]</p>
+<p>PROFESSOR: OK, so what's the answer, number (1), (2), (3), (4), or (5)? Everybody raise your hands. Let me see if I got the answer. OK. Come on, raise your hands. Come on, everybody vote.</p>
+<p>If you're wrong, just blame it on your neighbor. You had a poor partner. That's the idea. Right? So you can all vote, and you don't need to worry about being wrong. And you're all wrong, so that worked out well.</p>
+<p>OK, so I don't like the-- so the predominant answer is number (2). I don't like number (2). Can somebody think of a reason, now that you know the answer by the Theory of Lectures, the answer is not (2)? Why isn't the answer (2)? Yeah?</p>
+<p>AUDIENCE: Oh, I was saying (5).</p>
+<p>PROFESSOR: You were saying (5). Why did you say (5)?</p>
+<p>AUDIENCE: I don't remember for sure, but can you substitute n for different things? Like Df of n, you could substitute n for, and if you did that you would have two equations, which is [INAUDIBLE].</p>
+<p>PROFESSOR: [UNINTELLIGIBLE] kind of thing, you count before or after doing substitution and simplification. And I mean to count before you do simplification. Any other issues? Yeah?</p>
+<p>AUDIENCE: Is D0 [UNINTELLIGIBLE]</p>
+<p>PROFESSOR: Say again?</p>
+<p>AUDIENCE: D0 [UNINTELLIGIBLE]</p>
+<p>PROFESSOR: Is D0_n different or the same from D0_n-1? That's the key question. So I want to think about this as a system of algebraic equations, and if I do that, then there's a lot of them. So it looks like there's three equations. The problem with that approach is that there's actually three equations for every value of n.</p>
+<p>If you think about a system of equations that you could solve with an algebra solver, you would have to treat all the n's separately. That's what we call the samples approach.</p>
+<p>So here's a way you could solve them. You could think about what if k and t are parameters, so they're known, they're given? What if my input signal is known, say it's a unit sample signal, for example? What would I need to solve this system?</p>
+<p>Well, I'd need to tell you the initial conditions. So in some sense, I want to consider those to be known. So my knowns kind of comprise t and k, the initial conditions for the output of the robot, and the sensor, all of the input signals because I'm telling you the input and asking you to calculate the output.</p>
+<p>My unknowns are all of the different velocities for all values of n bigger than or equal to 0 because I didn't tell you those. All of the values of robot's output at samples n bigger than 0. All the values of the sensor output for values n bigger than 0. So I get a lot of unknowns, infinitely many, and I get a lot of equations, also infinitely many. So the thing I want you think about is, if you're thinking about solving difference equations using algebra, that's a big system of equations.</p>
+<p>By contrast, what if you were to try to solve the system using operators? Now, how many equations and unknowns do you see? By the Theory of Lectures.</p>
+<p>OK, raise your hand. Or talk to your neighbor so you can blame your neighbor. Talk to your neighbor. Get a good alibi.</p>
+<p>[CLASSROOM SIDE CONVERSATIONS]</p>
+<p>PROFESSOR: So the idea here is that if you think about operators instead, so that you look at a whole signal at a time, then each equation only specifies one relationship among signals, and there's a small number of signals. So if I think about the knowns being k, t the parameters and the signal d(i), and if I think about the unknowns being the velocity, the output, and the sensor signal, then I get three equations and three unknowns. So one of the values of thinking about the operator approach is that it just simply reduces the amount of things you need to think about. It reduces complexity.</p>
+<p>That's what we're trying to do in this course. We're trying to think of methods that allow you to solve problems by reducing complexity. We would like, ultimately, to solve very complicated problems, and this operator approach is an approach that lets you do that.</p>
+<p>It does a lot more than that, too. It also generates new kinds of insights. So it lets you focus on the relations, but the relation is now not quite the same as we would have expected from algebra.</p>
+<p>Now, the relation between the input signal and the output signal is an operator. We're going to represent the operation that transforms the input to the output by this symbol, h. We'll call that the system functional. It's an operator. It's a thing that, when operated on x, gives you y.</p>
+<p>And this is one of the main purposes of today's lecture, it's also convenient to think about h as a ratio. We like to think of it that way because, as we'll see, there's a way of thinking about h as a ratio of polynomials in R. So two ways of thinking about it. We're trying to develop a signals and systems approach for thinking about feedback.</p>
+<p>We want to think about the input goes into a box. The box represents an operation. We will characterize that by a functional. We'll call the functional h. The functional, when applied to the input, produces the output, and what we'd like to do is infer what is the nature of that functional, and what are the properties of the system that functional represents.</p>
+<p>OK, so I see that you're all with me. Think about the WallFinder system. Think about the equations for the various components of that system when expressed an operator form. And figure out the system functional for that system. figure out the ratio of polynomials that can be in r that is represented by h. Take 30 seconds, talk to your neighbor, figure out whether the answer is (1), (2), (3), (4), or (5).</p>
+<p>So what's the answer -- (1), (2), (3), (4), or (5)? Come on, more voter participation. All right? Blame it on your partner. OK, virtually 100% correct.</p>
+<p>So the idea is algebra. You solve the operator equations exactly as though they were algebraic. Here, I've started with the second equation and just done substitutions until I got rid of everything other than d(0) and d(i). So I express v in terms of ke, then I express e in terms of d(i) minus rd(0). Then I'm left with one equation that relates d(0) and d(i), which I can solve for the ratio. And the answer comes out there, which was number (3).</p>
+<p>Point is that you can treat the operator just as though it were algebra, so that results in enormous implications. But what we want to understand is what's the relationship between that functional, that thing that we just calculated, and the behaviors. These are the kinds of behaviors that you observed with the WallFinder system. When you built the WallFinder system, depending on what you made k, you could get behaviors that were monotonic and slow, faster and oscillatory, or even faster and even more oscillatory. And what we'd like to know is, before we build it, how should we have constructed the system so that it has a desirable behavior?</p>
+<p>And, incidentally, are these the best you can do? Or is there some other set of parameters that's lurking behind some door that we just don't know about, and if we could discover it, it would work a lot better? So the question is, given the structure of our problem, what's the most general kind of answer that we can expect? And how do we choose the best behavior out of that set of possible behaviors?</p>
+<p>So that's what I want to think about for the rest of the hour and a half, and I want to begin by taking a step backwards and look at something simpler. The idea's going to be the same as the idea that we used when we studied Python. I want to find simple behaviors, think about that as a primitive, and combine primitives to get a more complicated behavior, so I want to use an approach that's very much PCAP. Find the most simple behavior, and then see if I can leverage that simple behavior to somehow understand more complicated things.</p>
+<p>So let's think about this very simple system that has a feedback loop that has a delay in it and a gain of P0. What I want to do is think about what would be the response of that very simple system if the input were a unit sample. So find y, given that the input x is delta.</p>
+<p>In order to do that, I have to start the system somehow. I will start it at rest. You've all seen already, I'm sure, that rest is the simplest assumption I can make. I'll say something at the end of the hour about how you deal with things that are not at rest. For the time being, we'll just assume rest because that's simple.</p>
+<p>Assume that the system is at rest, that means that the output of every delay box is 0. That's what rest means. If the output of this starts at 0, then the output of the scale by P0 is also 0. And if that's 0, and if the input is at 0 because I'm at time before 0, then the output is 0, indicated here.</p>
+<p>So now if I step, then the input becomes 1 because delta of 0 is 1. The output of the delay box is still 0, so the first answer is 1, the 1 just propagates straight through [UNINTELLIGIBLE] box. Then I step, and the 1 that was here goes through the r and becomes 1, the 1 goes through P0 and becomes P0, but at the same time, the 1 that was at the input goes to 0 because the input is 1 only at time equals 0. So the result, then, is that after one step, the output has become P0. This propagated to 1, that became P0, add it to 0, and it became P0, so now the answer, which had been 1, is P0.</p>
+<p>On the next step, a very similar thing happens. The P0 that was here becomes the output of the delay, gets multiplied by P0 to give you P0 squared, gets added to 0 to give you P0 squared, et cetera. The thing that I want you to see is that the output was in some sense simple. The value simply increased as P0 to the n, geometrically.</p>
+<p>There's another way we can think about that. I just did the sample by sample approach, but the whole theme of this part of the course is the signals approach. If I think about the whole signal in one fell swoop, then I can develop an operator expression to characterize the system. The operator expression says the signal y is constructed by adding the signal x to the signal P0RY. If I solve that for the ratio of the output to input, I get 1 over (1 minus P0R).</p>
+<p>Again, going back to the idea that I started with, that we're going to get ratios of polynomials in R now the R is in the bottom, and now I can expand that just as though it were an algebraic expression. I can expand 1 over P0R in a power series by using synthetic division. The result is very similar in structure to the result we saw in sample by sample. It consists of an ascending series in R, which means an ascending number of delays. Every time you increase the number of delays by 1, you also multiply the amplitude by P0, so this is, in fact, the same kind of result, but viewed from a signal point of view.</p>
+<p>Finally, I want to think about it in terms of block diagrams. Same idea, I've got the same feedback system, but now I want to take advantage of this ascending series expansion that I did and think about each of the terms in that series as a signal flow path through the feedback system. So one, the first term in the ascending series, represents the path that goes directly from the input to the output, passing through no delays.</p>
+<p>The second term in the series, P0R, represents the path that goes to the output, loops around, comes back through the adder, and then comes out. In traversing that more complicated path, you picked up 1 delay and 1 multiply by P0. Second term, two loops. Third term, three loops. Fourth term, four loops.</p>
+<p>The idea is that the block diagram gives us a way to visualize how the answer came about. It came about by all the possible paths that lead from the input to the output. Those possible paths all differed by a delay, and that's why the decomposition was so simple, each path corresponding to a different number of delays through the system. That won't always be true from more complicated systems, but it is true for this one.</p>
+<p>This flow diagram also lets you see something that's extremely interesting. Cyclical flow paths, which are characteristic of feedback-- feedback means the signal comes back. Cyclical flow paths require that transient inputs generate persistent outputs. They generate persistent outputs because the output at time n is not triggered by the input at time n.</p>
+<p>It's triggered by the output at time n minus 1. It keeps going on itself. That's fundamental to feedback. There's no way of getting around that. That's what feedback is.</p>
+<p>And it also shows why you got that funny oscillatory behavior in WallFinder. There wasn't any way around that. Feedback meant that you were looping back. That meant that there was a cycle in the signal flow paths. That means that even transient signals, signals that go away very quickly like the [INAUDIBLE] sample, generate responses that go on forever.</p>
+<p>So that's a fundamental way of thinking about systems. Systems are either feedforward or feedback. Feedforward means that there are no cyclic paths in the system. No path in the system that take you from the input to the output has a cycle in it.</p>
+<p>That's what acyclic means. That's what feedforward means. Acyclic, feedforward, those all have responses to transient inputs that are transient.</p>
+<p>That contrasts with cyclic systems. A cyclic system has feedback and will have the property that transient signals can generate outputs that go on forever. OK, how many of these systems are cyclic? Easy questions. 15 seconds, talk to your neighbor.</p>
+<p>OK, so what's the answer? How many? OK, virtually 100%. Correct, the answer's (3).</p>
+<p>I've illustrated the cycles in red, so there's a cycle here, there's two cycles in this one, and there's a cycle here. So the idea is that, when you see a block diagram, one of the first things you want to characterize, because it's such a big difference between systems, is whether or not there's a cycle in it. If there's a cycle, then you know there's feedback. If there's feedback, then you know you have the potential to have a persistent response to even a transient signal.</p>
+<p>OK, so if you only have one loop of the type that I started with, where we had just one loop with an R and a P0, then the question is, as you go around the loop, do the samples get bigger, or smaller, or do they stay the same? That's a fundamental characterization of how the simple feedback system works. So here, if on every cycle the amplitude of the signal diminishes by multiplication by half, that means that the response ultimately decays. Mathematically, it goes on forever, just like I said previously, but the amplitude is decaying, so practically it stops after a while. It becomes small enough that you lose track of it.</p>
+<p>By contrast, if every time you go around the loop, you pick up amplitude, if the amplitude here were multiplied by 1.2, then it gets bigger. So the idea, then, is that you can characterize this kind of a feedback by one number. We call that number the pole.</p>
+<p>Very mysterious word. I won't go into the origins of the word. For our purposes, it just simply means the base of the geometric sequence that characterizes the response of a system to the unit sample signal.</p>
+<p>So here, I've showed an illustration of what can happen if p is 1/2, p is one, p is 1.2, which you can see decay, persistence, divergence. Can you characterize this system by P0? And if so, what is P0? Yes? No?</p>
+<p>[CLASSROOM SIDE CONVERSATIONS]</p>
+<p>PROFESSOR: Yeah, and virtually everybody's getting the right answer. The right answer's (2). So we like algebra. We like negative numbers, so we're allowed to think about poles being negative. In fact, by the end of the hour, we'll even think about poles having imaginary parts, but for the time being, this is fine. If the pole were negative, what that means is the consecutive terms in the unit sample response, the response of the system to a unit sample signal, the unit sample response, the unit sample response can alternate in sine.</p>
+<p>OK, so this then represents all the possible behaviors that you could get from a feedback system with a single pole. If a feedback system has a single pole, the only behaviors that you can get are represented by these three cartoons. So here, this z-axis contains all possible values of P0. If P0 is bigger than 1, then the magnitude diverges, and the signal grows monotonically. If the pole is between 0 and 1, the response is also monotonic, but now it converges towards 0.</p>
+<p>If you flip the sign, the relations are still the same, except that you now get sign alternation. So if the P0 is between 0 and minus 1, which is here, the output still converges because the magnitude of the pole is less than 1. But now the sign flips. And if the pole is below minus 1, then you get alternation, but you also get divergence.</p>
+<p>The important thing is we started with a simple system, and we ended up with an absolutely complete characterization of it. This is everything that can happen. That's a powerful statement. When I can analyze a system, even if it's simple, and find all the possible behaviors, I have something.</p>
+<p>If you have a simple system with a single pole, this is all that can happen. There might be offsets. There might be delays. The signal may not start until the fifth sample, but the persistent signal will either grow without bounds, the k to 0, or do one of those two with alternating sign. That's the only things that can happen, which of course, begs the question, well, what if the system's more complicated.</p>
+<p>OK, so here's a more complicated system. This system cannot be represented by just one pole. In fact, the system's complicated enough you should think through how you would solve it. You should all be very comfortable with this sort of thing.</p>
+<p>So if you were to think about what if I had a system like so, and I want it to be 1.6 minus 0.63. What would be the output signal at time 2 if the input were a unit sample signal? OK, as with all systems we're going to think about, we have to specify initial conditions. The simplest kind of initial conditions we could think about would be rest.</p>
+<p>If I thought about this system at rest, then the initial outputs of the R's would be 0. That's at rest. For times less than 0, the input would be 0. 0 times 1.6 plus 0 times -0.63 plus 0 would give me 0.</p>
+<p>Now, the clock ticks. When the clock ticks, it becomes times 0. At times 0, the input is 1. This 0 just propagated down to here, but this was 0, so nothing interesting happens at the R's. But now my output is 1.</p>
+<p>Now, the clock ticks. What happens? When the clock ticks, this 1 propagates down here. This 0 propagates down here, but that was 0. This 1 goes to 0 because the input's only 1 at times 0.</p>
+<p>So what's the output? 1.6. Now, the clock ticks. What happens?</p>
+<p>Well, this 1 comes down here. This 1.6 comes down here. This 0 becomes another 0 because the input has an infinite stream of 0's after the initial time. So what's the output? Well, it's 1.6 times 1.6 plus 1 times -0.63, so the answer is number (3).</p>
+<p>Yeah? OK. I forgot to write it up there, so the answer's in red down here. 1.6 squared minus 0.63. OK?</p>
+<p>The point is that it's slightly more complicated to think about than the case with a single pole, and in fact, if you use that logic to simply step through all the responses, you get a response that doesn't look geometric. The geometric sequences that we looked at previously either monotonically increased, monotonically decreased towards 0, or give one of those two things and alternated. This does none of those behaviors. So the point is Freeman's an idiot. He spent all that time telling us what one pole does, and now two poles does something completely different. Right?</p>
+<p>So the response is not geometric. The response grows and then decays. It never changes sign. It does something completely different from what we would have expected from a single pole system.</p>
+<p>As you might expect from the Theory of Lectures, that's not the end of the story. So the idea is to now capitalize on this notion that we can think about operators as algebra. If our expressions behaved like I told you they did last lecture, if they behaved as entities upon which-- if they are isomorphic with polynomials, as I said, then there's a very cute thing we can do with this system to make it a lot simpler. The thing we can do is factor.</p>
+<p>If we think about the operator expression to characterize this system, the thing that's different is that there's an R squared. But if R operators work just like polynomials-- you can factor polynomials. That's the factor theorem from algebra. And if I factor it, I get two things that look like first-order systems. Well, that's good.</p>
+<p>The factored form means that I can think about this more complicated system as the cascade of two first-order systems. Well, that's pretty good. In fact, it doesn't even matter what order I put them in because, as we've seen previously, if the system started at initial rest, then you can swap things because they obey all the principles of polynomials, which include commutation.</p>
+<p>So what we've done, then, is transform this more complicated system into the cascade of two simple systems, and that's very good. Even better, we can think about the complicated system as the sum of simpler parts, and that uses more intuition from polynomials. If we have one over a second-order polynomial, we can write it in a factored form here, but we can expand it in what we call partial fractions.</p>
+<p>We can expand this thing in this sum, and if you think about putting this over a common denominator and working out the relationship, this difference, 4.5 over 1 minus 0.9R minus 3.5 over 1 minus 0.7R. That's precisely the same using the normal rules for polynomials. That's precisely the same as that expression. But the difference, from the point of view of thinking about systems, is enormous.</p>
+<p>We know the answer to that one. That's the sum of the responses to two first-order systems, so we can write that symbolically this way. We can think about having a sum system that generates this term. This term is a simple system of the type of that we looked at previously that, then, gets multiplied by 4.5.</p>
+<p>I'm just factoring again. I'm saying I've got something over something, which means that I can put something in each of two different parts of two things that I multiply together. And I can think about this as having been generated by this system, and you just add them together. The amazing thing is that that says that, despite the fact that the response looked complicated, it was in fact the sum of two geometrics. So it wasn't very different from the answer for a single pole.</p>
+<p>What I've just done is amazing. I've just taken something that, had you studied the difference equations and had you studied the block diagrams, it would have been very hard for you to conclude that something this complicated has a response that can be written as the sum of two geometrics. By thinking about the system as a polynomial in R, it's completely trivial. It's a simple application of the rules for polynomials that you all know.</p>
+<p>So what we've shown, then, is that this complicated system has a way of thinking about as just two of the simpler systems. The complicated response that grew and decayed, that's just the difference, really, 4.5 minus 3.5. It's the weighted difference of a part that goes 0.7 to the n, then a different part that goes 0.9 to the n.</p>
+<p>So far, we've got to results, the n equals 1 case, the first-order polynomial in our case, the one pole case, that's trivial. It's just a geometric sequence. The response is just a geometric sequence. If it happens to be second-order, this is second-order because when you write the operator expression, the polynomial in the bottom is second-order, second-order polynomial in R.</p>
+<p>This second-order system has a response that looks like two pieces. Each piece looks like a piece that was from a first-order system. And in fact, that idea generalizes.</p>
+<p>If we have a system that can be represented by linear difference equation with constant coefficients that will always be true if the system was constructed out of the parts that we talked about, adders, gains, delays. If the system is constructed out of adders, gains, and delays, then it will be possible to express the system in terms of one difference equation. General form is showed here.</p>
+<p>Y then can be constructed out of parts that are delayed versions of Y and delayed versions of X. If you do that, then you can always write the operator that expresses the ratio between the output and the input as the ratio of two polynomials. That will always be true.</p>
+<p>So this, now, is the generalization step. We did the n equals 1 case, we did the n equals 2 case, and now we're generalizing. We will always get, for any system that can be represented by a linear difference equation with constant coefficients, we can always represent the system functional in this form.</p>
+<p>Then just like we did in the second-order case, we can use the factor theorem to break this polynomial in the denominator into factors. That comes from the factor theorem in algebra. Then we can re-express that in terms of partial fractions.</p>
+<p>And what I've just showed is that, in the general case, regardless of how many delays are in the system, if the system only has adders, gains, and delays, I can always express the answer as a sum of geometrics. That's interesting. That means that if I knew the bases for all of those geometric sequences, I know something about the response. The bases are things we call poles. If you knew all the poles, you'd know something very powerful about the system.</p>
+<p>So every one of the factors corresponds to a pole, and by partial fractions, you'll get one response for each pole. The response for each pole goes like pole to the n. You know the basic shape. You don't know the constants, but you know the basic shape of the response just by knowing the poles.</p>
+<p>We can go one more step, which makes the computation somewhat simpler. I used the factor theorem. Here, I'm using the fundamental theorem of algebra, which says that if I have a polynomial of order n, I have n roots. The poles are related to the roots of the R polynomial.</p>
+<p>The relationship is take the functional, substitute for R -- 1 over Z. Re-express the functional as a ratio of polynomials in Z. The poles are the roots of the denominator.</p>
+<p>So recapping, I started with a first-order system. I showed you how to get a second-order system. I showed that, in general, you can use the factor theorem to break down the response of a higher-order system into a sum of responses of first-order systems. Now, I've shown that you can use the fundamental theorem of algebra to find the poles directly, and then by knowing the poles, you know each of the behaviors, monotonic divergence, monotonic convergence, or alternating signs.</p>
+<p>And so here is this same example that I started with, worked out by thinking about what are the poles. The poles are 0.7 and 0.9, which we see by a simple application of the fundamental theorem of algebra. OK, we got a long way by just thinking about operators as polynomials. We haven't done anything that you haven't done in high school. Polynomials are very familiar and we've made an isomorphism between systems and polynomials.</p>
+<p>OK, make sure you're all with me. Here's a higher order system. How many of these statements are true -- 0, 1, 2, 3, 4, or 5? Talk to your neighbor, get an answer.</p>
+<p>So how many are true -- 0, 1, 2, 3, 4, or 5? Oh, come on. Blame it on your neighbor. You weren't talking, but I didn't hear you not talking. How many are true -- 0, 1, 2, 3, 4, or 5? Raise your hands.</p>
+<p>AUDIENCE: They can't all be true.</p>
+<p>PROFESSOR: They can't all be true. Are they mutually contradictory?</p>
+<p>AUDIENCE: Well, yeah. 5 --</p>
+<p>PROFESSOR: N1 of the above, that sounds like-- OK, so you've eliminated 1. Which one's true? How many statements are true?</p>
+<p>Looks like about 75%. Correct? What should I do? How do I figure it out? What's my first step? What do I do?</p>
+<p>AUDIENCE: Operators.</p>
+<p>PROFESSOR: Operators, absolutely. So turn it into operators. So take the difference equation, turn it into operators. The important thing to see is that there are three Y terms. Take them all to the same side, and I get an operator expression like that.</p>
+<p>The ones that depend on X, there are two of them, that's represented here. The thing this is critical for determining poles is figuring out the denominator. The poles are going to come from this one.</p>
+<p>After I get the ratio of two polynomials in R, I substitute 1 over Z for each R. So for this R, I get 1 over Z. For this R squared, I get 1 over Z squared. Then I want to turn it back into a ratio of polynomials in Z, so I have to multiply top and bottom by Z squared. And when I do that, I get this ratio of polynomials in Z.</p>
+<p>The poles are the roots of the denominator polynomial in Z. The poles are minus 1/2 and plus 1/4. So the unit sample response converges to 0. What would be the condition that that represents?</p>
+<p>AUDIENCE: Take the polynomial on the bottom.</p>
+<p>PROFESSOR: Something about the polynomial on the bottom. Would all second-order systems have that property that the unit sample response would converge to 0?</p>
+<p>AUDIENCE: [INAUDIBLE]</p>
+<p>PROFESSOR: Louder?</p>
+<p>AUDIENCE: Absolute value of the poles?</p>
+<p>PROFESSOR: Absolute value of the poles has to be?</p>
+<p>AUDIENCE: Less than 1.</p>
+<p>PROFESSOR: Less than 1. If the magnitude of the poles is less than 1, then the response magnitude will decay with time. So that's true here, and it would be true so long as none of the poles have a magnitude exceeding 1.</p>
+<p>There are poles at 1/2 and 1/4. No, that's not right. It's -1/2 or 1/4.</p>
+<p>There's a pole at 1/2. No, that's not right. There's a pole at -1/2.</p>
+<p>There are two poles. Yes, that's true. None of the above. No, that's not true. So the answer was (2).</p>
+<p>Everybody's comfortable? We've done something very astonishing. We took an arbitrary system, and we've figured out a rule that let's us break it into the sum of geometric sequences. We can always write the response to a unit sample signal, we can always write, as a weighted sum of geometric sequences, and the number of geometric sequences in the sum is the number of poles, which is the order of the operator that operates on Y. OK, so we've done something very powerful.</p>
+<p>There's one more thing that we have to think about, and then we have a complete picture of what's going on. Think about when you learned polynomials. One of the big shocks was that roots can be complex. What would that mean? What would it mean if we had a system whose poles were complex valued?</p>
+<p>So first off, does such a system exist? Well, here's one. I just pulled that out of the air.</p>
+<p>If I think about the functional, 1 over (1 minus R plus R squared) -- if I convert that into our ratio of polynomials in Z and then find the roots, I find that the roots have a complex part. The roots are 1/2 plus or minus root 3 over 2j. There's an imaginary part. So the question is what would that mean? Or is perhaps that system just meaningless?</p>
+<p>Well, complex numbers work in algebra, and complex numbers work here, too. So the fact that a pole has a complex value in the context of signals and systems simply means that the pole is complex, that the base of the geometric sequence, that base is complex. So that means that we can still rewrite the denominator, which was 1 minus R plus R squared, we can rewrite that denominator in terms of a product of two first-order R polynomials.</p>
+<p>The coefficients are now complex, but it still works. The algebra still works right. That has to work because that's just polynomials. That's the way polynomials behave.</p>
+<p>Now, we can still factor it. We can still use the factor theorem. In fact, we can still use the fundamental theorem of algebra to find the poles by the Z trick. That's fine. We can still use partial fractions. All of these numbers are complex, but the math still works.</p>
+<p>The funny thing is that it implies that the fundamental modes-- by fundamental mode, I mean the simple geometric for the case of a first-order system, more complex behaviors for higher order systems. The mode is the time response associated with a pole. So the modes are, in this case, complexes sequences. So in general, the modes look like P0 to the n. Here, my modes are simply have a complex value.</p>
+<p>So what did I say they were? The poles were 1/2 plus or minus-- so my modes simply look that. Same thing.</p>
+<p>The strange thing that happened was that those modes, those geometric sequences, are now have complex values. The first one up here, if I just look at the denominator, these coefficients mean that it's proportionate to the mode associated with this, which is that, which has a real part, which is the blue part, and the imaginary part, which is a red part. There were two poles, plus and minus. The other pole just flips the imaginary part.</p>
+<p>So if I have imaginary poles, all I get is complex modes, complex geometric sequences. An easier way of thinking about that is thinking about-- so when we had a simple, real pole, we just had P0 to the n. That's easy to visualize because we just think about each time you go from 0 to 1 to 2 to 3, it goes from 1 to P0 to P0 squared to P0 cubed.</p>
+<p>Here, when you're multiplying complex numbers, it's easier to imagine that on the complex plane. Think about the location of the point 1, think about the location of the point P0, think about the location of the point P0 squared, and in this particular case, where the pole was 1/2 plus or minus the square root of 3 over 2 times j, this would be pole to the 0. This is pole to the 1. This is pole squared, pole cubed.</p>
+<p>As you can see when you have a complex number, the trajectory in complex space can be complicated. In this case, it's circular. The circular trajectory in the complex plane corresponds to the sinusoidal behavior in time. So there's a correlation between the way you think about the modes evolving on the complex plane and the way you think about the real and imaginary parts evolving in time.</p>
+<p>It seems a little weird that the response should be complex. We're studying this kind of system theory primarily because we're trying to gain insight into real systems. We want to know how things like robots work.</p>
+<p>How does the WallFinder work? What would it mean if the WallFinder went to position one plus the square root of 3 over 2j? That doesn't make sense.</p>
+<p>So there's a little bit of a strange thing going on here. How is it that we need complex numbers to model real things? That doesn't seem to sound right. But the answer is that, if the difference equation had real coefficients, as they will for a real system-- if you think about a real system, like a bank account, the coefficients in the difference equation are real numbers, not complex numbers. If you think about the WallFinder system, the coefficients in the WallFinder system, the coefficients of the difference equations-- the coefficients of the different equations describe the WallFinder behavior were all real numbers.</p>
+<p>Here, I'm thinking about the denominator polynomial. If we try to find the roots of a polynomial, and if we find a complex root, if the coefficients were all real, it follows that the complex conjugate of the original root is also a root. That's pretty simple, if you think about what it means to be a polynomial.</p>
+<p>If you think about a polynomial is whatever-- so I've got 1 plus Z plus Z squared plus blah, blah, blah. 2, 3 minus 16, if all of those coefficients real, then the only way the-- If P were a root of this polynomial, then P* would have to be a root, too, because if you complex conjugate each of the Z's, it's the same thing as complex conjugating the whole thing because the coefficients are real valued. So the idea then is that if I happen to get a complex root for my system that can be described by real value coefficients, it must also be true that it's complex conjugate is a root. If that happens, the two roots co-conspire so that the modes have canceling imaginary parts.</p>
+<p>You can prove that. I'm not worried about you being able to prove that. I just want you to understand that if you have two roots that are complex conjugates, they can conspire to have their imaginary parts cancel, and that's exactly what happens.</p>
+<p>Here, in this example, the example that I started with, where the system was 1 over (1 minus R plus R squared), the unit sample responses showed here. You can write as the sum of sinusoidal and cosinusoidal signals, and the sum that falls out has the property that the imaginary parts cancel. It's still useful to look at the imaginary parts the same as it is when you're trying to solve polynomials. It's useful because the period of all of these signals is the same.</p>
+<p>If I think about the period of the individual modes, if I think about the period of P0 to the n, 1/2 plus or minus root 3 over 2j to the n, the period of that signal -- I can see in the complex plane, this is the n equals 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 -- the period is 6. If I were to take the minus 1, I would go around the circle the other way. This would be zero term 1, 2, 3, 4, 5, 6, et cetera. Both of the modes, the geometric sequence associated with the two complex conjugate poles, both of those modes had the same period, they're both 6, as does the response to the real part. So you can deduce the period of the real signal by looking at the periods of the two complex signals.</p>
+<p>So think about this system. Here, I've got a system whose responses showed here. I'm going to tell you that the response was generated by a second-order system, that is to say a system whose polynomial was second-order, whose polynomial in R was second-order.</p>
+<p>Which of these statements is true? I want to think about the pole as being a complex number. Here, I'm showing you the complex number in polar form. It's got a magnitude and an angle, and I'd like you to figure how what must the magnitude have been, and what must the angle have been.</p>
+<p>So what's the utility? Why did I tell you the pole in terms of it's magnitude and angle rather than telling it to you in it's Cartesian form as a real and imaginary part? What's good about thinking about magnitude and angle?</p>
+<p>Or if I break the pole into magnitude and angle, and if I think about the mode-- the modes are always of the form P0 to the n. If I think about modes as having a magnitude and an angle, when I raise it to the n, something very special happens. What happens? You can separate it.</p>
+<p>What is R e to the j omega raised to the n? That's the same as R to the n, e to the j n omega. It's the product of a real thing times a very simple complex thing. What's simple about the complex thing?</p>
+<p>The magnitude is everywhere 1 e to the j, the magnitude of that term. So all of the magnitude is here, none of the magnitude is here. All of the angle is here, none of the angle is here. I've separated the magnitude and the angle.</p>
+<p>So it's very insightful to think about poles in terms of magnitude and angle because it decouples the parts of the mode. So I can think, then, of this complicated signal that I gave you as being the product of a magnitude part and a pure angle part. From the magnitude part, I can infer something about R. R is the ratio of the nth 1 to the n minus 1-th one, so R is a lot bigger than 1/2. In fact, R in this case is 0.97.</p>
+<p>And this is pure angle. This lets me infer something about the oscillations. In fact, I can say something about the period. The period is, here's a peak, here's a peak, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12. The period's 12.</p>
+<p>If the period is 12, what is omega? Omega is a number, such that by the time I got up to 12 times it, I got up to 2 pi. What's omega?</p>
+<p>AUDIENCE: Pi over 6.</p>
+<p>PROFESSOR: 2 pi over 12. So it's about 1/2. So that's a way that I can infer the form of the answer. I ask you what pole corresponds to this behavior.</p>
+<p>Well, the decay that comes from the real part, that comes from R to the n. The oscillation, that comes from the imaginary part, and I can figure that out by thinking about the period and thinking about that relationship. So the answer, then, is this one, R is between 1/2 and 1, and omega is about 1/2.</p>
+<p>OK, one last-- whoops, wrong button. One last example. So what we've seen is a very powerful way of decomposing systems, so that we can always think about them in terms of poles and complex geometrics, which we will call modes, poles and modes. And that behavior works for any system in an enormous class of systems, so I want to think about one last one, which is Fibonacci sequence.</p>
+<p>You all know the Fibonacci sequence. You've all programmed it. We started with that when we were doing Python, and we made some illustrations about the recursion and all that sort of thing by thinking about it. Now, I'm going to use signals and systems do the same problem.</p>
+<p>So Fibonacci was interested in population growth. How many pairs of rabbits can be produced from a single pair in a year if it is suppose that every month each pair begets a new pair, from which the second month it becomes productive? OK, it's not quite the same English I would have used. From this statement, you can infer a difference equation.</p>
+<p>I've written it in terms of X. What do you think X is? X is the input signal, and here, I'm thinking about X as something that's specifies the initial condition. This is the thing I alluded to earlier. One trick that we use to make it easy to think about initial conditions is that we embed them in the input.</p>
+<p>So in this particular case, I'll think about the initial condition arising from a delta function. If I think about X as a delta, then the sequence of results Y0, Y1, Y2, Y3 from this difference equation, is the conventional Fibonacci sequence. It would correspond to what if you had a baby rabbit, one baby rabbit, that's the one, in generation 0, that's the delta. So the input is a way that I can specify initial conditions, and that's a very powerful way of thinking about initial conditions.</p>
+<p>So here's the problem. I've got one set of baby rabbits at times 0. They grow up. They have baby rabbits, which grow up at the same time the parents had more baby rabbits, at which point more babies grow into bigger rabbits. And big rabbits have more babies, et cetera, et cetera, et cetera, et cetera, et cetera.</p>
+<p>So you all know that. You all know about Fibonacci sequence. It blows up very quickly. What are the poles of the Fibonacci sequence?</p>
+<p>The difference equation looks just like the difference equations we've looked at throughout this hour and a half. We can do it just like we did all the other problems. We write the difference equation in terms of R. We rewrite the system functional in terms of a ratio of two polynomials in R. We substitute R goes to 1 over Z, deduce a ratio of polynomials in Z, factor the denominator, find the roots of the denominator, and find that there are two poles.</p>
+<p>The poles for the Fibonacci sequence are plus or minus the root of 5 over 2. That's curious. There's no recursion there. It's a different way of thinking about things.</p>
+<p>There are two poles. The first pole, the plus one -- 1 plus the root of 5 over 1, corresponds to a pole whose magnitude is bigger than 1. It explodes. There it is.</p>
+<p>The second one is a negative number. So the first one is the golden ratio, 1.618... The second one is the negative reciprocal of the golden ratio, which is -0.618... And those two numbers, amazingly, conspire so that their sum, horrendous as they are, is an integer. And in fact, that's the integer that we computed here.</p>
+<p>So we've used Fibonacci before to think about the way you structure programs, iteration, recursion, that sort of thing. Here, by thinking about signals and systems, we can think about exactly the same problem as poles. There's no complexity in this problem. It doesn't take N or N squared or N log N or anything to compute. It's closed form.</p>
+<p>The answer is (pole one) to the N plus (pole two) to the N. That's it. That's the answer. So what we've done is we found a whole new way of thinking about the Fibonacci sequence in terms of poles, and more than that, we found that that way of thinking about poles works for any difference equation of this type. And we found that poles, this way of thinking about systems in terms of polynomials, is a powerful abstraction that's exactly the same kind of PCAP abstraction that we used for Python.  </p>
+</div>
+        <div id="vid_index" itemprop="description" class="tabContent hide">
+<h2 class="subhead">Free Downloads</h2>
+<h3 class="subsubhead">Video</h3>
+<ul>
+<li>iTunes U (<a href="http://itunes.apple.com/us/itunes-u/lecture-5-characterizing-system/id490181666?i=109416117">MP4 - 188MB</a>)</li>
+<li>Internet Archive (<a href="http://www.archive.org/download/MIT6.01SCS11/MIT6_01SC_S11_lec05_300k.mp4">MP4 - 188MB</a>)</li>
+</ul>
+<br><h3 class="subsubhead">Subtitle</h3>
+<ul><li>English - US (<a href="../../../../contents/unit-2-signals-and-systems/characterizing-system-performance/lecture-1-object-oriented-programming/MIT6_01SC_S11_lec05_300k.srt">SRT</a>)</li></ul>
+</div>
+    
+   </div>  
+
+
+
+      					 
+        <div class="" id="parent-fieldname-bottom_html_area">
+            
+            
+        </div>
+    
+                    </main><!--Course_inner_chip tag close -->
+</div>
+<!--Course_wrapper tag close --> 
+            </div>
+<!--left tag close -->
+            <aside id="right"><!--Begin Right Portion --><div>
+    
+<div id="portletwrapper-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465" class="portletWrapper kssattr-portlethash-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465">
+<div class="portletStaticText portlet-static-donate"><p class="zero"><a href="http://ocw.mit.edu/give"><img src="../../../../common/images/button_donate-now.png" alt="Give Now." class="donate"></a></p></div>
+
+</div>
+
+
+
+
+</div>
+
+                	<div>
+    
+
+
+
+</div>
+
+
+        <div class="" id="parent-fieldname-rsi_top_html_area">
+            
+            
+        </div>
+    
+
+<!-- RSI google ad space-->
+
+
+<div id="google_ads">    
+    <script type="text/javascript" src="https://partner.googleadservices.com/gampad/google_service.js"></script><script type="text/javascript">GS_googleAddAdSenseService("ca-pub-6588555046597237");GS_googleEnableAllServices();</script><script type="text/javascript">GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_A_DL");GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_B_DL");GA_googleAddSlot("ca-pub-6588555046597237", "SCH_VID_INDIV_SLOT_C_DL");</script><script type="text/javascript">GA_googleFetchAds();</script><script language="javascript" type="text/javascript">
+GA_googleAddAttr("TYPE","HOUSE");
+GA_googleAddAttr("DEPARTMENT","6");
+GA_googleAddAttr("CRS_BEG2","01");
+GA_googleAddAttr("CRS_END","SC");
+GA_googleAddAttr("SESSION","S");
+GA_googleAddAttr("YEAR","11");
+</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_A_DL");</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_B_DL");</script><script type="text/javascript">GA_googleFillSlot("SCH_VID_INDIV_SLOT_C_DL");</script>
+</div>
+
+<!-- End RSI ads--> 
+
+<div>
+    
+
+
+
+</div>
+
+            </aside><!--Right div close --><div class="clear"></div> 
+        </div>
+<!--grid tag close --> 
+      </div>
+		
+		<footer id="bottom"><div id="grid">
+				
+<div id="portletwrapper-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572" class="portletWrapper kssattr-portlethash-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572">
+<div class="portletStaticText portlet-static-site-footer"><div id="footer">
+<nav aria-label="Footer"><nav id="foot-c1" class="grid_2 alpha" aria-labelledby="f-find-courses"><span class="footer" id="f-find-courses" aria-hidden="true">Find Courses</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Find by Topic</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-number/">Find by Course Number</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-department/">Find by Department</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+    <li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/subtitled/">Courses with Subtitles</a></li>
+    <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+    <li><a href="https://ocw.mit.edu/courses/instructor-insights/">Instructor Insights</a></li>
+    <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+    <li><a href="https://ocw.mit.edu/courses/translated-courses/">Translated Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-footer&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+</ul></nav><div id="foot-c2" class="grid_2">
+<nav aria-labelledby="f-about"><span id="f-about" class="footer" aria-hidden="true">About</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About OpenCourseWare</a></li>
+    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+    <li><a href="https://ocw.mit.edu/about/media-coverage/press-releases/">Press Releases</a></li>
+</ul></nav><!--about--><nav aria-labelledby="f-tools"><span id="f-tools" class="footer" aria-hidden="true">Tools</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/help/">Help &amp; FAQs</a></li>
+    <li><a href="../../../../common/jsp/feedback.htm">Contact Us</a></li>
+    <li><a href="../../../../common/search/AdvancedSearch.htm">Advanced Search</a></li>
+    <li><a href="https://ocw.mit.edu/help/site-map/">Site Map</a></li>
+    <li><a href="../../../../common/terms/index.htm">Privacy &amp; Terms of Use</a></li>
+    <li><a href="https://ocw.mit.edu/help/rss/">RSS Feeds</a></li>
+</ul></nav><!--tools-->
+</div>
+<nav class="grid_2" id="foot-c3" aria-labelledby="f-donate"><span id="f-donate" class="footer" aria-hidden="true">Give Now</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/give/">Make a Donation</a></li>
+    <li><a href="https://ocw.mit.edu/give/why-give/">Why Give?</a></li>
+    <li><a href="https://ocw.mit.edu/give/our-supporters/">Our Supporters</a></li>
+    <li><a href="https://ocw.mit.edu/give/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+    <li><a href="https://ocw.mit.edu/give/shop-ocw/">Shop OCW</a></li>
+    <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+</ul></nav><div class="grid_2" id="foot-c4"><nav aria-labelledby="f-featured-sites"><span id="f-featured-sites" class="footer" aria-hidden="true">Featured Sites</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=featured-sites">OCW Educator</a></li>
+    <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+    <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+    <li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT+K12 Videos">MIT+K12 Videos</a></li>
+    <li><a href="http://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+    <li><a href="https://outreach.mit.edu/" aria-label="External Link: Outreach at MIT">Outreach@MIT</a></li>
+    <li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+</ul></nav></div>
+</nav><aside style="min-height: 289px;" aria-labelledby="f-our-corporate-supporters" class="grid_4 omega" id="foot-c5"><span aria-hidden="true" class="footer" id="f-our-corporate-supporters">Our Corporate Supporters</span>           <!-- HOME_CORP_LOGO_1 -->
+<div id="div-gpt-ad-1388181177156-0" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-0'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_2 -->
+<div id="div-gpt-ad-1388181177156-1" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-1'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_3 -->
+<div id="div-gpt-ad-1388181177156-2" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-2'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_4 -->
+<div id="div-gpt-ad-1388181177156-3" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-3'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_5 -->
+<div id="div-gpt-ad-1388181177156-4" class="sponsors_google_ads_even"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-4'); });
+              </script></div>
+<!-- HOME_CORP_LOGO_6 -->
+<div id="div-gpt-ad-1388181177156-5" class="sponsors_google_ads_odd"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-5'); });
+              </script></div>
+</aside><div class="grid_12 alpha omega" itemprop="publisher" itemscope="" itemtype="http://schema.org/CollegeOrUniversity">
+<h4 class="footer" style="border-top: thin solid #d5c9ba; padding-top: 10px; margin-bottom: 10px;">About <span itemprop="name">MIT OpenCourseWare</span>
+</h4>
+<p style="color: #999; font-size: 1em; line-height: 1.5em; margin-top: 10px;" itemprop="description">MIT OpenCourseWare makes the materials used in the teaching of almost all of MIT's subjects available on the Web, free of charge. With more than 2,400 courses available, OCW is delivering on the promise of open sharing of knowledge. <a href="http://ocw.mit.edu/about/">Learn more »</a></p>
+</div>
+<div id="foot-copy" class="grid_12 alpha omega" style="border-top: none;">
+<a href="http://web.mit.edu"><img src="../../../../common/images/logo_mit.png" alt="Massachusetts Institute of Technology logo and name." style="width: 195; height: 44;"></a><a href="http://odl.mit.edu"><img src="https://ocw.mit.edu/images/logo_odl.png" alt="MIT Office of Digital Learning logo and name." style="width: 289; height: 54; vertical-align: top;"></a><a href="http://www.oeconsortium.org/"><img src="https://ocw.mit.edu/images/logo_oec.png" alt="Open Education Consortium logo." style="width: 219px; height: 59px; vertical-align: top;"></a><a rel="license" itemprop="useRightsUrl" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="../../../../common/images/cc_by-nc-sa.png" alt="Creative Commons logo with terms BY-NC-SA." style="width: 126px; height: 44px; margin-right: 0; margin-left: 13px;"></a>
+<p class="copyright">© 2001–2017<br>
+Massachusetts Institute of Technology</p>
+<p style="font-size: 0.9em; margin-bottom: 15px;">Your use of the MIT OpenCourseWare site and materials is subject to our <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license">Creative Commons License</a> and other <a href="../../../../common/terms/index.htm" rel="cc:morePermissions">terms of use</a>.</p>
+</div>
+</div></div>
+
+</div>
+
+
+
+
+
+                
+			</div> <!-- bottom grid end -->
+		</footer><!-- footer bottom end -->
+</body>
+</html>

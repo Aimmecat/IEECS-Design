@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : C:\Users\86158\Desktop\IEECS-Design\Hardware\Circuit\PCB\mainboard\PCB_IEECS-Design-MainBoard_2022-10-01.pcbdoc
+Date         : 2022-10-03
+Time         : 18:07:26
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 357
+    Connections routed, 357
+    Connections remaining, 0
+count : 4

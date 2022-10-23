@@ -1,0 +1,5942 @@
+1
+00:00:00,000 --> 00:00:01,040
+
+2
+00:00:01,040 --> 00:00:03,460
+The following content is
+provided under a Creative
+
+3
+00:00:03,460 --> 00:00:04,870
+Commons license.
+
+4
+00:00:04,870 --> 00:00:07,910
+Your support will help MIT
+OpenCourseWare continue to
+
+5
+00:00:07,910 --> 00:00:11,560
+offer high quality educational
+resources for free.
+
+6
+00:00:11,560 --> 00:00:14,460
+To make a donation or view
+additional materials from
+
+7
+00:00:14,460 --> 00:00:18,390
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+8
+00:00:18,390 --> 00:00:19,640
+ocw.mit.edu.
+
+9
+00:00:19,640 --> 00:00:24,320
+
+10
+00:00:24,320 --> 00:00:29,520
+PROFESSOR: Last time, which is
+now two weeks ago, we started
+
+11
+00:00:29,520 --> 00:00:33,050
+the talk about the signals and
+systems approach, by which I
+
+12
+00:00:33,050 --> 00:00:36,890
+mean, think about a system by
+the way it transforms its
+
+13
+00:00:36,890 --> 00:00:41,090
+input signal into an
+output signal.
+
+14
+00:00:41,090 --> 00:00:43,520
+That's kind of a bizarre way
+of thinking about systems.
+
+15
+00:00:43,520 --> 00:00:45,690
+I demonstrated that last time by
+thinking about a mass and a
+
+16
+00:00:45,690 --> 00:00:49,760
+spring, something you have a
+lot of experience with, but
+
+17
+00:00:49,760 --> 00:00:53,680
+you probably didn't use this
+kind of approach for
+
+18
+00:00:53,680 --> 00:00:55,060
+thinking about it.
+
+19
+00:00:55,060 --> 00:00:57,020
+Over this lecture and over the
+next lecture, what I'd like to
+
+20
+00:00:57,020 --> 00:01:00,455
+do is show you the advantages
+of this kind of approach.
+
+21
+00:01:00,455 --> 00:01:04,920
+And so for today, what I'd like
+to do is talk about how
+
+22
+00:01:04,920 --> 00:01:09,900
+to think about feedback within
+this structure, and I'd like
+
+23
+00:01:09,900 --> 00:01:13,260
+to also think about how you
+can use this structure to
+
+24
+00:01:13,260 --> 00:01:15,760
+characterize the performance
+of a system in a
+
+25
+00:01:15,760 --> 00:01:18,900
+quantitative fashion.
+
+26
+00:01:18,900 --> 00:01:21,400
+So first off, I want to just
+think about feedback.
+
+27
+00:01:21,400 --> 00:01:25,370
+Feedback is so pervasive
+that you don't notice
+
+28
+00:01:25,370 --> 00:01:27,470
+it most of the time.
+
+29
+00:01:27,470 --> 00:01:31,110
+You use feedback in virtually
+everything that you do.
+
+30
+00:01:31,110 --> 00:01:33,680
+Here is a very simple example
+of driving a car.
+
+31
+00:01:33,680 --> 00:01:36,050
+If you want to keep the car in
+the center of your lane,
+
+32
+00:01:36,050 --> 00:01:38,630
+something that many people
+outside of Boston, at least,
+
+33
+00:01:38,630 --> 00:01:43,880
+think is a good idea, then you
+are mentally doing feedback.
+
+34
+00:01:43,880 --> 00:01:46,370
+You're constantly comparing
+where you are to where you'd
+
+35
+00:01:46,370 --> 00:01:49,950
+like to be and making small
+adjustments to the system
+
+36
+00:01:49,950 --> 00:01:52,760
+based on that.
+
+37
+00:01:52,760 --> 00:01:54,900
+When you think of even the most
+simple of systems, like
+
+38
+00:01:54,900 --> 00:01:55,920
+the thermostat in a house--
+
+39
+00:01:55,920 --> 00:01:58,110
+I'm not talking about
+a cheap motel.
+
+40
+00:01:58,110 --> 00:01:59,550
+The cheap motels
+don't do this.
+
+41
+00:01:59,550 --> 00:02:03,540
+But in a real house, there's a
+thermostat, which regulates
+
+42
+00:02:03,540 --> 00:02:06,060
+the temperature.
+
+43
+00:02:06,060 --> 00:02:08,160
+That's important, because if
+the temperature suddenly
+
+44
+00:02:08,160 --> 00:02:11,550
+drops, it would never do that
+of course, but if the
+
+45
+00:02:11,550 --> 00:02:16,790
+temperature ever dropped, it
+could compensate for it.
+
+46
+00:02:16,790 --> 00:02:20,070
+Here's one of my favorite
+examples.
+
+47
+00:02:20,070 --> 00:02:23,280
+Feedback is enormously
+pervasive in biology.
+
+48
+00:02:23,280 --> 00:02:27,770
+There's no general rules in
+biology, but to a first cut,
+
+49
+00:02:27,770 --> 00:02:31,250
+everything is regulated.
+
+50
+00:02:31,250 --> 00:02:35,550
+And in many cases, the
+regulation is amazing.
+
+51
+00:02:35,550 --> 00:02:39,930
+Here's an example from 6.021,
+where it's illustrating the
+
+52
+00:02:39,930 --> 00:02:44,540
+system that your body uses to
+regulate glucose delivery from
+
+53
+00:02:44,540 --> 00:02:48,330
+food sources to every cell in
+your body, which is crucial to
+
+54
+00:02:48,330 --> 00:02:50,950
+your being cognizant
+and mobile.
+
+55
+00:02:50,950 --> 00:02:53,600
+
+56
+00:02:53,600 --> 00:03:00,580
+And the idea is that it does
+that with amazing precision
+
+57
+00:03:00,580 --> 00:03:04,690
+despite the fact that
+eating and exercise
+
+58
+00:03:04,690 --> 00:03:07,880
+are enormously episodic.
+
+59
+00:03:07,880 --> 00:03:10,970
+In order for you to remain
+healthy and functional, you
+
+60
+00:03:10,970 --> 00:03:14,220
+need to have something between
+approximately two and ten
+
+61
+00:03:14,220 --> 00:03:16,510
+millimoles per liter
+of glucose in your
+
+62
+00:03:16,510 --> 00:03:18,260
+blood at all times.
+
+63
+00:03:18,260 --> 00:03:20,380
+Were it to go higher than that,
+systematically, you
+
+64
+00:03:20,380 --> 00:03:25,050
+would develop cardiac problems
+and could lead to even
+
+65
+00:03:25,050 --> 00:03:28,170
+congestive heart failure.
+
+66
+00:03:28,170 --> 00:03:32,310
+If you were to have lower than
+two millimoles per liter, you
+
+67
+00:03:32,310 --> 00:03:34,420
+would go comatose.
+
+68
+00:03:34,420 --> 00:03:37,470
+That's a very narrow range,
+two to five, especially
+
+69
+00:03:37,470 --> 00:03:43,260
+because what we eat is so
+episodic, when we exercise is
+
+70
+00:03:43,260 --> 00:03:44,430
+so episodic.
+
+71
+00:03:44,430 --> 00:03:49,440
+It's amazing, and just to
+dramatize how amazing it is,
+
+72
+00:03:49,440 --> 00:03:52,140
+how much sugar do you
+think circulates in
+
+73
+00:03:52,140 --> 00:03:53,390
+your blood right now?
+
+74
+00:03:53,390 --> 00:03:56,970
+
+75
+00:03:56,970 --> 00:03:59,430
+Well, if you convert five
+millimoles per liter, and if
+
+76
+00:03:59,430 --> 00:04:01,540
+you assume the average person
+has about three liters of
+
+77
+00:04:01,540 --> 00:04:05,290
+blood, which is true, and if you
+calculate it, that comes
+
+78
+00:04:05,290 --> 00:04:08,920
+out to 2.7 grams.
+
+79
+00:04:08,920 --> 00:04:12,150
+That's this much.
+
+80
+00:04:12,150 --> 00:04:14,690
+This is 2.7 grams
+of table sugar.
+
+81
+00:04:14,690 --> 00:04:19,800
+
+82
+00:04:19,800 --> 00:04:21,740
+So this is how much sugar
+is in your blood, now.
+
+83
+00:04:21,740 --> 00:04:22,800
+This is what's keeping
+you healthy.
+
+84
+00:04:22,800 --> 00:04:26,730
+This is what's keeping you
+from becoming comatose.
+
+85
+00:04:26,730 --> 00:04:27,980
+Or not.
+
+86
+00:04:27,980 --> 00:04:30,310
+
+87
+00:04:30,310 --> 00:04:34,288
+How much sugar do you
+think is in this?
+
+88
+00:04:34,288 --> 00:04:35,650
+AUDIENCE: The amount
+in that other cup.
+
+89
+00:04:35,650 --> 00:04:38,110
+PROFESSOR: Exactly.
+
+90
+00:04:38,110 --> 00:04:40,690
+We call that the Theory
+of Lectures.
+
+91
+00:04:40,690 --> 00:04:43,800
+I don't want to look like
+an idiot, so my
+
+92
+00:04:43,800 --> 00:04:45,220
+problems make sense.
+
+93
+00:04:45,220 --> 00:04:47,550
+This is the amount of sugar
+in a can of soda.
+
+94
+00:04:47,550 --> 00:04:50,160
+
+95
+00:04:50,160 --> 00:04:51,970
+Numerically, this is 39 grams.
+
+96
+00:04:51,970 --> 00:04:57,140
+
+97
+00:04:57,140 --> 00:05:00,350
+That's more than 13
+times this much.
+
+98
+00:05:00,350 --> 00:05:03,080
+So when you down one of these,
+it's very important that the
+
+99
+00:05:03,080 --> 00:05:07,400
+sugar gets taken out of the
+blood quickly, and it does.
+
+100
+00:05:07,400 --> 00:05:10,710
+And that happens by way of a
+feedback system, and the
+
+101
+00:05:10,710 --> 00:05:12,850
+feedback system is
+illustrated here.
+
+102
+00:05:12,850 --> 00:05:16,510
+Basically, the feedback involves
+the hormone insulin,
+
+103
+00:05:16,510 --> 00:05:19,370
+and that's why insulin
+deficiency is such a
+
+104
+00:05:19,370 --> 00:05:20,620
+devastating disease.
+
+105
+00:05:20,620 --> 00:05:22,890
+
+106
+00:05:22,890 --> 00:05:26,690
+Finally, everything we do
+has feedback in it.
+
+107
+00:05:26,690 --> 00:05:28,400
+Think about how your
+life would be
+
+108
+00:05:28,400 --> 00:05:30,520
+different if it didn't.
+
+109
+00:05:30,520 --> 00:05:33,150
+Even a simple task, like
+removing a light bulb, would
+
+110
+00:05:33,150 --> 00:05:36,300
+be virtually impossible except
+for the fact that you get
+
+111
+00:05:36,300 --> 00:05:37,610
+feedback from everything.
+
+112
+00:05:37,610 --> 00:05:39,170
+Your hand's amazing.
+
+113
+00:05:39,170 --> 00:05:42,240
+You have touch sensors, you have
+proprioceptive sensors,
+
+114
+00:05:42,240 --> 00:05:45,160
+you have stress sensors on the
+muscles and ligaments, and
+
+115
+00:05:45,160 --> 00:05:48,520
+they all coordinate to tell you
+when to stop squeezing on
+
+116
+00:05:48,520 --> 00:05:51,310
+the light bulb so you
+don't break it.
+
+117
+00:05:51,310 --> 00:05:53,800
+That's all completely amazing,
+and what we'd like to do,
+
+118
+00:05:53,800 --> 00:05:58,070
+then, is think about that kind
+of a system, a feedback
+
+119
+00:05:58,070 --> 00:06:03,450
+system, within the signals
+and systems construct.
+
+120
+00:06:03,450 --> 00:06:06,330
+As an example, I want to think
+through the WallFinder problem
+
+121
+00:06:06,330 --> 00:06:09,820
+that you did last week
+in Design Lab.
+
+122
+00:06:09,820 --> 00:06:12,670
+I'm sure you all remember that,
+in that problem, we were
+
+123
+00:06:12,670 --> 00:06:15,300
+trying to move the robot to a
+fixed distance away from the
+
+124
+00:06:15,300 --> 00:06:19,220
+wall, and we thought about
+that as a feedback system
+
+125
+00:06:19,220 --> 00:06:21,820
+comprised of three parts,
+a controller, a
+
+126
+00:06:21,820 --> 00:06:24,180
+plant, and a sensor.
+
+127
+00:06:24,180 --> 00:06:26,800
+We wrote difference equations to
+characterize each of those
+
+128
+00:06:26,800 --> 00:06:32,130
+parts, and then we figured out
+how to solve those difference
+
+129
+00:06:32,130 --> 00:06:35,100
+equations to make some
+meaningful prediction about
+
+130
+00:06:35,100 --> 00:06:36,350
+how the robot would work.
+
+131
+00:06:36,350 --> 00:06:38,690
+
+132
+00:06:38,690 --> 00:06:41,905
+So just to make sure you're
+all on board with me, now,
+
+133
+00:06:41,905 --> 00:06:44,210
+here's a question for you.
+
+134
+00:06:44,210 --> 00:06:45,990
+These are the equations
+that describe
+
+135
+00:06:45,990 --> 00:06:48,760
+the WallFinder problem.
+
+136
+00:06:48,760 --> 00:06:50,560
+How many equations and how
+many unknowns are there?
+
+137
+00:06:50,560 --> 00:06:54,860
+
+138
+00:06:54,860 --> 00:06:56,870
+Take 20 seconds, talk to your
+neighbor, figure out an answer
+
+139
+00:06:56,870 --> 00:06:58,120
+between (1) and (5).
+
+140
+00:06:58,120 --> 00:07:09,920
+
+141
+00:07:09,920 --> 00:07:12,490
+Unlike during the exam next
+week, you are allowed to talk.
+
+142
+00:07:12,490 --> 00:07:19,915
+
+143
+00:07:19,915 --> 00:07:39,220
+[CLASSROOM SIDE CONVERSATIONS]
+
+144
+00:07:39,220 --> 00:07:40,705
+PROFESSOR: T and K are no.
+
+145
+00:07:40,705 --> 00:08:09,010
+[CLASSROOM SIDE CONVERSATIONS]
+
+146
+00:08:09,010 --> 00:08:10,614
+PROFESSOR: OK, so what's the
+answer, number (1), (2), (3),
+
+147
+00:08:10,614 --> 00:08:12,060
+(4), or (5)?
+
+148
+00:08:12,060 --> 00:08:13,160
+Everybody raise your hands.
+
+149
+00:08:13,160 --> 00:08:15,010
+Let me see if I got the answer.
+
+150
+00:08:15,010 --> 00:08:15,920
+OK.
+
+151
+00:08:15,920 --> 00:08:16,890
+Come on, raise your hands.
+
+152
+00:08:16,890 --> 00:08:18,050
+Come on, everybody vote.
+
+153
+00:08:18,050 --> 00:08:20,010
+If you're wrong, just blame
+it on your neighbor.
+
+154
+00:08:20,010 --> 00:08:21,240
+You had a poor partner.
+
+155
+00:08:21,240 --> 00:08:22,020
+That's the idea.
+
+156
+00:08:22,020 --> 00:08:23,730
+Right?
+
+157
+00:08:23,730 --> 00:08:25,530
+So you can all vote, and you
+don't need to worry about
+
+158
+00:08:25,530 --> 00:08:26,540
+being wrong.
+
+159
+00:08:26,540 --> 00:08:31,520
+And you're all wrong, so
+that worked out well.
+
+160
+00:08:31,520 --> 00:08:34,960
+OK, so I don't like the-- so
+the predominant answer is
+
+161
+00:08:34,960 --> 00:08:37,190
+number (2).
+
+162
+00:08:37,190 --> 00:08:38,200
+I don't like number (2).
+
+163
+00:08:38,200 --> 00:08:40,740
+Can somebody think of a reason,
+now that you know the
+
+164
+00:08:40,740 --> 00:08:43,909
+answer by the Theory
+of Lectures, the
+
+165
+00:08:43,909 --> 00:08:45,159
+answer is not (2)?
+
+166
+00:08:45,159 --> 00:08:49,060
+
+167
+00:08:49,060 --> 00:08:50,170
+Why isn't the answer (2)?
+
+168
+00:08:50,170 --> 00:08:50,840
+Yeah?
+
+169
+00:08:50,840 --> 00:08:53,110
+AUDIENCE: Oh, I was
+saying (5).
+
+170
+00:08:53,110 --> 00:08:53,590
+PROFESSOR: You were
+saying (5).
+
+171
+00:08:53,590 --> 00:08:55,682
+Why did you say (5)?
+
+172
+00:08:55,682 --> 00:08:59,852
+AUDIENCE: I don't remember for
+sure, but can you substitute n
+
+173
+00:08:59,852 --> 00:09:01,092
+for different things?
+
+174
+00:09:01,092 --> 00:09:05,804
+Like Df of n, you could
+substitute n for, and if you
+
+175
+00:09:05,804 --> 00:09:07,788
+did that you would have two
+equations, which is
+
+176
+00:09:07,788 --> 00:09:08,780
+[INAUDIBLE].
+
+177
+00:09:08,780 --> 00:09:11,010
+PROFESSOR: [UNINTELLIGIBLE]
+kind of thing, you count
+
+178
+00:09:11,010 --> 00:09:13,502
+before or after doing
+substitution and
+
+179
+00:09:13,502 --> 00:09:15,240
+simplification.
+
+180
+00:09:15,240 --> 00:09:18,940
+And I mean to count before
+you do simplification.
+
+181
+00:09:18,940 --> 00:09:22,065
+Any other issues?
+
+182
+00:09:22,065 --> 00:09:22,540
+Yeah?
+
+183
+00:09:22,540 --> 00:09:25,865
+AUDIENCE: Is D0 [UNINTELLIGIBLE]
+
+184
+00:09:25,865 --> 00:09:28,730
+
+185
+00:09:28,730 --> 00:09:29,422
+PROFESSOR: Say again?
+
+186
+00:09:29,422 --> 00:09:32,185
+AUDIENCE: D0 [UNINTELLIGIBLE]
+
+187
+00:09:32,185 --> 00:09:36,000
+PROFESSOR: Is D0_n different
+or the same from D0_n-1?
+
+188
+00:09:36,000 --> 00:09:38,310
+That's the key question.
+
+189
+00:09:38,310 --> 00:09:41,330
+So I want to think about this
+as a system of algebraic
+
+190
+00:09:41,330 --> 00:09:46,615
+equations, and if I do that,
+then there's a lot of them.
+
+191
+00:09:46,615 --> 00:09:50,545
+
+192
+00:09:50,545 --> 00:09:52,790
+So it looks like there's
+three equations.
+
+193
+00:09:52,790 --> 00:09:55,620
+The problem with that approach
+is that there's actually three
+
+194
+00:09:55,620 --> 00:09:59,670
+equations for every
+value of n.
+
+195
+00:09:59,670 --> 00:10:02,000
+If you think about a system of
+equations that you could solve
+
+196
+00:10:02,000 --> 00:10:05,940
+with an algebra solver, you
+would have to treat all the
+
+197
+00:10:05,940 --> 00:10:07,050
+n's separately.
+
+198
+00:10:07,050 --> 00:10:10,600
+That's what we call the
+samples approach.
+
+199
+00:10:10,600 --> 00:10:13,660
+So here's a way you
+could solve them.
+
+200
+00:10:13,660 --> 00:10:18,660
+You could think about what if
+k and t are parameters, so
+
+201
+00:10:18,660 --> 00:10:21,730
+they're known, they're given?
+
+202
+00:10:21,730 --> 00:10:25,500
+What if my input signal is
+known, say it's a unit sample
+
+203
+00:10:25,500 --> 00:10:28,220
+signal, for example?
+
+204
+00:10:28,220 --> 00:10:30,650
+What would I need to
+solve this system?
+
+205
+00:10:30,650 --> 00:10:35,400
+Well, I'd need to tell you
+the initial conditions.
+
+206
+00:10:35,400 --> 00:10:39,810
+So in some sense, I want to
+consider those to be known.
+
+207
+00:10:39,810 --> 00:10:46,290
+So my knowns kind of comprise
+t and k, the initial
+
+208
+00:10:46,290 --> 00:10:52,680
+conditions for the output of the
+robot, and the sensor, all
+
+209
+00:10:52,680 --> 00:10:55,650
+of the input signals because I'm
+telling you the input and
+
+210
+00:10:55,650 --> 00:10:58,230
+asking you to calculate
+the output.
+
+211
+00:10:58,230 --> 00:11:01,700
+My unknowns are all of the
+different velocities for all
+
+212
+00:11:01,700 --> 00:11:06,260
+values of n bigger than or equal
+to 0 because I didn't
+
+213
+00:11:06,260 --> 00:11:08,360
+tell you those.
+
+214
+00:11:08,360 --> 00:11:10,990
+All of the values of robot's
+output at samples
+
+215
+00:11:10,990 --> 00:11:13,100
+n bigger than 0.
+
+216
+00:11:13,100 --> 00:11:16,510
+All the values of the sensor
+output for values
+
+217
+00:11:16,510 --> 00:11:18,750
+n bigger than 0.
+
+218
+00:11:18,750 --> 00:11:23,030
+So I get a lot of unknowns,
+infinitely many, and I get a
+
+219
+00:11:23,030 --> 00:11:26,380
+lot of equations, also
+infinitely many.
+
+220
+00:11:26,380 --> 00:11:28,670
+So the thing I want you think
+about is, if you're thinking
+
+221
+00:11:28,670 --> 00:11:31,050
+about solving difference
+equations using algebra,
+
+222
+00:11:31,050 --> 00:11:32,565
+that's a big system
+of equations.
+
+223
+00:11:32,565 --> 00:11:35,320
+
+224
+00:11:35,320 --> 00:11:40,320
+By contrast, what if you were
+to try to solve the system
+
+225
+00:11:40,320 --> 00:11:41,570
+using operators?
+
+226
+00:11:41,570 --> 00:11:43,990
+
+227
+00:11:43,990 --> 00:11:46,470
+Now, how many equations and
+unknowns do you see?
+
+228
+00:11:46,470 --> 00:11:50,990
+
+229
+00:11:50,990 --> 00:11:52,515
+By the Theory of Lectures.
+
+230
+00:11:52,515 --> 00:11:56,610
+
+231
+00:11:56,610 --> 00:11:59,430
+OK, raise your hand.
+
+232
+00:11:59,430 --> 00:12:02,736
+Or talk to your neighbor so you
+can blame your neighbor.
+
+233
+00:12:02,736 --> 00:12:05,196
+Talk to your neighbor.
+
+234
+00:12:05,196 --> 00:12:06,180
+Get a good alibi.
+
+235
+00:12:06,180 --> 00:12:25,880
+[CLASSROOM SIDE CONVERSATIONS]
+
+236
+00:12:25,880 --> 00:12:28,830
+PROFESSOR: So the idea here
+is that if you think about
+
+237
+00:12:28,830 --> 00:12:32,030
+operators instead, so that you
+look at a whole signal at a
+
+238
+00:12:32,030 --> 00:12:38,620
+time, then each equation only
+specifies one relationship
+
+239
+00:12:38,620 --> 00:12:45,070
+among signals, and there's a
+small number of signals.
+
+240
+00:12:45,070 --> 00:12:48,970
+So if I think about the knowns
+being k, t the parameters and
+
+241
+00:12:48,970 --> 00:12:54,040
+the signal d(i), and if I think
+about the unknowns being
+
+242
+00:12:54,040 --> 00:12:57,520
+the velocity, the output, and
+the sensor signal, then I get
+
+243
+00:12:57,520 --> 00:13:00,160
+three equations and
+three unknowns.
+
+244
+00:13:00,160 --> 00:13:03,190
+So one of the values of thinking
+about the operator
+
+245
+00:13:03,190 --> 00:13:05,480
+approach is that it just simply
+reduces the amount of
+
+246
+00:13:05,480 --> 00:13:06,530
+things you need to
+think about.
+
+247
+00:13:06,530 --> 00:13:08,020
+It reduces complexity.
+
+248
+00:13:08,020 --> 00:13:10,030
+That's what we're trying
+to do in this course.
+
+249
+00:13:10,030 --> 00:13:12,460
+We're trying to think of methods
+that allow you to
+
+250
+00:13:12,460 --> 00:13:16,180
+solve problems by reducing
+complexity.
+
+251
+00:13:16,180 --> 00:13:18,470
+We would like, ultimately,
+to solve very complicated
+
+252
+00:13:18,470 --> 00:13:21,740
+problems, and this operator
+approach is an approach that
+
+253
+00:13:21,740 --> 00:13:24,380
+lets you do that.
+
+254
+00:13:24,380 --> 00:13:26,360
+It does a lot more
+than that, too.
+
+255
+00:13:26,360 --> 00:13:30,900
+It also generates new
+kinds of insights.
+
+256
+00:13:30,900 --> 00:13:36,840
+So it lets you focus on the
+relations, but the relation is
+
+257
+00:13:36,840 --> 00:13:38,800
+now not quite the same
+as we would have
+
+258
+00:13:38,800 --> 00:13:40,140
+expected from algebra.
+
+259
+00:13:40,140 --> 00:13:43,290
+Now, the relation between the
+input signal and the output
+
+260
+00:13:43,290 --> 00:13:45,390
+signal is an operator.
+
+261
+00:13:45,390 --> 00:13:49,580
+We're going to represent the
+operation that transforms the
+
+262
+00:13:49,580 --> 00:13:52,080
+input to the output
+by this symbol, h.
+
+263
+00:13:52,080 --> 00:13:54,300
+We'll call that the
+system functional.
+
+264
+00:13:54,300 --> 00:13:56,690
+It's an operator.
+
+265
+00:13:56,690 --> 00:14:00,255
+It's a thing that, when operated
+on x, gives you y.
+
+266
+00:14:00,255 --> 00:14:06,160
+
+267
+00:14:06,160 --> 00:14:08,890
+And this is one of the main
+purposes of today's lecture,
+
+268
+00:14:08,890 --> 00:14:12,860
+it's also convenient to think
+about h as a ratio.
+
+269
+00:14:12,860 --> 00:14:16,250
+We like to think of it that
+way because, as we'll see,
+
+270
+00:14:16,250 --> 00:14:20,310
+there's a way of thinking
+about h as a ratio of
+
+271
+00:14:20,310 --> 00:14:24,790
+polynomials in R. So two ways
+of thinking about it.
+
+272
+00:14:24,790 --> 00:14:27,190
+We're trying to develop a
+signals and systems approach
+
+273
+00:14:27,190 --> 00:14:28,900
+for thinking about feedback.
+
+274
+00:14:28,900 --> 00:14:32,530
+We want to think about the
+input goes into a box.
+
+275
+00:14:32,530 --> 00:14:35,210
+The box represents
+an operation.
+
+276
+00:14:35,210 --> 00:14:36,950
+We will characterize that
+by a functional.
+
+277
+00:14:36,950 --> 00:14:39,610
+We'll call the functional h.
+
+278
+00:14:39,610 --> 00:14:41,890
+The functional, when applied
+to the input, produces the
+
+279
+00:14:41,890 --> 00:14:45,660
+output, and what we'd like to do
+is infer what is the nature
+
+280
+00:14:45,660 --> 00:14:48,400
+of that functional, and what
+are the properties of the
+
+281
+00:14:48,400 --> 00:14:49,920
+system that functional
+represents.
+
+282
+00:14:49,920 --> 00:14:52,970
+
+283
+00:14:52,970 --> 00:14:56,450
+OK, so I see that you're
+all with me.
+
+284
+00:14:56,450 --> 00:14:59,530
+Think about the WallFinder
+system.
+
+285
+00:14:59,530 --> 00:15:02,790
+Think about the equations for
+the various components of that
+
+286
+00:15:02,790 --> 00:15:06,000
+system when expressed
+an operator form.
+
+287
+00:15:06,000 --> 00:15:09,930
+And figure out the system
+functional for that system.
+
+288
+00:15:09,930 --> 00:15:14,280
+figure out the ratio of
+polynomials that can be in r
+
+289
+00:15:14,280 --> 00:15:17,420
+that is represented by h.
+
+290
+00:15:17,420 --> 00:15:19,500
+Take 30 seconds, talk to your
+neighbor, figure out whether
+
+291
+00:15:19,500 --> 00:15:20,750
+the answer is (1), (2),
+(3), (4), or (5).
+
+292
+00:15:20,750 --> 00:17:45,980
+
+293
+00:17:45,980 --> 00:17:47,230
+So what's the answer -- (1),
+(2), (3), (4), or (5)?
+
+294
+00:17:47,230 --> 00:17:51,670
+
+295
+00:17:51,670 --> 00:17:53,910
+Come on, more voter
+participation.
+
+296
+00:17:53,910 --> 00:17:54,600
+All right?
+
+297
+00:17:54,600 --> 00:17:55,850
+Blame it on your partner.
+
+298
+00:17:55,850 --> 00:17:58,630
+
+299
+00:17:58,630 --> 00:18:01,990
+OK, virtually 100% correct.
+
+300
+00:18:01,990 --> 00:18:05,690
+So the idea is algebra.
+
+301
+00:18:05,690 --> 00:18:09,180
+You solve the operator equations
+exactly as though
+
+302
+00:18:09,180 --> 00:18:10,670
+they were algebraic.
+
+303
+00:18:10,670 --> 00:18:13,640
+Here, I've started with the
+second equation and just done
+
+304
+00:18:13,640 --> 00:18:15,970
+substitutions until I got
+rid of everything other
+
+305
+00:18:15,970 --> 00:18:17,220
+than d(0) and d(i).
+
+306
+00:18:17,220 --> 00:18:20,280
+
+307
+00:18:20,280 --> 00:18:25,730
+So I express v in terms of ke,
+then I express e in terms of
+
+308
+00:18:25,730 --> 00:18:28,640
+d(i) minus rd(0).
+
+309
+00:18:28,640 --> 00:18:32,110
+Then I'm left with one equation
+that relates d(0) and
+
+310
+00:18:32,110 --> 00:18:34,140
+d(i), which I can solve
+for the ratio.
+
+311
+00:18:34,140 --> 00:18:36,830
+
+312
+00:18:36,830 --> 00:18:41,830
+And the answer comes out there,
+which was number (3).
+
+313
+00:18:41,830 --> 00:18:47,240
+Point is that you can treat the
+operator just as though it
+
+314
+00:18:47,240 --> 00:18:52,103
+were algebra, so that results
+in enormous implications.
+
+315
+00:18:52,103 --> 00:18:54,760
+
+316
+00:18:54,760 --> 00:18:57,660
+But what we want to understand
+is what's the relationship
+
+317
+00:18:57,660 --> 00:19:00,230
+between that functional, that
+thing that we just calculated,
+
+318
+00:19:00,230 --> 00:19:01,040
+and the behaviors.
+
+319
+00:19:01,040 --> 00:19:03,710
+These are the kinds of behaviors
+that you observed
+
+320
+00:19:03,710 --> 00:19:05,850
+with the WallFinder system.
+
+321
+00:19:05,850 --> 00:19:08,328
+When you built the WallFinder
+system, depending on what you
+
+322
+00:19:08,328 --> 00:19:13,280
+made k, you could get behaviors
+that were monotonic
+
+323
+00:19:13,280 --> 00:19:20,360
+and slow, faster and
+oscillatory, or even faster
+
+324
+00:19:20,360 --> 00:19:22,250
+and even more oscillatory.
+
+325
+00:19:22,250 --> 00:19:27,120
+And what we'd like to know is,
+before we build it, how should
+
+326
+00:19:27,120 --> 00:19:29,640
+we have constructed the
+system so that it
+
+327
+00:19:29,640 --> 00:19:31,770
+has a desirable behavior?
+
+328
+00:19:31,770 --> 00:19:36,010
+And, incidentally, are these
+the best you can do?
+
+329
+00:19:36,010 --> 00:19:38,790
+Or is there some other set of
+parameters that's lurking
+
+330
+00:19:38,790 --> 00:19:42,700
+behind some door that we just
+don't know about, and if we
+
+331
+00:19:42,700 --> 00:19:45,150
+could discover it, it would
+work a lot better?
+
+332
+00:19:45,150 --> 00:19:48,300
+So the question is, given the
+structure of our problem,
+
+333
+00:19:48,300 --> 00:19:51,860
+what's the most general kind of
+answer that we can expect?
+
+334
+00:19:51,860 --> 00:19:55,670
+And how do we choose the best
+behavior out of that set of
+
+335
+00:19:55,670 --> 00:19:58,280
+possible behaviors?
+
+336
+00:19:58,280 --> 00:20:00,596
+So that's what I want to think
+about for the rest of the hour
+
+337
+00:20:00,596 --> 00:20:05,020
+and a half, and I want to
+begin by taking a step
+
+338
+00:20:05,020 --> 00:20:08,180
+backwards and look at
+something simpler.
+
+339
+00:20:08,180 --> 00:20:10,440
+The idea's going to be the same
+as the idea that we used
+
+340
+00:20:10,440 --> 00:20:11,400
+when we studied Python.
+
+341
+00:20:11,400 --> 00:20:16,760
+I want to find simple behaviors,
+think about that as
+
+342
+00:20:16,760 --> 00:20:22,070
+a primitive, and combine
+primitives to get a more
+
+343
+00:20:22,070 --> 00:20:24,710
+complicated behavior, so I want
+to use an approach that's
+
+344
+00:20:24,710 --> 00:20:26,240
+very much PCAP.
+
+345
+00:20:26,240 --> 00:20:29,770
+Find the most simple behavior,
+and then see if I can leverage
+
+346
+00:20:29,770 --> 00:20:32,310
+that simple behavior to somehow
+understand more
+
+347
+00:20:32,310 --> 00:20:34,270
+complicated things.
+
+348
+00:20:34,270 --> 00:20:36,940
+So let's think about this very
+simple system that has a
+
+349
+00:20:36,940 --> 00:20:43,170
+feedback loop that has a delay
+in it and a gain of P0.
+
+350
+00:20:43,170 --> 00:20:45,250
+What I want to do is think
+about what would be the
+
+351
+00:20:45,250 --> 00:20:50,130
+response of that very simple
+system if the input were a
+
+352
+00:20:50,130 --> 00:20:51,550
+unit sample.
+
+353
+00:20:51,550 --> 00:20:55,355
+So find y, given that the
+input x is delta.
+
+354
+00:20:55,355 --> 00:20:58,060
+
+355
+00:20:58,060 --> 00:21:01,630
+In order to do that, I have to
+start the system somehow.
+
+356
+00:21:01,630 --> 00:21:03,160
+I will start it at rest.
+
+357
+00:21:03,160 --> 00:21:05,890
+You've all seen already, I'm
+sure, that rest is the
+
+358
+00:21:05,890 --> 00:21:07,340
+simplest assumption
+I can make.
+
+359
+00:21:07,340 --> 00:21:10,520
+I'll say something at the end of
+the hour about how you deal
+
+360
+00:21:10,520 --> 00:21:13,950
+with things that are
+not at rest.
+
+361
+00:21:13,950 --> 00:21:16,140
+For the time being, we'll
+just assume rest
+
+362
+00:21:16,140 --> 00:21:17,600
+because that's simple.
+
+363
+00:21:17,600 --> 00:21:19,950
+Assume that the system is at
+rest, that means that the
+
+364
+00:21:19,950 --> 00:21:23,280
+output of every delay
+box is 0.
+
+365
+00:21:23,280 --> 00:21:25,360
+That's what rest means.
+
+366
+00:21:25,360 --> 00:21:27,820
+If the output of this starts at
+0, then the output of the
+
+367
+00:21:27,820 --> 00:21:31,970
+scale by P0 is also 0.
+
+368
+00:21:31,970 --> 00:21:34,530
+And if that's 0, and if the
+input is at 0 because I'm at
+
+369
+00:21:34,530 --> 00:21:40,070
+time before 0, then the output
+is 0, indicated here.
+
+370
+00:21:40,070 --> 00:21:47,320
+So now if I step, then the
+input becomes 1 because
+
+371
+00:21:47,320 --> 00:21:49,920
+delta of 0 is 1.
+
+372
+00:21:49,920 --> 00:21:54,390
+The output of the delay box is
+still 0, so the first answer
+
+373
+00:21:54,390 --> 00:21:57,010
+is 1, the 1 just propagates
+straight through
+
+374
+00:21:57,010 --> 00:21:58,260
+[UNINTELLIGIBLE] box.
+
+375
+00:21:58,260 --> 00:22:00,490
+
+376
+00:22:00,490 --> 00:22:05,990
+Then I step, and the 1 that was
+here goes through the r
+
+377
+00:22:05,990 --> 00:22:12,150
+and becomes 1, the 1 goes
+through P0 and becomes P0, but
+
+378
+00:22:12,150 --> 00:22:15,210
+at the same time, the 1 that
+was at the input goes to 0
+
+379
+00:22:15,210 --> 00:22:19,870
+because the input is 1 only
+at time equals 0.
+
+380
+00:22:19,870 --> 00:22:24,030
+So the result, then, is that
+after one step, the
+
+381
+00:22:24,030 --> 00:22:25,950
+output has become P0.
+
+382
+00:22:25,950 --> 00:22:29,180
+This propagated to 1, that
+became P0, add it to 0, and it
+
+383
+00:22:29,180 --> 00:22:33,250
+became P0, so now the answer,
+which had been 1, is P0.
+
+384
+00:22:33,250 --> 00:22:35,940
+
+385
+00:22:35,940 --> 00:22:38,250
+On the next step, a very
+similar thing happens.
+
+386
+00:22:38,250 --> 00:22:42,190
+The P0 that was here becomes the
+output of the delay, gets
+
+387
+00:22:42,190 --> 00:22:46,370
+multiplied by P0 to give you P0
+squared, gets added to 0 to
+
+388
+00:22:46,370 --> 00:22:49,140
+give you P0 squared,
+et cetera.
+
+389
+00:22:49,140 --> 00:22:55,560
+
+390
+00:22:55,560 --> 00:22:59,460
+The thing that I want you to see
+is that the output was in
+
+391
+00:22:59,460 --> 00:23:00,710
+some sense simple.
+
+392
+00:23:00,710 --> 00:23:03,530
+
+393
+00:23:03,530 --> 00:23:08,930
+The value simply increased as
+P0 to the n, geometrically.
+
+394
+00:23:08,930 --> 00:23:11,370
+There's another way we
+can think about that.
+
+395
+00:23:11,370 --> 00:23:13,510
+I just did the sample by sample
+approach, but the whole
+
+396
+00:23:13,510 --> 00:23:15,270
+theme of this part
+of the course
+
+397
+00:23:15,270 --> 00:23:17,810
+is the signals approach.
+
+398
+00:23:17,810 --> 00:23:21,630
+If I think about the whole
+signal in one fell swoop, then
+
+399
+00:23:21,630 --> 00:23:23,570
+I can develop an operator
+expression to
+
+400
+00:23:23,570 --> 00:23:25,400
+characterize the system.
+
+401
+00:23:25,400 --> 00:23:28,760
+The operator expression says the
+signal y is constructed by
+
+402
+00:23:28,760 --> 00:23:32,090
+adding the signal x to
+the signal P0RY.
+
+403
+00:23:32,090 --> 00:23:35,610
+
+404
+00:23:35,610 --> 00:23:39,660
+If I solve that for the ratio of
+the output to input, I get
+
+405
+00:23:39,660 --> 00:23:42,300
+1 over (1 minus P0R).
+
+406
+00:23:42,300 --> 00:23:44,702
+Again, going back to the idea
+that I started with, that
+
+407
+00:23:44,702 --> 00:23:49,060
+we're going to get ratios of
+polynomials in R now the R is
+
+408
+00:23:49,060 --> 00:23:55,390
+in the bottom, and now I can
+expand that just as though it
+
+409
+00:23:55,390 --> 00:23:57,760
+were an algebraic expression.
+
+410
+00:23:57,760 --> 00:24:04,730
+I can expand 1 over P0R in
+a power series by using
+
+411
+00:24:04,730 --> 00:24:07,630
+synthetic division.
+
+412
+00:24:07,630 --> 00:24:11,820
+The result is very similar in
+structure to the result we saw
+
+413
+00:24:11,820 --> 00:24:14,230
+in sample by sample.
+
+414
+00:24:14,230 --> 00:24:17,410
+It consists of an ascending
+series in R, which means an
+
+415
+00:24:17,410 --> 00:24:21,320
+ascending number of delays.
+
+416
+00:24:21,320 --> 00:24:24,300
+Every time you increase the
+number of delays by 1, you
+
+417
+00:24:24,300 --> 00:24:29,770
+also multiply the amplitude by
+P0, so this is, in fact, the
+
+418
+00:24:29,770 --> 00:24:32,320
+same kind of result,
+but viewed from a
+
+419
+00:24:32,320 --> 00:24:35,490
+signal point of view.
+
+420
+00:24:35,490 --> 00:24:39,000
+Finally, I want to think about
+it in terms of block diagrams.
+
+421
+00:24:39,000 --> 00:24:42,570
+Same idea, I've got the same
+feedback system, but now I
+
+422
+00:24:42,570 --> 00:24:45,870
+want to take advantage of this
+ascending series expansion
+
+423
+00:24:45,870 --> 00:24:49,870
+that I did and think about
+each of the terms in that
+
+424
+00:24:49,870 --> 00:24:55,720
+series as a signal flow path
+through the feedback system.
+
+425
+00:24:55,720 --> 00:24:59,970
+So one, the first term in the
+ascending series, represents
+
+426
+00:24:59,970 --> 00:25:02,730
+the path that goes directly from
+the input to the output,
+
+427
+00:25:02,730 --> 00:25:03,980
+passing through no delays.
+
+428
+00:25:03,980 --> 00:25:06,840
+
+429
+00:25:06,840 --> 00:25:10,370
+The second term in the series,
+P0R, represents the path that
+
+430
+00:25:10,370 --> 00:25:13,900
+goes to the output, loops
+around, comes back through the
+
+431
+00:25:13,900 --> 00:25:16,890
+adder, and then comes out.
+
+432
+00:25:16,890 --> 00:25:19,490
+In traversing that more
+complicated path, you picked
+
+433
+00:25:19,490 --> 00:25:25,120
+up 1 delay and 1
+multiply by P0.
+
+434
+00:25:25,120 --> 00:25:27,990
+Second term, two loops.
+
+435
+00:25:27,990 --> 00:25:29,300
+Third term, three loops.
+
+436
+00:25:29,300 --> 00:25:32,560
+Fourth term, four loops.
+
+437
+00:25:32,560 --> 00:25:37,440
+The idea is that the block
+diagram gives us a way to
+
+438
+00:25:37,440 --> 00:25:39,930
+visualize how the answer
+came about.
+
+439
+00:25:39,930 --> 00:25:43,620
+It came about by all the
+possible paths that lead from
+
+440
+00:25:43,620 --> 00:25:45,820
+the input to the output.
+
+441
+00:25:45,820 --> 00:25:48,660
+Those possible paths all
+differed by a delay, and
+
+442
+00:25:48,660 --> 00:25:53,090
+that's why the decomposition
+was so simple, each path
+
+443
+00:25:53,090 --> 00:25:54,610
+corresponding to a different
+number of
+
+444
+00:25:54,610 --> 00:25:55,620
+delays through the system.
+
+445
+00:25:55,620 --> 00:25:58,660
+That won't always be true from
+more complicated systems, but
+
+446
+00:25:58,660 --> 00:26:01,760
+it is true for this one.
+
+447
+00:26:01,760 --> 00:26:04,170
+This flow diagram also lets
+you see something that's
+
+448
+00:26:04,170 --> 00:26:05,420
+extremely interesting.
+
+449
+00:26:05,420 --> 00:26:08,170
+
+450
+00:26:08,170 --> 00:26:12,540
+Cyclical flow paths, which are
+characteristic of feedback--
+
+451
+00:26:12,540 --> 00:26:15,780
+feedback means the signal
+comes back.
+
+452
+00:26:15,780 --> 00:26:24,720
+Cyclical flow paths require that
+transient inputs generate
+
+453
+00:26:24,720 --> 00:26:28,240
+persistent outputs.
+
+454
+00:26:28,240 --> 00:26:30,670
+They generate persistent outputs
+because the output at
+
+455
+00:26:30,670 --> 00:26:34,450
+time n is not triggered by
+the input at time n.
+
+456
+00:26:34,450 --> 00:26:37,830
+It's triggered by the output
+at time n minus 1.
+
+457
+00:26:37,830 --> 00:26:41,880
+It keeps going on itself.
+
+458
+00:26:41,880 --> 00:26:43,550
+That's fundamental
+to feedback.
+
+459
+00:26:43,550 --> 00:26:45,720
+There's no way of getting
+around that.
+
+460
+00:26:45,720 --> 00:26:49,690
+That's what feedback is.
+
+461
+00:26:49,690 --> 00:26:53,150
+And it also shows why you got
+that funny oscillatory
+
+462
+00:26:53,150 --> 00:26:55,000
+behavior in WallFinder.
+
+463
+00:26:55,000 --> 00:26:58,670
+There wasn't any way
+around that.
+
+464
+00:26:58,670 --> 00:27:01,760
+Feedback meant that you
+were looping back.
+
+465
+00:27:01,760 --> 00:27:04,790
+That meant that there
+was a cycle in
+
+466
+00:27:04,790 --> 00:27:07,230
+the signal flow paths.
+
+467
+00:27:07,230 --> 00:27:11,060
+That means that even transient
+signals, signals that go away
+
+468
+00:27:11,060 --> 00:27:13,650
+very quickly like the
+[INAUDIBLE] sample, generate
+
+469
+00:27:13,650 --> 00:27:15,070
+responses that go on forever.
+
+470
+00:27:15,070 --> 00:27:18,540
+
+471
+00:27:18,540 --> 00:27:21,680
+So that's a fundamental way
+of thinking about systems.
+
+472
+00:27:21,680 --> 00:27:26,460
+Systems are either feedforward
+or feedback.
+
+473
+00:27:26,460 --> 00:27:30,230
+Feedforward means that
+there are no cyclic
+
+474
+00:27:30,230 --> 00:27:33,320
+paths in the system.
+
+475
+00:27:33,320 --> 00:27:36,830
+
+476
+00:27:36,830 --> 00:27:39,390
+No path in the system that take
+you from the input to the
+
+477
+00:27:39,390 --> 00:27:41,650
+output has a cycle in it.
+
+478
+00:27:41,650 --> 00:27:42,820
+That's what acyclic means.
+
+479
+00:27:42,820 --> 00:27:45,760
+That's what feedforward means.
+
+480
+00:27:45,760 --> 00:27:51,350
+Acyclic, feedforward, those
+all have responses to
+
+481
+00:27:51,350 --> 00:27:55,880
+transient inputs that
+are transient.
+
+482
+00:27:55,880 --> 00:27:59,600
+That contrasts with
+cyclic systems.
+
+483
+00:27:59,600 --> 00:28:04,160
+A cyclic system has feedback
+and will have the property
+
+484
+00:28:04,160 --> 00:28:06,590
+that transient signals
+can generate
+
+485
+00:28:06,590 --> 00:28:10,200
+outputs that go on forever.
+
+486
+00:28:10,200 --> 00:28:14,830
+OK, how many of these
+systems are cyclic?
+
+487
+00:28:14,830 --> 00:28:15,560
+Easy questions.
+
+488
+00:28:15,560 --> 00:28:16,815
+15 seconds, talk to
+your neighbor.
+
+489
+00:28:16,815 --> 00:29:46,420
+
+490
+00:29:46,420 --> 00:29:48,080
+OK, so what's the answer?
+
+491
+00:29:48,080 --> 00:29:50,900
+How many?
+
+492
+00:29:50,900 --> 00:29:52,310
+OK, virtually 100%.
+
+493
+00:29:52,310 --> 00:29:53,720
+Correct, the answer's (3).
+
+494
+00:29:53,720 --> 00:29:57,610
+I've illustrated the cycles in
+red, so there's a cycle here,
+
+495
+00:29:57,610 --> 00:30:00,730
+there's two cycles in this one,
+and there's a cycle here.
+
+496
+00:30:00,730 --> 00:30:05,340
+So the idea is that, when you
+see a block diagram, one of
+
+497
+00:30:05,340 --> 00:30:07,120
+the first things you want to
+characterize, because it's
+
+498
+00:30:07,120 --> 00:30:10,790
+such a big difference between
+systems, is whether or not
+
+499
+00:30:10,790 --> 00:30:11,580
+there's a cycle in it.
+
+500
+00:30:11,580 --> 00:30:13,710
+If there's a cycle, then you
+know there's feedback.
+
+501
+00:30:13,710 --> 00:30:16,460
+If there's feedback, then you
+know you have the potential to
+
+502
+00:30:16,460 --> 00:30:19,715
+have a persistent response to
+even a transient signal.
+
+503
+00:30:19,715 --> 00:30:22,870
+
+504
+00:30:22,870 --> 00:30:26,860
+OK, so if you only have one
+loop of the type that I
+
+505
+00:30:26,860 --> 00:30:29,340
+started with, where we had just
+one loop with an R and a
+
+506
+00:30:29,340 --> 00:30:36,680
+P0, then the question is, as you
+go around the loop, do the
+
+507
+00:30:36,680 --> 00:30:38,750
+samples get bigger,
+or smaller, or do
+
+508
+00:30:38,750 --> 00:30:40,570
+they stay the same?
+
+509
+00:30:40,570 --> 00:30:43,130
+That's a fundamental
+characterization of how the
+
+510
+00:30:43,130 --> 00:30:45,030
+simple feedback system works.
+
+511
+00:30:45,030 --> 00:30:48,810
+So here, if on every cycle the
+amplitude of the signal
+
+512
+00:30:48,810 --> 00:30:54,650
+diminishes by multiplication by
+half, that means that the
+
+513
+00:30:54,650 --> 00:30:57,730
+response ultimately decays.
+
+514
+00:30:57,730 --> 00:31:00,370
+Mathematically, it goes on
+forever, just like I said
+
+515
+00:31:00,370 --> 00:31:05,440
+previously, but the amplitude is
+decaying, so practically it
+
+516
+00:31:05,440 --> 00:31:07,410
+stops after a while.
+
+517
+00:31:07,410 --> 00:31:11,090
+It becomes small enough that
+you lose track of it.
+
+518
+00:31:11,090 --> 00:31:14,410
+By contrast, if every time you
+go around the loop, you pick
+
+519
+00:31:14,410 --> 00:31:18,990
+up amplitude, if the amplitude
+here were multiplied by 1.2,
+
+520
+00:31:18,990 --> 00:31:21,330
+then it gets bigger.
+
+521
+00:31:21,330 --> 00:31:24,900
+So the idea, then, is that you
+can characterize this kind of
+
+522
+00:31:24,900 --> 00:31:28,490
+a feedback by one number.
+
+523
+00:31:28,490 --> 00:31:31,460
+We call that number the pole.
+
+524
+00:31:31,460 --> 00:31:33,350
+Very mysterious word.
+
+525
+00:31:33,350 --> 00:31:36,270
+I won't go into the origins
+of the word.
+
+526
+00:31:36,270 --> 00:31:41,120
+For our purposes, it just simply
+means the base of the
+
+527
+00:31:41,120 --> 00:31:45,270
+geometric sequence that
+characterizes the response of
+
+528
+00:31:45,270 --> 00:31:49,440
+a system to the unit
+sample signal.
+
+529
+00:31:49,440 --> 00:31:52,140
+So here, I've showed an
+illustration of what can
+
+530
+00:31:52,140 --> 00:31:57,270
+happen if p is 1/2, p is one,
+p is 1.2, which you can see
+
+531
+00:31:57,270 --> 00:32:00,485
+decay, persistence,
+divergence.
+
+532
+00:32:00,485 --> 00:32:04,780
+
+533
+00:32:04,780 --> 00:32:07,840
+Can you characterize
+this system by P0?
+
+534
+00:32:07,840 --> 00:32:09,231
+And if so, what is P0?
+
+535
+00:32:09,231 --> 00:32:21,950
+
+536
+00:32:21,950 --> 00:32:22,210
+Yes?
+
+537
+00:32:22,210 --> 00:32:23,317
+No?
+
+538
+00:32:23,317 --> 00:32:30,772
+[CLASSROOM SIDE CONVERSATIONS]
+
+539
+00:32:30,772 --> 00:32:33,008
+PROFESSOR: Yeah, and virtually
+everybody's
+
+540
+00:32:33,008 --> 00:32:33,754
+getting the right answer.
+
+541
+00:32:33,754 --> 00:32:35,710
+The right answer's (2).
+
+542
+00:32:35,710 --> 00:32:37,960
+So we like algebra.
+
+543
+00:32:37,960 --> 00:32:43,170
+We like negative numbers, so
+we're allowed to think about
+
+544
+00:32:43,170 --> 00:32:44,310
+poles being negative.
+
+545
+00:32:44,310 --> 00:32:46,000
+In fact, by the end of the hour,
+we'll even think about
+
+546
+00:32:46,000 --> 00:32:48,820
+poles having imaginary parts,
+but for the time
+
+547
+00:32:48,820 --> 00:32:50,440
+being, this is fine.
+
+548
+00:32:50,440 --> 00:32:53,400
+If the pole were negative,
+what that means is the
+
+549
+00:32:53,400 --> 00:32:57,370
+consecutive terms in the unit
+sample response, the response
+
+550
+00:32:57,370 --> 00:33:00,960
+of the system to a unit sample
+signal, the unit sample
+
+551
+00:33:00,960 --> 00:33:03,800
+response, the unit sample
+response can
+
+552
+00:33:03,800 --> 00:33:05,050
+alternate in sine.
+
+553
+00:33:05,050 --> 00:33:07,420
+
+554
+00:33:07,420 --> 00:33:12,320
+OK, so this then represents
+all the possible behaviors
+
+555
+00:33:12,320 --> 00:33:17,000
+that you could get from
+a feedback system
+
+556
+00:33:17,000 --> 00:33:20,020
+with a single pole.
+
+557
+00:33:20,020 --> 00:33:24,360
+If a feedback system has
+a single pole, the only
+
+558
+00:33:24,360 --> 00:33:27,110
+behaviors that you can
+get are represented
+
+559
+00:33:27,110 --> 00:33:28,480
+by these three cartoons.
+
+560
+00:33:28,480 --> 00:33:34,310
+
+561
+00:33:34,310 --> 00:33:38,895
+So here, this z-axis contains
+all possible values of P0.
+
+562
+00:33:38,895 --> 00:33:44,540
+If P0 is bigger than 1, then
+the magnitude diverges, and
+
+563
+00:33:44,540 --> 00:33:48,010
+the signal grows
+monotonically.
+
+564
+00:33:48,010 --> 00:33:53,340
+If the pole is between 0 and
+1, the response is also
+
+565
+00:33:53,340 --> 00:34:00,870
+monotonic, but now it
+converges towards 0.
+
+566
+00:34:00,870 --> 00:34:04,350
+If you flip the sign, the
+relations are still the same,
+
+567
+00:34:04,350 --> 00:34:08,360
+except that you now get
+sign alternation.
+
+568
+00:34:08,360 --> 00:34:14,159
+So if the P0 is between 0 and
+minus 1, which is here, the
+
+569
+00:34:14,159 --> 00:34:17,989
+output still converges because
+the magnitude of the pole is
+
+570
+00:34:17,989 --> 00:34:20,429
+less than 1.
+
+571
+00:34:20,429 --> 00:34:22,659
+But now the sign flips.
+
+572
+00:34:22,659 --> 00:34:28,139
+And if the pole is below minus
+1, then you get alternation,
+
+573
+00:34:28,139 --> 00:34:30,460
+but you also get divergence.
+
+574
+00:34:30,460 --> 00:34:33,710
+The important thing is we
+started with a simple system,
+
+575
+00:34:33,710 --> 00:34:35,699
+and we ended up with an
+absolutely complete
+
+576
+00:34:35,699 --> 00:34:36,610
+characterization of it.
+
+577
+00:34:36,610 --> 00:34:40,090
+This is everything
+that can happen.
+
+578
+00:34:40,090 --> 00:34:41,860
+That's a powerful statement.
+
+579
+00:34:41,860 --> 00:34:45,050
+When I can analyze a system,
+even if it's simple, and find
+
+580
+00:34:45,050 --> 00:34:46,974
+all the possible behaviors,
+I have something.
+
+581
+00:34:46,974 --> 00:34:50,360
+
+582
+00:34:50,360 --> 00:34:52,820
+If you have a simple system with
+a single pole, this is
+
+583
+00:34:52,820 --> 00:34:55,460
+all that can happen.
+
+584
+00:34:55,460 --> 00:34:56,350
+There might be offsets.
+
+585
+00:34:56,350 --> 00:34:57,770
+There might be delays.
+
+586
+00:34:57,770 --> 00:35:02,810
+The signal may not start until
+the fifth sample, but the
+
+587
+00:35:02,810 --> 00:35:06,660
+persistent signal will either
+grow without bounds, the k to
+
+588
+00:35:06,660 --> 00:35:11,250
+0, or do one of those two
+with alternating sign.
+
+589
+00:35:11,250 --> 00:35:16,970
+That's the only things that can
+happen, which of course,
+
+590
+00:35:16,970 --> 00:35:19,130
+begs the question, well, what
+if the system's more
+
+591
+00:35:19,130 --> 00:35:21,640
+complicated.
+
+592
+00:35:21,640 --> 00:35:23,730
+OK, so here's a more
+complicated system.
+
+593
+00:35:23,730 --> 00:35:27,260
+This system cannot be
+represented by just one pole.
+
+594
+00:35:27,260 --> 00:35:31,280
+In fact, the system's
+complicated enough you should
+
+595
+00:35:31,280 --> 00:35:34,400
+think through how you
+would solve it.
+
+596
+00:35:34,400 --> 00:35:35,570
+You should all be very
+comfortable with
+
+597
+00:35:35,570 --> 00:35:36,590
+this sort of thing.
+
+598
+00:35:36,590 --> 00:35:47,210
+So if you were to think about
+what if I had a system like
+
+599
+00:35:47,210 --> 00:36:02,670
+so, and I want it to
+be 1.6 minus 0.63.
+
+600
+00:36:02,670 --> 00:36:09,080
+What would be the output signal
+at time 2 if the input
+
+601
+00:36:09,080 --> 00:36:12,830
+were a unit sample signal?
+
+602
+00:36:12,830 --> 00:36:17,050
+OK, as with all systems we're
+going to think about, we have
+
+603
+00:36:17,050 --> 00:36:18,430
+to specify initial conditions.
+
+604
+00:36:18,430 --> 00:36:20,240
+The simplest kind of initial
+conditions we could think
+
+605
+00:36:20,240 --> 00:36:22,280
+about would be rest.
+
+606
+00:36:22,280 --> 00:36:25,070
+If I thought about this system
+at rest, then the initial
+
+607
+00:36:25,070 --> 00:36:27,770
+outputs of the R's would be 0.
+
+608
+00:36:27,770 --> 00:36:40,650
+
+609
+00:36:40,650 --> 00:36:42,560
+That's at rest.
+
+610
+00:36:42,560 --> 00:36:47,880
+For times less than 0,
+the input would be 0.
+
+611
+00:36:47,880 --> 00:36:56,530
+0 times 1.6 plus 0 times -0.63
+plus 0 would give me 0.
+
+612
+00:36:56,530 --> 00:36:59,240
+Now, the clock ticks.
+
+613
+00:36:59,240 --> 00:37:04,840
+When the clock ticks,
+it becomes times 0.
+
+614
+00:37:04,840 --> 00:37:06,495
+At times 0, the input is 1.
+
+615
+00:37:06,495 --> 00:37:09,820
+
+616
+00:37:09,820 --> 00:37:12,770
+This 0 just propagated down to
+here, but this was 0, so
+
+617
+00:37:12,770 --> 00:37:14,325
+nothing interesting happens
+at the R's.
+
+618
+00:37:14,325 --> 00:37:17,420
+
+619
+00:37:17,420 --> 00:37:20,560
+But now my output is 1.
+
+620
+00:37:20,560 --> 00:37:23,790
+
+621
+00:37:23,790 --> 00:37:26,100
+Now, the clock ticks.
+
+622
+00:37:26,100 --> 00:37:27,350
+What happens?
+
+623
+00:37:27,350 --> 00:37:31,390
+
+624
+00:37:31,390 --> 00:37:34,315
+When the clock ticks, this
+1 propagates down here.
+
+625
+00:37:34,315 --> 00:37:38,120
+
+626
+00:37:38,120 --> 00:37:40,300
+This 0 propagates down
+here, but that was 0.
+
+627
+00:37:40,300 --> 00:37:43,360
+
+628
+00:37:43,360 --> 00:37:49,650
+This 1 goes to 0 because the
+input's only 1 at times 0.
+
+629
+00:37:49,650 --> 00:37:50,900
+So what's the output?
+
+630
+00:37:50,900 --> 00:37:53,540
+
+631
+00:37:53,540 --> 00:37:58,490
+1.6.
+
+632
+00:37:58,490 --> 00:38:01,660
+Now, the clock ticks.
+
+633
+00:38:01,660 --> 00:38:02,910
+What happens?
+
+634
+00:38:02,910 --> 00:38:08,170
+
+635
+00:38:08,170 --> 00:38:12,690
+Well, this 1 comes down here.
+
+636
+00:38:12,690 --> 00:38:14,440
+This 1.6 comes down here.
+
+637
+00:38:14,440 --> 00:38:19,170
+
+638
+00:38:19,170 --> 00:38:23,240
+This 0 becomes another 0 because
+the input has an
+
+639
+00:38:23,240 --> 00:38:27,010
+infinite stream of 0's after
+the initial time.
+
+640
+00:38:27,010 --> 00:38:28,260
+So what's the output?
+
+641
+00:38:28,260 --> 00:38:30,880
+
+642
+00:38:30,880 --> 00:38:37,650
+Well, it's 1.6 times 1.6 plus
+1 times -0.63, so the answer
+
+643
+00:38:37,650 --> 00:38:38,900
+is number (3).
+
+644
+00:38:38,900 --> 00:38:42,700
+
+645
+00:38:42,700 --> 00:38:43,020
+Yeah?
+
+646
+00:38:43,020 --> 00:38:44,270
+OK.
+
+647
+00:38:44,270 --> 00:38:47,350
+
+648
+00:38:47,350 --> 00:38:48,750
+I forgot to write it
+up there, so the
+
+649
+00:38:48,750 --> 00:38:50,720
+answer's in red down here.
+
+650
+00:38:50,720 --> 00:38:53,260
+1.6 squared minus 0.63.
+
+651
+00:38:53,260 --> 00:38:53,940
+OK?
+
+652
+00:38:53,940 --> 00:38:55,850
+The point is that it's slightly
+more complicated to
+
+653
+00:38:55,850 --> 00:39:00,610
+think about than the case with a
+single pole, and in fact, if
+
+654
+00:39:00,610 --> 00:39:02,910
+you use that logic to simply
+step through all the
+
+655
+00:39:02,910 --> 00:39:08,740
+responses, you get a response
+that doesn't look geometric.
+
+656
+00:39:08,740 --> 00:39:12,080
+
+657
+00:39:12,080 --> 00:39:15,060
+The geometric sequences that we
+looked at previously either
+
+658
+00:39:15,060 --> 00:39:17,240
+monotonically increased,
+monotonically decreased
+
+659
+00:39:17,240 --> 00:39:19,640
+towards 0, or give one of
+those two things and
+
+660
+00:39:19,640 --> 00:39:20,410
+alternated.
+
+661
+00:39:20,410 --> 00:39:22,030
+This does none of
+those behaviors.
+
+662
+00:39:22,030 --> 00:39:25,430
+So the point is Freeman's
+an idiot.
+
+663
+00:39:25,430 --> 00:39:28,010
+He spent all that time telling
+us what one pole does, and now
+
+664
+00:39:28,010 --> 00:39:30,100
+two poles does something
+completely different.
+
+665
+00:39:30,100 --> 00:39:31,900
+Right?
+
+666
+00:39:31,900 --> 00:39:34,750
+So the response is
+not geometric.
+
+667
+00:39:34,750 --> 00:39:37,110
+The response grows
+and then decays.
+
+668
+00:39:37,110 --> 00:39:38,350
+It never changes sign.
+
+669
+00:39:38,350 --> 00:39:41,430
+It does something completely
+different from what we would
+
+670
+00:39:41,430 --> 00:39:45,020
+have expected from a
+single pole system.
+
+671
+00:39:45,020 --> 00:39:47,750
+As you might expect from the
+Theory of Lectures, that's not
+
+672
+00:39:47,750 --> 00:39:49,980
+the end of the story.
+
+673
+00:39:49,980 --> 00:39:57,610
+So the idea is to now capitalize
+on this notion that
+
+674
+00:39:57,610 --> 00:40:02,720
+we can think about operators
+as algebra.
+
+675
+00:40:02,720 --> 00:40:06,950
+If our expressions behaved like
+I told you they did last
+
+676
+00:40:06,950 --> 00:40:12,280
+lecture, if they behaved as
+entities upon which--
+
+677
+00:40:12,280 --> 00:40:17,300
+if they are isomorphic with
+polynomials, as I said, then
+
+678
+00:40:17,300 --> 00:40:20,760
+there's a very cute thing we
+can do with this system to
+
+679
+00:40:20,760 --> 00:40:23,800
+make it a lot simpler.
+
+680
+00:40:23,800 --> 00:40:27,070
+The thing we can do is factor.
+
+681
+00:40:27,070 --> 00:40:30,510
+If we think about the operator
+expression to characterize
+
+682
+00:40:30,510 --> 00:40:34,690
+this system, the thing that's
+different is that
+
+683
+00:40:34,690 --> 00:40:37,850
+there's an R squared.
+
+684
+00:40:37,850 --> 00:40:40,990
+But if R operators work just
+like polynomials--
+
+685
+00:40:40,990 --> 00:40:42,690
+you can factor polynomials.
+
+686
+00:40:42,690 --> 00:40:47,410
+That's the factor theorem
+from algebra.
+
+687
+00:40:47,410 --> 00:40:51,120
+And if I factor it, I get two
+things that look like
+
+688
+00:40:51,120 --> 00:40:52,770
+first-order systems.
+
+689
+00:40:52,770 --> 00:40:54,020
+Well, that's good.
+
+690
+00:40:54,020 --> 00:40:56,260
+
+691
+00:40:56,260 --> 00:41:01,080
+The factored form means that
+I can think about this more
+
+692
+00:41:01,080 --> 00:41:04,590
+complicated system
+as the cascade of
+
+693
+00:41:04,590 --> 00:41:07,140
+two first-order systems.
+
+694
+00:41:07,140 --> 00:41:09,860
+Well, that's pretty good.
+
+695
+00:41:09,860 --> 00:41:11,910
+In fact, it doesn't even matter
+what order I put them
+
+696
+00:41:11,910 --> 00:41:16,210
+in because, as we've seen
+previously, if the system
+
+697
+00:41:16,210 --> 00:41:20,350
+started at initial rest, then
+you can swap things because
+
+698
+00:41:20,350 --> 00:41:24,390
+they obey all the principles of
+polynomials, which include
+
+699
+00:41:24,390 --> 00:41:25,640
+commutation.
+
+700
+00:41:25,640 --> 00:41:27,830
+
+701
+00:41:27,830 --> 00:41:30,520
+So what we've done, then,
+is transform this more
+
+702
+00:41:30,520 --> 00:41:35,280
+complicated system into the
+cascade of two simple systems,
+
+703
+00:41:35,280 --> 00:41:36,530
+and that's very good.
+
+704
+00:41:36,530 --> 00:41:39,270
+
+705
+00:41:39,270 --> 00:41:44,880
+Even better, we can think about
+the complicated system
+
+706
+00:41:44,880 --> 00:41:51,940
+as the sum of simpler parts, and
+that uses more intuition
+
+707
+00:41:51,940 --> 00:41:53,970
+from polynomials.
+
+708
+00:41:53,970 --> 00:41:57,750
+If we have one over a
+second-order polynomial, we
+
+709
+00:41:57,750 --> 00:42:01,680
+can write it in a factored form
+here, but we can expand
+
+710
+00:42:01,680 --> 00:42:04,870
+it in what we call partial
+fractions.
+
+711
+00:42:04,870 --> 00:42:09,110
+We can expand this thing in
+this sum, and if you think
+
+712
+00:42:09,110 --> 00:42:12,140
+about putting this over a common
+denominator and working
+
+713
+00:42:12,140 --> 00:42:17,100
+out the relationship, this
+difference, 4.5 over 1 minus
+
+714
+00:42:17,100 --> 00:42:22,280
+0.9R minus 3.5 over
+1 minus 0.7R.
+
+715
+00:42:22,280 --> 00:42:25,020
+That's precisely the same using
+the normal rules for
+
+716
+00:42:25,020 --> 00:42:26,110
+polynomials.
+
+717
+00:42:26,110 --> 00:42:29,650
+That's precisely the same
+as that expression.
+
+718
+00:42:29,650 --> 00:42:31,400
+But the difference, from the
+point of view of thinking
+
+719
+00:42:31,400 --> 00:42:33,550
+about systems, is enormous.
+
+720
+00:42:33,550 --> 00:42:37,310
+We know the answer
+to that one.
+
+721
+00:42:37,310 --> 00:42:39,670
+That's the sum of the responses
+to two first-order
+
+722
+00:42:39,670 --> 00:42:45,350
+systems, so we can write that
+symbolically this way.
+
+723
+00:42:45,350 --> 00:42:47,830
+We can think about having
+a sum system that
+
+724
+00:42:47,830 --> 00:42:51,190
+generates this term.
+
+725
+00:42:51,190 --> 00:42:55,110
+This term is a simple system of
+the type of that we looked
+
+726
+00:42:55,110 --> 00:43:01,670
+at previously that, then,
+gets multiplied by 4.5.
+
+727
+00:43:01,670 --> 00:43:03,540
+I'm just factoring again.
+
+728
+00:43:03,540 --> 00:43:07,690
+I'm saying I've got something
+over something, which means
+
+729
+00:43:07,690 --> 00:43:10,950
+that I can put something in each
+of two different parts of
+
+730
+00:43:10,950 --> 00:43:13,220
+two things that I multiply
+together.
+
+731
+00:43:13,220 --> 00:43:16,230
+And I can think about this as
+having been generated by this
+
+732
+00:43:16,230 --> 00:43:18,040
+system, and you just
+add them together.
+
+733
+00:43:18,040 --> 00:43:21,430
+
+734
+00:43:21,430 --> 00:43:24,790
+The amazing thing is that that
+says that, despite the fact
+
+735
+00:43:24,790 --> 00:43:27,630
+that the response looked
+complicated, it was in fact
+
+736
+00:43:27,630 --> 00:43:30,720
+the sum of two geometrics.
+
+737
+00:43:30,720 --> 00:43:33,850
+So it wasn't very different
+from the answer
+
+738
+00:43:33,850 --> 00:43:36,550
+for a single pole.
+
+739
+00:43:36,550 --> 00:43:40,050
+What I've just done
+is amazing.
+
+740
+00:43:40,050 --> 00:43:43,210
+I've just taken something that,
+had you studied the
+
+741
+00:43:43,210 --> 00:43:45,410
+difference equations and had
+you studied the block
+
+742
+00:43:45,410 --> 00:43:49,880
+diagrams, it would have been
+very hard for you to conclude
+
+743
+00:43:49,880 --> 00:43:52,200
+that something this complicated
+has a response
+
+744
+00:43:52,200 --> 00:43:55,930
+that can be written as the
+sum of two geometrics.
+
+745
+00:43:55,930 --> 00:43:59,470
+By thinking about the system
+as a polynomial in R, it's
+
+746
+00:43:59,470 --> 00:44:00,650
+completely trivial.
+
+747
+00:44:00,650 --> 00:44:05,290
+It's a simple application of the
+rules for polynomials that
+
+748
+00:44:05,290 --> 00:44:07,950
+you all know.
+
+749
+00:44:07,950 --> 00:44:11,190
+So what we've shown, then, is
+that this complicated system
+
+750
+00:44:11,190 --> 00:44:15,305
+has a way of thinking
+about as just two
+
+751
+00:44:15,305 --> 00:44:18,190
+of the simpler systems.
+
+752
+00:44:18,190 --> 00:44:22,860
+The complicated response that
+grew and decayed, that's just
+
+753
+00:44:22,860 --> 00:44:28,750
+the difference, really,
+4.5 minus 3.5.
+
+754
+00:44:28,750 --> 00:44:32,560
+It's the weighted difference of
+a part that goes 0.7 to the
+
+755
+00:44:32,560 --> 00:44:34,963
+n, then a different part
+that goes 0.9 to the n.
+
+756
+00:44:34,963 --> 00:44:42,640
+
+757
+00:44:42,640 --> 00:44:46,250
+So far, we've got to results,
+the n equals 1 case, the
+
+758
+00:44:46,250 --> 00:44:48,620
+first-order polynomial in our
+case, the one pole case,
+
+759
+00:44:48,620 --> 00:44:49,550
+that's trivial.
+
+760
+00:44:49,550 --> 00:44:51,490
+It's just a geometric
+sequence.
+
+761
+00:44:51,490 --> 00:44:54,010
+The response is just a
+geometric sequence.
+
+762
+00:44:54,010 --> 00:44:56,160
+If it happens to be
+second-order, this is
+
+763
+00:44:56,160 --> 00:45:03,240
+second-order because when you
+write the operator expression,
+
+764
+00:45:03,240 --> 00:45:07,260
+the polynomial in the bottom is
+second-order, second-order
+
+765
+00:45:07,260 --> 00:45:08,740
+polynomial in R.
+
+766
+00:45:08,740 --> 00:45:12,270
+This second-order system
+has a response that
+
+767
+00:45:12,270 --> 00:45:15,300
+looks like two pieces.
+
+768
+00:45:15,300 --> 00:45:17,750
+Each piece looks like a
+piece that was from
+
+769
+00:45:17,750 --> 00:45:19,410
+a first-order system.
+
+770
+00:45:19,410 --> 00:45:21,675
+And in fact, that idea
+generalizes.
+
+771
+00:45:21,675 --> 00:45:25,470
+
+772
+00:45:25,470 --> 00:45:29,790
+If we have a system that can
+be represented by linear
+
+773
+00:45:29,790 --> 00:45:34,500
+difference equation with
+constant coefficients that
+
+774
+00:45:34,500 --> 00:45:37,410
+will always be true if the
+system was constructed out of
+
+775
+00:45:37,410 --> 00:45:43,270
+the parts that we talked about,
+adders, gains, delays.
+
+776
+00:45:43,270 --> 00:45:46,060
+If the system is constructed
+out of adders, gains, and
+
+777
+00:45:46,060 --> 00:45:49,290
+delays, then it will be possible
+to express the system
+
+778
+00:45:49,290 --> 00:45:51,830
+in terms of one difference
+equation.
+
+779
+00:45:51,830 --> 00:45:53,850
+General form is showed here.
+
+780
+00:45:53,850 --> 00:45:58,200
+Y then can be constructed out
+of parts that are delayed
+
+781
+00:45:58,200 --> 00:46:04,210
+versions of Y and delayed
+versions of X. If you do that,
+
+782
+00:46:04,210 --> 00:46:08,120
+then you can always write the
+operator that expresses the
+
+783
+00:46:08,120 --> 00:46:11,630
+ratio between the output and the
+input as the ratio of two
+
+784
+00:46:11,630 --> 00:46:13,000
+polynomials.
+
+785
+00:46:13,000 --> 00:46:15,880
+That will always be true.
+
+786
+00:46:15,880 --> 00:46:18,590
+So this, now, is the
+generalization step.
+
+787
+00:46:18,590 --> 00:46:23,310
+We did the n equals 1 case, we
+did the n equals 2 case, and
+
+788
+00:46:23,310 --> 00:46:24,730
+now we're generalizing.
+
+789
+00:46:24,730 --> 00:46:28,220
+We will always get, for any
+system that can be represented
+
+790
+00:46:28,220 --> 00:46:31,080
+by a linear difference equation
+with constant
+
+791
+00:46:31,080 --> 00:46:34,170
+coefficients, we can always
+represent the system
+
+792
+00:46:34,170 --> 00:46:37,750
+functional in this form.
+
+793
+00:46:37,750 --> 00:46:42,060
+Then just like we did in the
+second-order case, we can use
+
+794
+00:46:42,060 --> 00:46:46,420
+the factor theorem to break
+this polynomial in the
+
+795
+00:46:46,420 --> 00:46:49,940
+denominator into factors.
+
+796
+00:46:49,940 --> 00:46:51,945
+That comes from the factor
+theorem in algebra.
+
+797
+00:46:51,945 --> 00:46:54,640
+
+798
+00:46:54,640 --> 00:46:59,480
+Then we can re-express that in
+terms of partial fractions.
+
+799
+00:46:59,480 --> 00:47:02,820
+And what I've just showed is
+that, in the general case,
+
+800
+00:47:02,820 --> 00:47:05,910
+regardless of how many delays
+are in the system, if the
+
+801
+00:47:05,910 --> 00:47:09,430
+system only has adders, gains,
+and delays, I can always
+
+802
+00:47:09,430 --> 00:47:12,020
+express the answer as
+a sum of geometrics.
+
+803
+00:47:12,020 --> 00:47:14,710
+That's interesting.
+
+804
+00:47:14,710 --> 00:47:19,130
+That means that if I knew the
+bases for all of those
+
+805
+00:47:19,130 --> 00:47:24,100
+geometric sequences, I know
+something about the response.
+
+806
+00:47:24,100 --> 00:47:26,050
+The bases are things
+we call poles.
+
+807
+00:47:26,050 --> 00:47:31,120
+If you knew all the poles,
+you'd know something very
+
+808
+00:47:31,120 --> 00:47:32,370
+powerful about the system.
+
+809
+00:47:32,370 --> 00:47:36,330
+
+810
+00:47:36,330 --> 00:47:40,590
+So every one of the factors
+corresponds to a pole, and by
+
+811
+00:47:40,590 --> 00:47:44,770
+partial fractions, you'll get
+one response for each pole.
+
+812
+00:47:44,770 --> 00:47:48,411
+The response for each pole
+goes like pole to the n.
+
+813
+00:47:48,411 --> 00:47:49,750
+You know the basic shape.
+
+814
+00:47:49,750 --> 00:47:53,470
+You don't know the constants,
+but you know the basic shape
+
+815
+00:47:53,470 --> 00:47:58,880
+of the response just by
+knowing the poles.
+
+816
+00:47:58,880 --> 00:48:01,110
+We can go one more step,
+which makes the
+
+817
+00:48:01,110 --> 00:48:03,790
+computation somewhat simpler.
+
+818
+00:48:03,790 --> 00:48:06,600
+I used the factor theorem.
+
+819
+00:48:06,600 --> 00:48:08,160
+Here, I'm using the fundamental
+theorem of
+
+820
+00:48:08,160 --> 00:48:12,960
+algebra, which says that if I
+have a polynomial of order n,
+
+821
+00:48:12,960 --> 00:48:15,740
+I have n roots.
+
+822
+00:48:15,740 --> 00:48:19,530
+The poles are related to the
+roots of the R polynomial.
+
+823
+00:48:19,530 --> 00:48:22,510
+
+824
+00:48:22,510 --> 00:48:28,020
+The relationship is take
+the functional,
+
+825
+00:48:28,020 --> 00:48:29,250
+substitute for R --
+
+826
+00:48:29,250 --> 00:48:38,500
+1 over Z. Re-express the
+functional as a ratio of
+
+827
+00:48:38,500 --> 00:48:43,240
+polynomials in Z. The poles
+are the roots of the
+
+828
+00:48:43,240 --> 00:48:44,490
+denominator.
+
+829
+00:48:44,490 --> 00:48:47,780
+
+830
+00:48:47,780 --> 00:48:50,350
+So recapping, I started with
+a first-order system.
+
+831
+00:48:50,350 --> 00:48:52,440
+I showed you how to get
+a second-order system.
+
+832
+00:48:52,440 --> 00:48:56,760
+I showed that, in general, you
+can use the factor theorem to
+
+833
+00:48:56,760 --> 00:49:00,730
+break down the response of a
+higher-order system into a sum
+
+834
+00:49:00,730 --> 00:49:03,880
+of responses of first-order
+systems.
+
+835
+00:49:03,880 --> 00:49:06,720
+Now, I've shown that you can use
+the fundamental theorem of
+
+836
+00:49:06,720 --> 00:49:11,590
+algebra to find the poles
+directly, and then by knowing
+
+837
+00:49:11,590 --> 00:49:16,030
+the poles, you know each of
+the behaviors, monotonic
+
+838
+00:49:16,030 --> 00:49:18,280
+divergence, monotonic
+convergence,
+
+839
+00:49:18,280 --> 00:49:20,870
+or alternating signs.
+
+840
+00:49:20,870 --> 00:49:23,770
+And so here is this same example
+that I started with,
+
+841
+00:49:23,770 --> 00:49:26,260
+worked out by thinking about
+what are the poles.
+
+842
+00:49:26,260 --> 00:49:29,280
+The poles are 0.7 and 0.9,
+which we see by a simple
+
+843
+00:49:29,280 --> 00:49:32,300
+application of the fundamental
+theorem of algebra.
+
+844
+00:49:32,300 --> 00:49:38,210
+OK, we got a long way by just
+thinking about operators as
+
+845
+00:49:38,210 --> 00:49:39,080
+polynomials.
+
+846
+00:49:39,080 --> 00:49:40,880
+We haven't done anything
+that you haven't
+
+847
+00:49:40,880 --> 00:49:42,300
+done in high school.
+
+848
+00:49:42,300 --> 00:49:46,090
+Polynomials are very familiar
+and we've made an isomorphism
+
+849
+00:49:46,090 --> 00:49:50,100
+between systems and
+polynomials.
+
+850
+00:49:50,100 --> 00:49:53,210
+
+851
+00:49:53,210 --> 00:49:55,920
+OK, make sure you're
+all with me.
+
+852
+00:49:55,920 --> 00:49:57,880
+Here's a higher order system.
+
+853
+00:49:57,880 --> 00:50:00,140
+How many of these statements
+are true --
+
+854
+00:50:00,140 --> 00:50:02,030
+0, 1, 2, 3, 4, or 5?
+
+855
+00:50:02,030 --> 00:50:04,740
+
+856
+00:50:04,740 --> 00:50:06,060
+Talk to your neighbor,
+get an answer.
+
+857
+00:50:06,060 --> 00:52:42,920
+
+858
+00:52:42,920 --> 00:52:44,650
+So how many are true --
+
+859
+00:52:44,650 --> 00:52:46,660
+0, 1, 2, 3, 4, or 5?
+
+860
+00:52:46,660 --> 00:52:49,180
+
+861
+00:52:49,180 --> 00:52:50,290
+Oh, come on.
+
+862
+00:52:50,290 --> 00:52:51,900
+Blame it on your neighbor.
+
+863
+00:52:51,900 --> 00:52:53,595
+You weren't talking, but I
+didn't hear you not talking.
+
+864
+00:52:53,595 --> 00:52:56,490
+
+865
+00:52:56,490 --> 00:52:57,385
+How many are true --
+
+866
+00:52:57,385 --> 00:52:59,080
+0, 1, 2, 3, 4, or 5?
+
+867
+00:52:59,080 --> 00:53:00,511
+Raise your hands.
+
+868
+00:53:00,511 --> 00:53:02,420
+AUDIENCE: They can't
+all be true.
+
+869
+00:53:02,420 --> 00:53:03,555
+PROFESSOR: They can't
+all be true.
+
+870
+00:53:03,555 --> 00:53:05,270
+Are they mutually
+contradictory?
+
+871
+00:53:05,270 --> 00:53:06,180
+AUDIENCE: Well, yeah.
+
+872
+00:53:06,180 --> 00:53:07,090
+5 --
+
+873
+00:53:07,090 --> 00:53:08,390
+PROFESSOR: N1 of the above,
+that sounds like--
+
+874
+00:53:08,390 --> 00:53:10,650
+OK, so you've eliminated 1.
+
+875
+00:53:10,650 --> 00:53:13,310
+
+876
+00:53:13,310 --> 00:53:14,786
+Which one's true?
+
+877
+00:53:14,786 --> 00:53:18,132
+How many statements are true?
+
+878
+00:53:18,132 --> 00:53:21,700
+Looks like about 75%.
+
+879
+00:53:21,700 --> 00:53:23,130
+Correct?
+
+880
+00:53:23,130 --> 00:53:25,261
+What should I do?
+
+881
+00:53:25,261 --> 00:53:26,390
+How do I figure it out?
+
+882
+00:53:26,390 --> 00:53:27,120
+What's my first step?
+
+883
+00:53:27,120 --> 00:53:27,878
+What do I do?
+
+884
+00:53:27,878 --> 00:53:30,270
+AUDIENCE: Operators.
+
+885
+00:53:30,270 --> 00:53:32,080
+PROFESSOR: Operators,
+absolutely.
+
+886
+00:53:32,080 --> 00:53:34,690
+So turn it into operators.
+
+887
+00:53:34,690 --> 00:53:36,060
+So take the difference
+equation,
+
+888
+00:53:36,060 --> 00:53:39,110
+turn it into operators.
+
+889
+00:53:39,110 --> 00:53:44,500
+The important thing to see is
+that there are three Y terms.
+
+890
+00:53:44,500 --> 00:53:47,950
+Take them all to the same side,
+and I get an operator
+
+891
+00:53:47,950 --> 00:53:51,420
+expression like that.
+
+892
+00:53:51,420 --> 00:53:54,200
+The ones that depend on X, there
+are two of them, that's
+
+893
+00:53:54,200 --> 00:53:57,410
+represented here.
+
+894
+00:53:57,410 --> 00:54:01,210
+The thing this is critical for
+determining poles is figuring
+
+895
+00:54:01,210 --> 00:54:02,770
+out the denominator.
+
+896
+00:54:02,770 --> 00:54:04,225
+The poles are going to
+come from this one.
+
+897
+00:54:04,225 --> 00:54:06,920
+
+898
+00:54:06,920 --> 00:54:16,080
+After I get the ratio of two
+polynomials in R, I substitute
+
+899
+00:54:16,080 --> 00:54:21,790
+1 over Z for each R. So for this
+R, I get 1 over Z. For
+
+900
+00:54:21,790 --> 00:54:25,350
+this R squared, I get
+1 over Z squared.
+
+901
+00:54:25,350 --> 00:54:29,020
+Then I want to turn it back into
+a ratio of polynomials in
+
+902
+00:54:29,020 --> 00:54:34,710
+Z, so I have to multiply top
+and bottom by Z squared.
+
+903
+00:54:34,710 --> 00:54:45,700
+And when I do that, I get this
+ratio of polynomials in Z.
+
+904
+00:54:45,700 --> 00:54:51,400
+The poles are the roots of the
+denominator polynomial in Z.
+
+905
+00:54:51,400 --> 00:54:57,820
+The poles are minus
+1/2 and plus 1/4.
+
+906
+00:54:57,820 --> 00:55:00,095
+So the unit sample response
+converges to 0.
+
+907
+00:55:00,095 --> 00:55:04,680
+
+908
+00:55:04,680 --> 00:55:06,690
+What would be the condition
+that that represents?
+
+909
+00:55:06,690 --> 00:55:10,050
+
+910
+00:55:10,050 --> 00:55:12,990
+AUDIENCE: Take the polynomial
+on the bottom.
+
+911
+00:55:12,990 --> 00:55:15,780
+PROFESSOR: Something about the
+polynomial on the bottom.
+
+912
+00:55:15,780 --> 00:55:18,030
+Would all second-order systems
+have that property that the
+
+913
+00:55:18,030 --> 00:55:20,774
+unit sample response would
+converge to 0?
+
+914
+00:55:20,774 --> 00:55:22,024
+AUDIENCE: [INAUDIBLE]
+
+915
+00:55:22,024 --> 00:55:24,150
+
+916
+00:55:24,150 --> 00:55:25,520
+PROFESSOR: Louder?
+
+917
+00:55:25,520 --> 00:55:27,820
+AUDIENCE: Absolute value
+of the poles?
+
+918
+00:55:27,820 --> 00:55:31,526
+PROFESSOR: Absolute value
+of the poles has to be?
+
+919
+00:55:31,526 --> 00:55:32,990
+AUDIENCE: Less than 1.
+
+920
+00:55:32,990 --> 00:55:35,110
+PROFESSOR: Less than 1.
+
+921
+00:55:35,110 --> 00:55:37,380
+If the magnitude of the poles
+is less than 1, then the
+
+922
+00:55:37,380 --> 00:55:40,370
+response magnitude will
+decay with time.
+
+923
+00:55:40,370 --> 00:55:44,080
+So that's true here, and it
+would be true so long as none
+
+924
+00:55:44,080 --> 00:55:47,930
+of the poles have a magnitude
+exceeding 1.
+
+925
+00:55:47,930 --> 00:55:50,030
+There are poles at
+1/2 and 1/4.
+
+926
+00:55:50,030 --> 00:55:51,050
+No, that's not right.
+
+927
+00:55:51,050 --> 00:55:53,640
+It's -1/2 or 1/4.
+
+928
+00:55:53,640 --> 00:55:54,830
+There's a pole at 1/2.
+
+929
+00:55:54,830 --> 00:55:55,640
+No, that's not right.
+
+930
+00:55:55,640 --> 00:55:57,450
+There's a pole at -1/2.
+
+931
+00:55:57,450 --> 00:55:58,260
+There are two poles.
+
+932
+00:55:58,260 --> 00:56:00,870
+Yes, that's true.
+
+933
+00:56:00,870 --> 00:56:01,520
+None of the above.
+
+934
+00:56:01,520 --> 00:56:02,340
+No, that's not true.
+
+935
+00:56:02,340 --> 00:56:05,210
+So the answer was (2).
+
+936
+00:56:05,210 --> 00:56:07,410
+Everybody's comfortable?
+
+937
+00:56:07,410 --> 00:56:08,970
+We've done something
+very astonishing.
+
+938
+00:56:08,970 --> 00:56:13,410
+We took an arbitrary system, and
+we've figured out a rule
+
+939
+00:56:13,410 --> 00:56:15,820
+that let's us break
+it into the sum
+
+940
+00:56:15,820 --> 00:56:17,820
+of geometric sequences.
+
+941
+00:56:17,820 --> 00:56:20,750
+We can always write the response
+to a unit sample
+
+942
+00:56:20,750 --> 00:56:25,250
+signal, we can always write, as
+a weighted sum of geometric
+
+943
+00:56:25,250 --> 00:56:30,440
+sequences, and the number of
+geometric sequences in the sum
+
+944
+00:56:30,440 --> 00:56:35,030
+is the number of poles, which
+is the order of the operator
+
+945
+00:56:35,030 --> 00:56:38,920
+that operates on Y.
+OK, so we've done
+
+946
+00:56:38,920 --> 00:56:41,720
+something very powerful.
+
+947
+00:56:41,720 --> 00:56:44,490
+There's one more thing that we
+have to think about, and then
+
+948
+00:56:44,490 --> 00:56:48,340
+we have a complete picture
+of what's going on.
+
+949
+00:56:48,340 --> 00:56:49,800
+Think about when you learned
+polynomials.
+
+950
+00:56:49,800 --> 00:56:52,450
+
+951
+00:56:52,450 --> 00:56:57,180
+One of the big shocks was that
+roots can be complex.
+
+952
+00:56:57,180 --> 00:56:58,940
+What would that mean?
+
+953
+00:56:58,940 --> 00:57:05,660
+What would it mean if we had
+a system whose poles were
+
+954
+00:57:05,660 --> 00:57:07,510
+complex valued?
+
+955
+00:57:07,510 --> 00:57:09,480
+So first off, does such
+a system exist?
+
+956
+00:57:09,480 --> 00:57:11,050
+Well, here's one.
+
+957
+00:57:11,050 --> 00:57:12,720
+I just pulled that
+out of the air.
+
+958
+00:57:12,720 --> 00:57:16,230
+If I think about the functional,
+1 over (1 minus R
+
+959
+00:57:16,230 --> 00:57:18,490
+plus R squared) --
+
+960
+00:57:18,490 --> 00:57:23,480
+if I convert that into our ratio
+of polynomials in Z and
+
+961
+00:57:23,480 --> 00:57:25,640
+then find the roots, I
+find that the roots
+
+962
+00:57:25,640 --> 00:57:27,070
+have a complex part.
+
+963
+00:57:27,070 --> 00:57:30,195
+The roots are 1/2 plus or
+minus root 3 over 2j.
+
+964
+00:57:30,195 --> 00:57:33,020
+
+965
+00:57:33,020 --> 00:57:35,970
+There's an imaginary part.
+
+966
+00:57:35,970 --> 00:57:40,330
+So the question is what
+would that mean?
+
+967
+00:57:40,330 --> 00:57:42,370
+Or is perhaps that system
+just meaningless?
+
+968
+00:57:42,370 --> 00:57:45,970
+
+969
+00:57:45,970 --> 00:57:51,530
+Well, complex numbers work in
+algebra, and complex numbers
+
+970
+00:57:51,530 --> 00:57:54,000
+work here, too.
+
+971
+00:57:54,000 --> 00:57:59,280
+So the fact that a pole has a
+complex value in the context
+
+972
+00:57:59,280 --> 00:58:02,770
+of signals and systems simply
+means that the pole is
+
+973
+00:58:02,770 --> 00:58:10,520
+complex, that the base of the
+geometric sequence, that base
+
+974
+00:58:10,520 --> 00:58:12,200
+is complex.
+
+975
+00:58:12,200 --> 00:58:17,500
+So that means that we can still
+rewrite the denominator,
+
+976
+00:58:17,500 --> 00:58:20,960
+which was 1 minus R plus R
+squared, we can rewrite that
+
+977
+00:58:20,960 --> 00:58:25,830
+denominator in terms of a
+product of two first-order R
+
+978
+00:58:25,830 --> 00:58:28,460
+polynomials.
+
+979
+00:58:28,460 --> 00:58:33,580
+The coefficients are now
+complex, but it still works.
+
+980
+00:58:33,580 --> 00:58:34,950
+The algebra still works right.
+
+981
+00:58:34,950 --> 00:58:36,560
+That has to work because that's
+just polynomials.
+
+982
+00:58:36,560 --> 00:58:39,020
+That's the way polynomials
+behave.
+
+983
+00:58:39,020 --> 00:58:40,610
+Now, we can still factor it.
+
+984
+00:58:40,610 --> 00:58:41,930
+We can still use the
+factor theorem.
+
+985
+00:58:41,930 --> 00:58:44,760
+In fact, we can still use the
+fundamental theorem of algebra
+
+986
+00:58:44,760 --> 00:58:47,820
+to find the poles
+by the Z trick.
+
+987
+00:58:47,820 --> 00:58:48,950
+That's fine.
+
+988
+00:58:48,950 --> 00:58:50,890
+We can still use partial
+fractions.
+
+989
+00:58:50,890 --> 00:58:54,050
+All of these numbers
+are complex, but
+
+990
+00:58:54,050 --> 00:58:56,250
+the math still works.
+
+991
+00:58:56,250 --> 00:59:00,120
+The funny thing is that
+it implies that
+
+992
+00:59:00,120 --> 00:59:02,620
+the fundamental modes--
+
+993
+00:59:02,620 --> 00:59:06,440
+by fundamental mode, I mean the
+simple geometric for the
+
+994
+00:59:06,440 --> 00:59:09,380
+case of a first-order system,
+more complex behaviors for
+
+995
+00:59:09,380 --> 00:59:10,630
+higher order systems.
+
+996
+00:59:10,630 --> 00:59:15,130
+The mode is the time response
+associated with a pole.
+
+997
+00:59:15,130 --> 00:59:20,006
+So the modes are, in this case,
+complexes sequences.
+
+998
+00:59:20,006 --> 00:59:24,140
+
+999
+00:59:24,140 --> 00:59:32,040
+So in general, the modes
+look like P0 to the n.
+
+1000
+00:59:32,040 --> 00:59:35,260
+Here, my modes are simply
+have a complex value.
+
+1001
+00:59:35,260 --> 00:59:36,740
+So what did I say they were?
+
+1002
+00:59:36,740 --> 00:59:40,210
+The poles were 1/2
+plus or minus--
+
+1003
+00:59:40,210 --> 00:59:47,320
+
+1004
+00:59:47,320 --> 00:59:48,940
+so my modes simply look that.
+
+1005
+00:59:48,940 --> 00:59:51,010
+Same thing.
+
+1006
+00:59:51,010 --> 00:59:55,625
+The strange thing that happened
+was that those modes,
+
+1007
+00:59:55,625 --> 01:00:00,860
+those geometric sequences, are
+now have complex values.
+
+1008
+01:00:00,860 --> 01:00:05,680
+The first one up here, if I just
+look at the denominator,
+
+1009
+01:00:05,680 --> 01:00:08,680
+these coefficients mean that
+it's proportionate to the mode
+
+1010
+01:00:08,680 --> 01:00:13,190
+associated with this, which is
+that, which has a real part,
+
+1011
+01:00:13,190 --> 01:00:15,490
+which is the blue part, and
+the imaginary part,
+
+1012
+01:00:15,490 --> 01:00:16,740
+which is a red part.
+
+1013
+01:00:16,740 --> 01:00:19,260
+
+1014
+01:00:19,260 --> 01:00:22,330
+There were two poles,
+plus and minus.
+
+1015
+01:00:22,330 --> 01:00:25,420
+The other pole just flips
+the imaginary part.
+
+1016
+01:00:25,420 --> 01:00:28,480
+
+1017
+01:00:28,480 --> 01:00:34,740
+So if I have imaginary poles,
+all I get is complex modes,
+
+1018
+01:00:34,740 --> 01:00:36,660
+complex geometric sequences.
+
+1019
+01:00:36,660 --> 01:00:42,620
+
+1020
+01:00:42,620 --> 01:00:45,840
+An easier way of thinking about
+that is thinking about--
+
+1021
+01:00:45,840 --> 01:00:51,020
+so when we had a simple, real
+pole, we just had P0 to the n.
+
+1022
+01:00:51,020 --> 01:00:53,900
+That's easy to visualize because
+we just think about
+
+1023
+01:00:53,900 --> 01:00:57,960
+each time you go from 0 to 1 to
+2 to 3, it goes from 1 to
+
+1024
+01:00:57,960 --> 01:01:00,220
+P0 to P0 squared to P0 cubed.
+
+1025
+01:01:00,220 --> 01:01:02,990
+Here, when you're multiplying
+complex numbers, it's easier
+
+1026
+01:01:02,990 --> 01:01:06,800
+to imagine that on the
+complex plane.
+
+1027
+01:01:06,800 --> 01:01:10,020
+Think about the location of the
+point 1, think about the
+
+1028
+01:01:10,020 --> 01:01:14,270
+location of the point P0, think
+about the location of
+
+1029
+01:01:14,270 --> 01:01:18,180
+the point P0 squared, and in
+this particular case, where
+
+1030
+01:01:18,180 --> 01:01:22,400
+the pole was 1/2 plus or minus
+the square root of 3 over 2
+
+1031
+01:01:22,400 --> 01:01:28,700
+times j, this would
+be pole to the 0.
+
+1032
+01:01:28,700 --> 01:01:30,510
+This is pole to the 1.
+
+1033
+01:01:30,510 --> 01:01:33,330
+This is pole squared,
+pole cubed.
+
+1034
+01:01:33,330 --> 01:01:36,870
+As you can see when you have a
+complex number, the trajectory
+
+1035
+01:01:36,870 --> 01:01:39,280
+in complex space can
+be complicated.
+
+1036
+01:01:39,280 --> 01:01:42,560
+In this case, it's circular.
+
+1037
+01:01:42,560 --> 01:01:46,680
+The circular trajectory in the
+complex plane corresponds to
+
+1038
+01:01:46,680 --> 01:01:50,070
+the sinusoidal behavior
+in time.
+
+1039
+01:01:50,070 --> 01:01:51,850
+So there's a correlation between
+the way you think
+
+1040
+01:01:51,850 --> 01:01:55,300
+about the modes evolving on the
+complex plane and the way
+
+1041
+01:01:55,300 --> 01:01:56,720
+you think about the
+real and imaginary
+
+1042
+01:01:56,720 --> 01:01:58,210
+parts evolving in time.
+
+1043
+01:01:58,210 --> 01:02:02,560
+
+1044
+01:02:02,560 --> 01:02:03,950
+It seems a little
+weird that the
+
+1045
+01:02:03,950 --> 01:02:08,570
+response should be complex.
+
+1046
+01:02:08,570 --> 01:02:12,040
+We're studying this kind of
+system theory primarily
+
+1047
+01:02:12,040 --> 01:02:14,290
+because we're trying to gain
+insight into real systems.
+
+1048
+01:02:14,290 --> 01:02:16,690
+We want to know how things
+like robots work.
+
+1049
+01:02:16,690 --> 01:02:17,900
+How does the WallFinder work?
+
+1050
+01:02:17,900 --> 01:02:21,190
+What would it mean if the
+WallFinder went to position
+
+1051
+01:02:21,190 --> 01:02:26,040
+one plus the square
+root of 3 over 2j?
+
+1052
+01:02:26,040 --> 01:02:29,100
+That doesn't make sense.
+
+1053
+01:02:29,100 --> 01:02:31,930
+So there's a little bit of a
+strange thing going on here.
+
+1054
+01:02:31,930 --> 01:02:35,550
+How is it that we need complex
+numbers to model real things?
+
+1055
+01:02:35,550 --> 01:02:37,690
+That doesn't seem
+to sound right.
+
+1056
+01:02:37,690 --> 01:02:42,710
+But the answer is that, if the
+difference equation had real
+
+1057
+01:02:42,710 --> 01:02:48,270
+coefficients, as they will
+for a real system--
+
+1058
+01:02:48,270 --> 01:02:50,770
+if you think about a real
+system, like a bank account,
+
+1059
+01:02:50,770 --> 01:02:53,850
+the coefficients in the
+difference equation are real
+
+1060
+01:02:53,850 --> 01:02:55,940
+numbers, not complex numbers.
+
+1061
+01:02:55,940 --> 01:02:58,320
+If you think about the
+WallFinder system, the
+
+1062
+01:02:58,320 --> 01:03:03,140
+coefficients in the WallFinder
+system, the coefficients of
+
+1063
+01:03:03,140 --> 01:03:05,940
+the difference equations--
+
+1064
+01:03:05,940 --> 01:03:07,720
+the coefficients of the
+different equations describe
+
+1065
+01:03:07,720 --> 01:03:11,080
+the WallFinder behavior
+were all real numbers.
+
+1066
+01:03:11,080 --> 01:03:16,050
+
+1067
+01:03:16,050 --> 01:03:18,620
+Here, I'm thinking about the
+denominator polynomial.
+
+1068
+01:03:18,620 --> 01:03:23,230
+If we try to find the roots of a
+polynomial, and if we find a
+
+1069
+01:03:23,230 --> 01:03:28,430
+complex root, if the
+coefficients were all real, it
+
+1070
+01:03:28,430 --> 01:03:33,150
+follows that the complex
+conjugate of the original root
+
+1071
+01:03:33,150 --> 01:03:36,390
+is also a root.
+
+1072
+01:03:36,390 --> 01:03:38,210
+That's pretty simple, if you
+think about what it means to
+
+1073
+01:03:38,210 --> 01:03:41,460
+be a polynomial.
+
+1074
+01:03:41,460 --> 01:03:45,020
+If you think about a polynomial
+is whatever--
+
+1075
+01:03:45,020 --> 01:03:51,380
+so I've got 1 plus Z plus Z
+squared plus blah, blah, blah.
+
+1076
+01:03:51,380 --> 01:03:54,850
+
+1077
+01:03:54,850 --> 01:04:04,230
+2, 3 minus 16, if all of those
+coefficients real, then the
+
+1078
+01:04:04,230 --> 01:04:05,480
+only way the--
+
+1079
+01:04:05,480 --> 01:04:10,530
+
+1080
+01:04:10,530 --> 01:04:16,880
+If P were a root of this
+polynomial, then P* would have
+
+1081
+01:04:16,880 --> 01:04:23,340
+to be a root, too, because if
+you complex conjugate each of
+
+1082
+01:04:23,340 --> 01:04:25,790
+the Z's, it's the same thing
+as complex conjugating the
+
+1083
+01:04:25,790 --> 01:04:30,970
+whole thing because the
+coefficients are real valued.
+
+1084
+01:04:30,970 --> 01:04:36,780
+So the idea then is that if I
+happen to get a complex root
+
+1085
+01:04:36,780 --> 01:04:39,530
+for my system that can be
+described by real value
+
+1086
+01:04:39,530 --> 01:04:43,380
+coefficients, it must also
+be true that it's complex
+
+1087
+01:04:43,380 --> 01:04:45,790
+conjugate is a root.
+
+1088
+01:04:45,790 --> 01:04:51,720
+If that happens, the two roots
+co-conspire so that the modes
+
+1089
+01:04:51,720 --> 01:04:54,240
+have canceling imaginary
+parts.
+
+1090
+01:04:54,240 --> 01:04:54,920
+You can prove that.
+
+1091
+01:04:54,920 --> 01:04:57,000
+I'm not worried about you being
+able to prove that.
+
+1092
+01:04:57,000 --> 01:05:00,800
+I just want you to understand
+that if you have two roots
+
+1093
+01:05:00,800 --> 01:05:06,080
+that are complex conjugates,
+they can conspire to have
+
+1094
+01:05:06,080 --> 01:05:08,980
+their imaginary parts
+cancel, and that's
+
+1095
+01:05:08,980 --> 01:05:10,120
+exactly what happens.
+
+1096
+01:05:10,120 --> 01:05:15,190
+Here, in this example, the
+example that I started with,
+
+1097
+01:05:15,190 --> 01:05:18,860
+where the system was 1 over (1
+minus R plus R squared), the
+
+1098
+01:05:18,860 --> 01:05:20,510
+unit sample responses
+showed here.
+
+1099
+01:05:20,510 --> 01:05:23,170
+
+1100
+01:05:23,170 --> 01:05:29,350
+You can write as the sum of
+sinusoidal and cosinusoidal
+
+1101
+01:05:29,350 --> 01:05:35,780
+signals, and the sum that falls
+out has the property
+
+1102
+01:05:35,780 --> 01:05:39,490
+that the imaginary
+parts cancel.
+
+1103
+01:05:39,490 --> 01:05:42,560
+It's still useful to look at the
+imaginary parts the same
+
+1104
+01:05:42,560 --> 01:05:45,560
+as it is when you're trying
+to solve polynomials.
+
+1105
+01:05:45,560 --> 01:05:49,230
+It's useful because the
+period of all of these
+
+1106
+01:05:49,230 --> 01:05:50,490
+signals is the same.
+
+1107
+01:05:50,490 --> 01:05:53,500
+
+1108
+01:05:53,500 --> 01:05:56,900
+If I think about the period of
+the individual modes, if I
+
+1109
+01:05:56,900 --> 01:06:00,380
+think about the period of P0
+to the n, 1/2 plus or minus
+
+1110
+01:06:00,380 --> 01:06:04,740
+root 3 over 2j to the n, the
+period of that signal --
+
+1111
+01:06:04,740 --> 01:06:07,810
+I can see in the complex plane,
+this is the n equals 0,
+
+1112
+01:06:07,810 --> 01:06:13,000
+1, 2, 3, 4, 5, 6, 7,
+8, 9, 10, 11, 12 --
+
+1113
+01:06:13,000 --> 01:06:17,310
+the period is 6.
+
+1114
+01:06:17,310 --> 01:06:20,940
+If I were to take the minus 1,
+I would go around the circle
+
+1115
+01:06:20,940 --> 01:06:22,220
+the other way.
+
+1116
+01:06:22,220 --> 01:06:26,850
+This would be zero term 1,
+2, 3, 4, 5, 6, et cetera.
+
+1117
+01:06:26,850 --> 01:06:33,620
+Both of the modes, the geometric
+sequence associated
+
+1118
+01:06:33,620 --> 01:06:37,670
+with the two complex conjugate
+poles, both of those modes had
+
+1119
+01:06:37,670 --> 01:06:40,590
+the same period, they're
+both 6, as does the
+
+1120
+01:06:40,590 --> 01:06:43,670
+response to the real part.
+
+1121
+01:06:43,670 --> 01:06:50,690
+So you can deduce the period of
+the real signal by looking
+
+1122
+01:06:50,690 --> 01:06:54,055
+at the periods of the
+two complex signals.
+
+1123
+01:06:54,055 --> 01:06:57,440
+
+1124
+01:06:57,440 --> 01:06:58,980
+So think about this system.
+
+1125
+01:06:58,980 --> 01:07:04,420
+Here, I've got a system whose
+responses showed here.
+
+1126
+01:07:04,420 --> 01:07:07,740
+I'm going to tell you that the
+response was generated by a
+
+1127
+01:07:07,740 --> 01:07:10,420
+second-order system, that
+is to say a system whose
+
+1128
+01:07:10,420 --> 01:07:13,720
+polynomial was second-order,
+whose polynomial in R was
+
+1129
+01:07:13,720 --> 01:07:15,440
+second-order.
+
+1130
+01:07:15,440 --> 01:07:17,375
+Which of these statements
+is true?
+
+1131
+01:07:17,375 --> 01:07:21,830
+
+1132
+01:07:21,830 --> 01:07:25,730
+I want to think about the pole
+as being a complex number.
+
+1133
+01:07:25,730 --> 01:07:29,640
+Here, I'm showing you the
+complex number in polar form.
+
+1134
+01:07:29,640 --> 01:07:34,370
+It's got a magnitude and an
+angle, and I'd like you to
+
+1135
+01:07:34,370 --> 01:07:38,210
+figure how what must the
+magnitude have been, and what
+
+1136
+01:07:38,210 --> 01:07:39,997
+must the angle have been.
+
+1137
+01:07:39,997 --> 01:08:40,140
+
+1138
+01:08:40,140 --> 01:08:43,290
+So what's the utility?
+
+1139
+01:08:43,290 --> 01:08:46,553
+Why did I tell you the pole in
+terms of it's magnitude and
+
+1140
+01:08:46,553 --> 01:08:51,310
+angle rather than telling it to
+you in it's Cartesian form
+
+1141
+01:08:51,310 --> 01:08:54,100
+as a real and imaginary part?
+
+1142
+01:08:54,100 --> 01:08:58,266
+What's good about thinking about
+magnitude and angle?
+
+1143
+01:08:58,266 --> 01:09:02,577
+
+1144
+01:09:02,577 --> 01:09:06,140
+Or if I break the pole into
+magnitude and angle, and if I
+
+1145
+01:09:06,140 --> 01:09:07,390
+think about the mode--
+
+1146
+01:09:07,390 --> 01:09:10,370
+
+1147
+01:09:10,370 --> 01:09:14,870
+the modes are always of
+the form P0 to the n.
+
+1148
+01:09:14,870 --> 01:09:20,010
+If I think about modes as having
+a magnitude and an
+
+1149
+01:09:20,010 --> 01:09:25,680
+angle, when I raise it
+to the n, something
+
+1150
+01:09:25,680 --> 01:09:29,090
+very special happens.
+
+1151
+01:09:29,090 --> 01:09:30,340
+What happens?
+
+1152
+01:09:30,340 --> 01:09:32,830
+
+1153
+01:09:32,830 --> 01:09:35,420
+You can separate it.
+
+1154
+01:09:35,420 --> 01:09:39,250
+What is R e to the j omega
+raised to the n?
+
+1155
+01:09:39,250 --> 01:09:49,260
+That's the same as R to the
+n, e to the j n omega.
+
+1156
+01:09:49,260 --> 01:09:55,040
+It's the product of a real
+thing times a very simple
+
+1157
+01:09:55,040 --> 01:09:56,950
+complex thing.
+
+1158
+01:09:56,950 --> 01:09:58,660
+What's simple about
+the complex thing?
+
+1159
+01:09:58,660 --> 01:10:01,330
+
+1160
+01:10:01,330 --> 01:10:05,050
+The magnitude is everywhere
+1 e to the j, the
+
+1161
+01:10:05,050 --> 01:10:08,730
+magnitude of that term.
+
+1162
+01:10:08,730 --> 01:10:11,180
+So all of the magnitude
+is here, none of the
+
+1163
+01:10:11,180 --> 01:10:12,210
+magnitude is here.
+
+1164
+01:10:12,210 --> 01:10:14,920
+All of the angle is here, none
+of the angle is here.
+
+1165
+01:10:14,920 --> 01:10:18,270
+I've separated the magnitude
+and the angle.
+
+1166
+01:10:18,270 --> 01:10:23,300
+So it's very insightful to think
+about poles in terms of
+
+1167
+01:10:23,300 --> 01:10:28,910
+magnitude and angle because
+it decouples the
+
+1168
+01:10:28,910 --> 01:10:31,080
+parts of the mode.
+
+1169
+01:10:31,080 --> 01:10:34,050
+So I can think, then, of this
+complicated signal that I gave
+
+1170
+01:10:34,050 --> 01:10:39,350
+you as being the product of a
+magnitude part and a pure
+
+1171
+01:10:39,350 --> 01:10:41,180
+angle part.
+
+1172
+01:10:41,180 --> 01:10:48,180
+From the magnitude part, I can
+infer something about R. R is
+
+1173
+01:10:48,180 --> 01:10:54,480
+the ratio of the nth 1 to the
+n minus 1-th one, so R is a
+
+1174
+01:10:54,480 --> 01:10:57,120
+lot bigger than 1/2.
+
+1175
+01:10:57,120 --> 01:11:04,390
+In fact, R in this
+case is 0.97.
+
+1176
+01:11:04,390 --> 01:11:06,930
+And this is pure angle.
+
+1177
+01:11:06,930 --> 01:11:11,600
+This lets me infer something
+about the oscillations.
+
+1178
+01:11:11,600 --> 01:11:13,530
+In fact, I can say something
+about the period.
+
+1179
+01:11:13,530 --> 01:11:17,130
+The period is, here's a peak,
+here's a peak, 1, 2, 3, 4, 5,
+
+1180
+01:11:17,130 --> 01:11:18,380
+6, 7, 8, 9, 10, 11, 12.
+
+1181
+01:11:18,380 --> 01:11:21,460
+
+1182
+01:11:21,460 --> 01:11:24,270
+The period's 12.
+
+1183
+01:11:24,270 --> 01:11:26,410
+If the period is 12,
+what is omega?
+
+1184
+01:11:26,410 --> 01:11:42,330
+
+1185
+01:11:42,330 --> 01:11:47,350
+Omega is a number, such that
+by the time I got up to 12
+
+1186
+01:11:47,350 --> 01:11:51,860
+times it, I got up to 2 pi.
+
+1187
+01:11:51,860 --> 01:11:55,420
+
+1188
+01:11:55,420 --> 01:11:56,070
+What's omega?
+
+1189
+01:11:56,070 --> 01:11:58,290
+AUDIENCE: Pi over 6.
+
+1190
+01:11:58,290 --> 01:11:59,540
+PROFESSOR: 2 pi over 12.
+
+1191
+01:11:59,540 --> 01:12:02,180
+
+1192
+01:12:02,180 --> 01:12:03,430
+So it's about 1/2.
+
+1193
+01:12:03,430 --> 01:12:05,510
+
+1194
+01:12:05,510 --> 01:12:10,710
+So that's a way that I can infer
+the form of the answer.
+
+1195
+01:12:10,710 --> 01:12:15,660
+I ask you what pole corresponds
+to this behavior.
+
+1196
+01:12:15,660 --> 01:12:18,570
+Well, the decay that comes from
+the real part, that comes
+
+1197
+01:12:18,570 --> 01:12:21,580
+from R to the n.
+
+1198
+01:12:21,580 --> 01:12:26,100
+The oscillation, that comes from
+the imaginary part, and I
+
+1199
+01:12:26,100 --> 01:12:28,400
+can figure that out by thinking
+about the period and
+
+1200
+01:12:28,400 --> 01:12:29,650
+thinking about that
+relationship.
+
+1201
+01:12:29,650 --> 01:12:40,260
+
+1202
+01:12:40,260 --> 01:12:43,720
+So the answer, then, is this
+one, R is between 1/2 and 1,
+
+1203
+01:12:43,720 --> 01:12:47,040
+and omega is about 1/2.
+
+1204
+01:12:47,040 --> 01:12:50,150
+OK, one last-- whoops,
+wrong button.
+
+1205
+01:12:50,150 --> 01:12:51,400
+One last example.
+
+1206
+01:12:51,400 --> 01:12:54,330
+
+1207
+01:12:54,330 --> 01:12:57,110
+So what we've seen is a very
+powerful way of decomposing
+
+1208
+01:12:57,110 --> 01:13:01,650
+systems, so that we can always
+think about them in terms of
+
+1209
+01:13:01,650 --> 01:13:06,420
+poles and complex geometrics,
+which we will call modes,
+
+1210
+01:13:06,420 --> 01:13:09,070
+poles and modes.
+
+1211
+01:13:09,070 --> 01:13:12,530
+And that behavior works for
+any system in an enormous
+
+1212
+01:13:12,530 --> 01:13:16,080
+class of systems, so I want to
+think about one last one,
+
+1213
+01:13:16,080 --> 01:13:17,620
+which is Fibonacci sequence.
+
+1214
+01:13:17,620 --> 01:13:19,080
+You all know the Fibonacci
+sequence.
+
+1215
+01:13:19,080 --> 01:13:20,260
+You've all programmed it.
+
+1216
+01:13:20,260 --> 01:13:22,640
+We started with that when we
+were doing Python, and we made
+
+1217
+01:13:22,640 --> 01:13:24,800
+some illustrations about the
+recursion and all that sort of
+
+1218
+01:13:24,800 --> 01:13:26,120
+thing by thinking about it.
+
+1219
+01:13:26,120 --> 01:13:27,190
+Now, I'm going to
+use signals and
+
+1220
+01:13:27,190 --> 01:13:30,270
+systems do the same problem.
+
+1221
+01:13:30,270 --> 01:13:33,370
+So Fibonacci was interested
+in population growth.
+
+1222
+01:13:33,370 --> 01:13:36,720
+How many pairs of rabbits can be
+produced from a single pair
+
+1223
+01:13:36,720 --> 01:13:40,140
+in a year if it is suppose that
+every month each pair
+
+1224
+01:13:40,140 --> 01:13:44,400
+begets a new pair, from which
+the second month it becomes
+
+1225
+01:13:44,400 --> 01:13:45,040
+productive?
+
+1226
+01:13:45,040 --> 01:13:49,500
+OK, it's not quite the same
+English I would have used.
+
+1227
+01:13:49,500 --> 01:13:54,470
+From this statement, you can
+infer a difference equation.
+
+1228
+01:13:54,470 --> 01:13:56,910
+I've written it in terms of
+X. What do you think X is?
+
+1229
+01:13:56,910 --> 01:14:00,700
+
+1230
+01:14:00,700 --> 01:14:05,740
+X is the input signal, and here,
+I'm thinking about X as
+
+1231
+01:14:05,740 --> 01:14:09,960
+something that's specifies
+the initial condition.
+
+1232
+01:14:09,960 --> 01:14:12,170
+This is the thing I alluded
+to earlier.
+
+1233
+01:14:12,170 --> 01:14:16,780
+One trick that we use to make it
+easy to think about initial
+
+1234
+01:14:16,780 --> 01:14:21,660
+conditions is that we embed
+them in the input.
+
+1235
+01:14:21,660 --> 01:14:24,540
+So in this particular case, I'll
+think about the initial
+
+1236
+01:14:24,540 --> 01:14:28,060
+condition arising from
+a delta function.
+
+1237
+01:14:28,060 --> 01:14:33,630
+If I think about X as a delta,
+then the sequence of results
+
+1238
+01:14:33,630 --> 01:14:37,590
+Y0, Y1, Y2, Y3 from this
+difference equation, is the
+
+1239
+01:14:37,590 --> 01:14:39,860
+conventional Fibonacci
+sequence.
+
+1240
+01:14:39,860 --> 01:14:44,590
+It would correspond to what if
+you had a baby rabbit, one
+
+1241
+01:14:44,590 --> 01:14:48,330
+baby rabbit, that's the
+one, in generation
+
+1242
+01:14:48,330 --> 01:14:52,030
+0, that's the delta.
+
+1243
+01:14:52,030 --> 01:14:54,960
+So the input is a way that
+I can specify initial
+
+1244
+01:14:54,960 --> 01:14:57,530
+conditions, and that's a very
+powerful way of thinking about
+
+1245
+01:14:57,530 --> 01:14:59,100
+initial conditions.
+
+1246
+01:14:59,100 --> 01:15:00,350
+So here's the problem.
+
+1247
+01:15:00,350 --> 01:15:04,370
+I've got one set of baby
+rabbits at times 0.
+
+1248
+01:15:04,370 --> 01:15:07,370
+They grow up.
+
+1249
+01:15:07,370 --> 01:15:13,750
+They have baby rabbits, which
+grow up at the same time the
+
+1250
+01:15:13,750 --> 01:15:19,980
+parents had more baby rabbits,
+at which point more babies
+
+1251
+01:15:19,980 --> 01:15:22,110
+grow into bigger rabbits.
+
+1252
+01:15:22,110 --> 01:15:26,460
+And big rabbits have more
+babies, et cetera, et cetera,
+
+1253
+01:15:26,460 --> 01:15:28,640
+et cetera, et cetera,
+et cetera.
+
+1254
+01:15:28,640 --> 01:15:33,520
+
+1255
+01:15:33,520 --> 01:15:34,850
+So you all know that.
+
+1256
+01:15:34,850 --> 01:15:36,710
+You all know about Fibonacci
+sequence.
+
+1257
+01:15:36,710 --> 01:15:38,390
+It blows up very quickly.
+
+1258
+01:15:38,390 --> 01:15:40,945
+What are the poles of the
+Fibonacci sequence?
+
+1259
+01:15:40,945 --> 01:15:49,920
+
+1260
+01:15:49,920 --> 01:15:51,970
+The difference equation looks
+just like the difference
+
+1261
+01:15:51,970 --> 01:15:53,560
+equations we've looked
+at throughout
+
+1262
+01:15:53,560 --> 01:15:56,470
+this hour and a half.
+
+1263
+01:15:56,470 --> 01:16:00,320
+We can do it just like we did
+all the other problems.
+
+1264
+01:16:00,320 --> 01:16:04,260
+We write the difference equation
+in terms of R. We
+
+1265
+01:16:04,260 --> 01:16:08,340
+rewrite the system functional
+in terms of a ratio of two
+
+1266
+01:16:08,340 --> 01:16:13,180
+polynomials in R. We substitute
+R goes to 1 over Z,
+
+1267
+01:16:13,180 --> 01:16:18,340
+deduce a ratio of polynomials in
+Z, factor the denominator,
+
+1268
+01:16:18,340 --> 01:16:20,810
+find the roots of the
+denominator, and find that
+
+1269
+01:16:20,810 --> 01:16:24,050
+there are two poles.
+
+1270
+01:16:24,050 --> 01:16:27,830
+The poles for the Fibonacci
+sequence are plus or minus the
+
+1271
+01:16:27,830 --> 01:16:30,400
+root of 5 over 2.
+
+1272
+01:16:30,400 --> 01:16:31,290
+That's curious.
+
+1273
+01:16:31,290 --> 01:16:33,330
+There's no recursion there.
+
+1274
+01:16:33,330 --> 01:16:36,310
+It's a different way of
+thinking about things.
+
+1275
+01:16:36,310 --> 01:16:38,920
+There are two poles.
+
+1276
+01:16:38,920 --> 01:16:41,300
+The first pole, the
+plus one --
+
+1277
+01:16:41,300 --> 01:16:46,540
+1 plus the root of 5 over 1,
+corresponds to a pole whose
+
+1278
+01:16:46,540 --> 01:16:48,180
+magnitude is bigger than 1.
+
+1279
+01:16:48,180 --> 01:16:49,710
+It explodes.
+
+1280
+01:16:49,710 --> 01:16:51,970
+There it is.
+
+1281
+01:16:51,970 --> 01:16:55,170
+The second one is a
+negative number.
+
+1282
+01:16:55,170 --> 01:17:00,770
+So the first one is the
+golden ratio, 1.618...
+
+1283
+01:17:00,770 --> 01:17:03,070
+The second one is the negative
+reciprocal of the golden
+
+1284
+01:17:03,070 --> 01:17:08,590
+ratio, which is -0.618...
+
+1285
+01:17:08,590 --> 01:17:14,710
+And those two numbers,
+amazingly, conspire so that
+
+1286
+01:17:14,710 --> 01:17:21,240
+their sum, horrendous as they
+are, is an integer.
+
+1287
+01:17:21,240 --> 01:17:25,330
+And in fact, that's the integer
+that we computed here.
+
+1288
+01:17:25,330 --> 01:17:28,210
+So we've used Fibonacci before
+to think about the way you
+
+1289
+01:17:28,210 --> 01:17:33,190
+structure programs, iteration,
+recursion, that sort of thing.
+
+1290
+01:17:33,190 --> 01:17:35,030
+Here, by thinking about signals
+and systems, we can
+
+1291
+01:17:35,030 --> 01:17:40,370
+think about exactly the
+same problem as poles.
+
+1292
+01:17:40,370 --> 01:17:42,190
+There's no complexity
+in this problem.
+
+1293
+01:17:42,190 --> 01:17:44,780
+It doesn't take N or N
+squared or N log N
+
+1294
+01:17:44,780 --> 01:17:46,190
+or anything to compute.
+
+1295
+01:17:46,190 --> 01:17:48,470
+It's closed form.
+
+1296
+01:17:48,470 --> 01:17:53,100
+The answer is (pole one) to the
+N plus (pole two) to the
+
+1297
+01:17:53,100 --> 01:17:54,400
+N. That's it.
+
+1298
+01:17:54,400 --> 01:17:55,500
+That's the answer.
+
+1299
+01:17:55,500 --> 01:17:57,810
+So what we've done is we found
+a whole new way of thinking
+
+1300
+01:17:57,810 --> 01:18:02,160
+about the Fibonacci sequence
+in terms of poles, and more
+
+1301
+01:18:02,160 --> 01:18:05,380
+than that, we found that that
+way of thinking about poles
+
+1302
+01:18:05,380 --> 01:18:10,150
+works for any difference
+equation of this type.
+
+1303
+01:18:10,150 --> 01:18:14,160
+And we found that poles, this
+way of thinking about systems
+
+1304
+01:18:14,160 --> 01:18:18,190
+in terms of polynomials, is a
+powerful abstraction that's
+
+1305
+01:18:18,190 --> 01:18:21,110
+exactly the same kind
+of PCAP abstraction
+
+1306
+01:18:21,110 --> 01:18:22,360
+that we used for Python.
+
+1307
+01:18:22,360 --> 01:18:30,783
