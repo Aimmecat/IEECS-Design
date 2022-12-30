@@ -51,9 +51,9 @@
 
 
 // **************************** 代码区域 ****************************
-#define ENCODER_QUADDEC                 TIM2_ENCOEDER
-#define ENCODER_QUADDEC_A               TIM2_CH1_ENCOEDER_A0
-#define ENCODER_QUADDEC_B               TIM2_CH2_ENCOEDER_A1
+#define ENCODER_QUADDEC                 TIM9_ENCOEDER
+#define ENCODER_QUADDEC_B               TIM9_CH2_ENCOEDER_D11
+#define ENCODER_QUADDEC_A               TIM9_CH1_ENCOEDER_D9
 
 #define ENCODER_DIR                     TIM1_ENCOEDER
 #define ENCODER_DIR_PULSE               TIM1_CH2_ENCOEDER_E11
@@ -82,9 +82,9 @@ int main(void)
         encoder_clear_count(ENCODER_QUADDEC);                                   // 清空编码器计数
         printf("ENCODER_QUADDEC counter \t%d .\r\n", encoder_data);             // 输出编码器计数信息
 
-        encoder_data = encoder_get_count(ENCODER_DIR);                          // 获取编码器计数
-        encoder_clear_count(ENCODER_DIR);                                       // 清空编码器计数
-        printf("ENCODER_DIR counter \t\t%d .\r\n", encoder_data);               // 输出编码器计数信息
+//        encoder_data = encoder_get_count(ENCODER_DIR);                          // 获取编码器计数
+//        encoder_clear_count(ENCODER_DIR);                                       // 清空编码器计数
+//        printf("ENCODER_DIR counter \t\t%d .\r\n", encoder_data);               // 输出编码器计数信息
 
         system_delay_ms(100);
     }

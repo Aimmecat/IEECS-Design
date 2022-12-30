@@ -14,8 +14,7 @@ class MySMClass(sm.SM):
               "{:.2f}".format(inp.sonars[5]),
               "{:.2f}".format(inp.sonars[6]),
               "{:.2f}".format(inp.sonars[7]))
-        speed = -0.5*(0.5 - (inp.sonars[3] + inp.sonars[4]) / 2)
-        return (state, io.Action(fvel = -0.4, rvel = 0.0))
+        return (state, io.Action(fvel = 0.0, rvel = 0))
 
 mySM = MySMClass()
 mySM.name = 'brainSM'

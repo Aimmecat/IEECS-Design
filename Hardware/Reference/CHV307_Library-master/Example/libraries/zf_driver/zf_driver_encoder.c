@@ -46,18 +46,18 @@ void encoder_gpio_init(gpio_pin_enum pin_ch1, gpio_pin_enum pin_ch2)
 //-------------------------------------------------------------------------------------------------------------------
 int16 encoder_get_count(encoder_index_enum encoder_n)
 {
-    if(encoder_dir_pin[encoder_n] == 0xFF)
-    {
-        return ((TIM_TypeDef*)tim_index[encoder_n])->CNT;
-    }
-    else
-    {
-        if(gpio_get_level(encoder_dir_pin[encoder_n]))                  // 方向引脚高电平
-            return (uint16)((TIM_TypeDef*)tim_index[encoder_n])->CNT;                                 // 返回正数值
-        else                                                            // 方向引脚低电平
-            return -((uint16)((TIM_TypeDef*)tim_index[encoder_n])->CNT);                              // 返回负数值
-    }
-
+//    if(encoder_dir_pin[encoder_n] == 0xFF)
+//    {
+    int16 count = ((TIM_TypeDef*)tim_index[encoder_n])->CNT;
+    return count;
+//    }
+//    else
+//    {
+//        if(gpio_get_level(encoder_dir_pin[encoder_n]))                  // 方向引脚高电平
+//            return (uint16)((TIM_TypeDef*)tim_index[encoder_n])->CNT;                                 // 返回正数值
+//        else                                                            // 方向引脚低电平
+//            return -((uint16)((TIM_TypeDef*)tim_index[encoder_n])->CNT);                              // 返回负数值
+//    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------

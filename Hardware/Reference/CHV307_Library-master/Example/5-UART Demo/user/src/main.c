@@ -62,7 +62,6 @@ int main(void)
     clock_init(SYSTEM_CLOCK_144M);      // 务必保留，设置系统时钟。
     debug_init();                       // 务必保留，本函数用于初始化MPU 时钟 调试串口
 
-
     fifo_init(&uart_data_fifo, uart_get_data, 64);                              // 初始化 fifo 挂载缓冲区
 
     uart_init(UART_INDEX, UART_BAUDRATE, UART_TX_PIN, UART_RX_PIN);             // 初始化编码器模块与引脚 正交解码编码器模式
