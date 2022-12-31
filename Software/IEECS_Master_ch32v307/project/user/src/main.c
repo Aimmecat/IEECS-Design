@@ -50,17 +50,16 @@ int main(void)
         Beep_Set_ms(100);
         system_delay_ms(200);
         Beep_Set_ms(100);
-//        gpio_set(MOTOR_L_DIR, 1);
-//        gpio_set(MOTOR_R_DIR, 1);
-//        pwm_set_duty(MOTOR_L_PWM, 20000 );
-//        pwm_set_duty(MOTOR_R_PWM, 20000 );
-//        system_delay_ms(10);
     }
 }
 
 
 
-
+//        gpio_set(MOTOR_L_DIR, 1);
+//        gpio_set(MOTOR_R_DIR, 1);
+//        pwm_set_duty(MOTOR_L_PWM, 20000 );
+//        pwm_set_duty(MOTOR_R_PWM, 20000 );
+//        system_delay_ms(10);
 
 
 
