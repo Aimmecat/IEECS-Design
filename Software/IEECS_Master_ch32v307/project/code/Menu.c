@@ -195,7 +195,7 @@ void Menu_Debug_Page(void){
     ips200_show_string(8,7 * BASE_LENGTH,"Vr:");
     ips200_show_string(8,8 * BASE_LENGTH,"V :");
 
-    ips200_show_string(8, 10 * BASE_LENGTH, "press to exit");
+    ips200_show_string(8, 12 * BASE_LENGTH, "press to exit");
 
     ips200_show_int(64, 6 * BASE_LENGTH, Controlspeed.Vt, 5);
     ips200_show_int(64, 7 * BASE_LENGTH, Controlspeed.Vr, 5);
@@ -248,10 +248,14 @@ void Menu_Control_Page(void){
     ips200_show_int(64, 1 * BASE_LENGTH, robot_style.Xpos, 5);
     ips200_show_int(64, 2 * BASE_LENGTH, robot_style.Ypos, 5);
     ips200_show_int(64, 3 * BASE_LENGTH, robot_style.Thpos, 5);
-//    ips200_showint16(64, 4 * BASE_LENGTH, Expspeed.Left_expspeed);
-//    ips200_showint16(64, 5 * BASE_LENGTH, Expspeed.Right_expspeed);
-    ips200_show_int(64, 4 * BASE_LENGTH, encoder_master_data[left_encoder], 5);
-    ips200_show_int(64, 5 * BASE_LENGTH, encoder_master_data[right_encoder], 5);
+    ips200_show_int(128, 4 * BASE_LENGTH, Expspeed.Left_expspeed, 5);
+    ips200_show_int(128, 5 * BASE_LENGTH, Expspeed.Right_expspeed, 5);
+
+    int16 left_encoder_num = Encoder_Left_Get();
+    int16 right_encoder_num = Encoder_Right_Get();
+
+    ips200_show_int(64, 4 * BASE_LENGTH, left_encoder_num, 5);
+    ips200_show_int(64, 5 * BASE_LENGTH, right_encoder_num, 5);
     ips200_show_int(64, 6 * BASE_LENGTH, voltage, 3);
     ips200_show_int(64, 7 * BASE_LENGTH, Duty.Left_pwmduty, 5);
     ips200_show_int(64, 8 * BASE_LENGTH, Duty.Right_pwmduty, 5);

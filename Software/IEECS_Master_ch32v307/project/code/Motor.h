@@ -19,8 +19,8 @@
 
 #define MAXDUTY     20000                   //最大速度
 
-#define VR_KP       1.618f
-#define VT_KP       1.189f
+#define VR_KP       0.731f
+#define VT_KP       0.367f
 
 typedef struct SET_SPEED
 {

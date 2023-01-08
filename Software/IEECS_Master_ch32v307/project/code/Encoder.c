@@ -8,7 +8,7 @@
 #include "headfile.h"
 
 //定义存储编码器读数数组
-int16 encoder_master_data[2];
+static int16 encoder_master_data[2] = {0, 0};
 
 //-------------------------------------------------------------------------------------------------------------------
 //  @brief              主机编码器初始化
@@ -35,10 +35,15 @@ void Encoder_Master_Init(void){
 void Encoder_Master_Get(void){
 
     encoder_master_data[left_encoder]  = -encoder_get_count(ENCODER_LEFT_T);       //编码器取值
-    encoder_master_data[right_encoder] = encoder_get_count(ENCODER_RIGHT_R);     //编码器取值
-    if(encoder_master_data[left_encoder] != 0 || encoder_master_data[right_encoder] != 0)
-        CalcPos(encoder_master_data[left_encoder], encoder_master_data[right_encoder]);
+    encoder_master_data[right_encoder] = encoder_get_count(ENCODER_RIGHT_R);       //编码器取值
     encoder_clear_count(ENCODER_LEFT_T);                                          //清空编码器
     encoder_clear_count(ENCODER_RIGHT_R);                                         //清空编码器
 }
 
+int16 Encoder_Left_Get(void){
+    return encoder_master_data[left_encoder];
+}
+
+int16 Encoder_Right_Get(void){
+    return encoder_master_data[right_encoder];
+}

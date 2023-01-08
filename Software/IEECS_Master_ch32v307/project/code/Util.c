@@ -62,3 +62,9 @@ void Clear_Array(uint8 *array, uint8 len){
     }
 }
 
+void Copy_Array(uint8 *source, uint8 *target, int length){
+    for(int i = 0; i < length; ++i){
+        *(target + i) = *(source + i);
+    }
+}
+

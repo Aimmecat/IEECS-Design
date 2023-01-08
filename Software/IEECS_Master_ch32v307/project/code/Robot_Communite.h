@@ -23,12 +23,6 @@
 #define MAX_ERROR_SIP_TIMES    20
 
 typedef enum{
-    _RECEIVE_SIP_SUCCESS = 0,
-    _RECEIVE_CHECKSUM_ERROR,
-    _RECEIVING
-}RECEIVE_STATE;
-
-typedef enum{
     _UART_OK = 0,
     _UART_PROCESS,
     _UART_RECEIVING,
@@ -47,20 +41,20 @@ extern ROBOT_CONNECT_STATE robot_connect_state;
 
 extern bool check_sum_error;
 
-extern uint8* sip_receive_info;
-
-extern uint8 sip_receive_error_times;
+extern uint8 *sip_receive_info;
 
 void Add_SIP_Info(uint8* stander_sip_info);
 void Add_IO_Info(uint8* stander_io_info);
 void Robot_Communite_Init(void);
 void USART2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
-uint8* Add_Checksum(uint8* sip_info);
+void Add_Checksum(uint8* sip_info);
 
-RECEIVE_STATE Receive_Sip(uint8 dat,uint8* sip_receive_array);
+bool Receive_Sip(uint8 dat,uint8* sip_receive_array);
 
 bool Start_Robot_Connection_Sync(void);
 bool Keep_Robot_Communite(void);
+
+void Send_Info(void);
 
 #endif /* ROBOT_COMMUNITE_H_ */

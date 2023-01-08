@@ -6,15 +6,20 @@ from soar.io_cx import io
 
 class MySMClass(sm.SM):
     def getNextValues(self, state, inp):
-        print("{:.2f}".format(inp.sonars[0]),
-              "{:.2f}".format(inp.sonars[1]),
-              "{:.2f}".format(inp.sonars[2]),
-              "{:.2f}".format(inp.sonars[3]),
-              "{:.2f}".format(inp.sonars[4]),
-              "{:.2f}".format(inp.sonars[5]),
-              "{:.2f}".format(inp.sonars[6]),
-              "{:.2f}".format(inp.sonars[7]))
-        return (state, io.Action(fvel = 0.0, rvel = 0))
+        # print("{:.2f}".format(inp.sonars[0]),
+        #       "{:.2f}".format(inp.sonars[1]),
+        #       "{:.2f}".format(inp.sonars[2]),
+        #       "{:.2f}".format(inp.sonars[3]),
+        #       "{:.2f}".format(inp.sonars[4]),
+        #       "{:.2f}".format(inp.sonars[5]),
+        #       "{:.2f}".format(inp.sonars[6]),
+        #       "{:.2f}".format(inp.sonars[7]))
+
+        distance = (inp.sonars[3] + inp.sonars[4]) / 2;
+
+        v = distance - 0.3;
+
+        return (state, io.Action(fvel = v, rvel = 0.0))
 
 mySM = MySMClass()
 mySM.name = 'brainSM'

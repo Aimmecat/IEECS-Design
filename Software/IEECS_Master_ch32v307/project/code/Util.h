@@ -16,5 +16,6 @@
 uint16 Calc_Check_Sum(uint8* data);
 void Clear_Sip_Data(uint8 *data, uint8 len);
 void Clear_Array(uint8 *array, uint8 len);
+void Copy_Array(uint8 *source, uint8 *target, int length);
 
 #endif /* UTIL_H_ */

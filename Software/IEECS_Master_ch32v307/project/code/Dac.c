@@ -15,6 +15,6 @@ void Dac_Init(void){
 }
 
 void Dac_Output(void){
-    pwm_set_duty(DAC_OUTPUT1, (int)(voltage * KP_VOLTAGE));
-    pwm_set_duty(DAC_OUTPUT2, (int)(voltage * KP_VOLTAGE));
+    pwm_set_duty(DAC_OUTPUT1, (uint32)(voltage * KP_VOLTAGE));
+    pwm_set_duty(DAC_OUTPUT2, (uint32)(voltage * KP_VOLTAGE));
 }

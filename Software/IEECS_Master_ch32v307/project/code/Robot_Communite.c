@@ -7,9 +7,6 @@
 
 #include "headfile.h"
 
-//接受数据状态标志 当为UART_OK时允许接受数据
-uint8 uart_state = UART_OK;
-
 //连接状态
 ROBOT_CONNECT_STATE robot_connect_state = _CLOSE_CONNECT;
 
@@ -17,10 +14,7 @@ ROBOT_CONNECT_STATE robot_connect_state = _CLOSE_CONNECT;
 bool check_sum_error = true;
 
 //解析SIP包指针
-uint8* sip_receive_info = NULL;
-
-//解析SIP包错误次数
-uint8 sip_receive_error_times = 0;
+uint8 *sip_receive_info;
 
 //-------------------------------------------------------------------------------------------------------------------
 //  @brief              初始化通讯串口
@@ -44,12 +38,11 @@ void Robot_Communite_Init(void){
 //  @return             null
 //  Sample usage:       Add_Checksum(sip_info)
 //-------------------------------------------------------------------------------------------------------------------
-uint8* Add_Checksum(uint8* sip_info){
+void Add_Checksum(uint8* sip_info){
     int len = sip_info[2] + 3;
     int16 checksum = Calc_Check_Sum(sip_info);
     sip_info[len - 2] = checksum >> 8;
     sip_info[len - 1] = checksum & 0xff;
-    return sip_info;
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -129,10 +122,16 @@ void Add_IO_Info(uint8* stander_io_info){
 //  @return             bool 是否接受完当前的sip包
 //  Sample usage:       Receive_Sip(dat)
 //-------------------------------------------------------------------------------------------------------------------
-RECEIVE_STATE Receive_Sip(uint8 dat,uint8* sip_receive_array){
+bool Receive_Sip(uint8 dat,uint8* sip_receive_array){
 
     static uint8 cnt = 0;
     static uint8 start_receive_flag = -1;
+
+    if(cnt > RECEIVE_MAXLEN - 1){
+        cnt = 0;
+        start_receive_flag = -1;
+        return false;
+    }
 
     if(dat == FIRST_HEAD || (start_receive_flag == 0 && dat == SECOND_HEAD)){
         start_receive_flag++;
@@ -148,19 +147,14 @@ RECEIVE_STATE Receive_Sip(uint8 dat,uint8* sip_receive_array){
         //校验SIP包
         if( (checksum >> 8) == *(sip_receive_array + sip_receive_array[2] + 1) && (checksum & 0xff) == *(sip_receive_array + sip_receive_array[2] + 2) ){
             check_sum_error = false;
-            sip_receive_error_times = 0;
-            return _RECEIVE_SIP_SUCCESS;
-        }else{
-            sip_receive_error_times += 1;
-            if(sip_receive_error_times > MAX_ERROR_SIP_TIMES){
-                check_sum_error = true;
-                return _RECEIVE_CHECKSUM_ERROR;
-            }
-            check_sum_error = false;
-            return _RECEIVE_SIP_SUCCESS;
+            return true;
+        }
+        else{
+            check_sum_error = true;
+            return false;
         }
     }
-    return _RECEIVING;
+    return false;
 }
 
 
@@ -176,22 +170,23 @@ bool Start_Robot_Connection_Sync(void){
     static CMD_SYNC sync = CMD_SYNC0;
     static bool start_pulse = false;
     if(sync != CMD_SYNC_READY && sip_receive_info[2] != 0){
-        if(*(sip_receive_info + ARCOS_CMD_INDEX) == CMD_SYNC2 && sync == CMD_SYNC2){
-            uint8 sync2_array[] = {0xFA,0xFB,19,CMD_SYNC2,80,105,111,110,101,101,114,0,99,120,0,50,48,59,57,0,0,0};
-            uart_write_buffer(UART_ROBOT, Add_Checksum(sync2_array), sync2_array[2] + 3);
-            sync = CMD_SYNC_READY;
-            start_pulse = true;
-            robot_connect_state = _SYNC2_SUCCESS;
+        if(*(sip_receive_info + ARCOS_CMD_INDEX) == CMD_SYNC0 && sync == CMD_SYNC0){
+            uart_write_buffer(UART_ROBOT, sip_receive_info, sip_receive_info[2] + 3);
+            sync = CMD_SYNC1;
+            robot_connect_state = _SYCN0_SUCCESS;
         }
         else if(*(sip_receive_info + ARCOS_CMD_INDEX) == CMD_SYNC1 && sync == CMD_SYNC1){
             uart_write_buffer(UART_ROBOT, sip_receive_info, sip_receive_info[2] + 3);
             sync = CMD_SYNC2;
             robot_connect_state = _SYNC1_SUCCESS;
         }
-        else if(*(sip_receive_info + ARCOS_CMD_INDEX) == CMD_SYNC0 && sync == CMD_SYNC0){
-            uart_write_buffer(UART_ROBOT, sip_receive_info, sip_receive_info[2] + 3);
-            sync = CMD_SYNC1;
-            robot_connect_state = _SYCN0_SUCCESS;
+        else if(*(sip_receive_info + ARCOS_CMD_INDEX) == CMD_SYNC2 && sync == CMD_SYNC2){
+            uint8 sync2_array[22] = {0xFA,0xFB,19,CMD_SYNC2,80,105,111,110,101,101,114,0,99,120,0,50,48,59,57,0,0,0};
+            Add_Checksum(sync2_array);
+            uart_write_buffer(UART_ROBOT, sync2_array, sync2_array[2] + 3);
+            sync = CMD_SYNC_READY;
+            start_pulse = true;
+            robot_connect_state = _SYNC2_SUCCESS;
         }
     }
     if(start_pulse){
@@ -200,7 +195,8 @@ bool Start_Robot_Connection_Sync(void){
         }
         else if(*(sip_receive_info + ARCOS_CMD_INDEX) == ROBOT_PULSE){
             uart_write_buffer(UART_ROBOT, sip_receive_info, sip_receive_info[2] + 3);
-            uart_write_buffer(UART_ROBOT, Add_Checksum(standard_sip_info), standard_sip_info[2] + 3);
+            Add_Checksum(standard_sip_info);
+            uart_write_buffer(UART_ROBOT, standard_sip_info, standard_sip_info[2] + 3);
             start_pulse = false;
             sync = CMD_SYNC0;
             robot_connect_state = _KEEP_CONNECT;
@@ -221,53 +217,68 @@ bool Start_Robot_Connection_Sync(void){
 bool Keep_Robot_Communite(void){
 
     //解析数据包时静止全局中断 防止误接受数据
-    interrupt_global_disable();
+    interrupt_disable(USART2_IRQn);
 
     if(*(sip_receive_info + ARCOS_CMD_INDEX) == ROBOT_VEL){
         //接受设置直线速度
+        int Vt;
         if(*(sip_receive_info + ARG_TYPE_INDEX) == ARGINT){
-            Controlspeed.Vt = (((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5);
+            Vt = (((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5);
         }
         else if(*(sip_receive_info + ARG_TYPE_INDEX) == ARGNINT){
-            Controlspeed.Vt = -((((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5));
+            Vt = -((((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5));
         }
+        if(Abs(Vt) < 500)
+            Controlspeed.Vt = Vt;
     }
     else if(*(sip_receive_info + ARCOS_CMD_INDEX) == ROBOT_RVEL){
         //接受设置的角速度
+        int Vr;
         if(*(sip_receive_info + ARG_TYPE_INDEX) == ARGINT){
-            Controlspeed.Vr = (((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5);
+            Vr = (((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5);
         }
         else if(*(sip_receive_info + ARG_TYPE_INDEX) == ARGNINT){
-            Controlspeed.Vr = -((((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5));
+            Vr = -((((int16)(*(sip_receive_info + 6))) << 8) | *(sip_receive_info + 5));
         }
+        if(Abs(Vr) < 29)
+            Controlspeed.Vr = Vr;
     }
     else if(*(sip_receive_info + ARCOS_CMD_INDEX) == ROBOT_DIGOUT){
         //接受设置的电压信息
-        voltage = *(sip_receive_info + 5);
+        int v;
+        v = *(sip_receive_info + 5);
+        if(v <= 255)
+            voltage = v;
     }
     else if(*(sip_receive_info + ARCOS_CMD_INDEX) == ROBOT_CLOSE){
         //接受到停止信息
         robot_connect_state = _CLOSE_CONNECT;
-        Controlspeed.Vt = 0;
-        Controlspeed.Vr = 0;
+        Motor_Set_Speed(0, 0);
         sip_receive_info = NULL;
+//        Clear_Array(sip_receive_info, RECEIVE_MAXLEN);
 
         //解析完毕准备返回 打开全局中断
-        interrupt_global_enable();
+        interrupt_enable(USART2_IRQn);
         return true;
     }
 
     //解析完毕准备返回 打开全局中断
+//    Clear_Array(sip_receive_info, RECEIVE_MAXLEN);
     sip_receive_info = NULL;
-    interrupt_global_enable();
+    interrupt_enable(USART2_IRQn);
 
-//    if(!gpio_get(UART_ROBOT_RTS)){
-//        Add_SIP_Info(standard_sip_info);
-//        uart_write_buffer(UART_ROBOT, Add_Checksum(standard_sip_info), SIP_LEN);
-//        Add_IO_Info(standard_io_info);
-//        uart_write_buffer(UART_ROBOT, Add_Checksum(standard_io_info), IO_LEN);
-//    }
     return false;
+}
+
+void Send_Info(void){
+    if(!gpio_get(UART_ROBOT_RTS)){
+        Add_SIP_Info(standard_sip_info);
+        Add_Checksum(standard_sip_info);
+        uart_write_buffer(UART_ROBOT, standard_sip_info, SIP_LEN);
+        Add_IO_Info(standard_io_info);
+        Add_Checksum(standard_io_info);
+        uart_write_buffer(UART_ROBOT, standard_io_info, IO_LEN);
+    }
 }
 
 
@@ -283,27 +294,19 @@ void USART2_IRQHandler(void)
 {
     uint8 dat;
     //设置接收地址
-    static uint8* store_sip_info_point = sip_receive_info_One;
+    static uint8 *store_sip_info_point = sip_receive_info_One;
     //返回接受状态
-    RECEIVE_STATE receive_state;
+    bool receive_state;
     if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET){
-        if(uart_state == UART_OK){
-            dat = USART_ReceiveData(USART2);
-            receive_state = Receive_Sip(dat,store_sip_info_point);
-            //接收且过校验了
-            if(receive_state == _RECEIVE_SIP_SUCCESS){
-                //把带有数据的指针赋给全局访问接收sip包的指针
-                sip_receive_info = store_sip_info_point;
-                //切换存本地储地址
-                store_sip_info_point = (store_sip_info_point == sip_receive_info_One) ? sip_receive_info_Two : sip_receive_info_One;
-            }
-            //接收的没过校验 清空重新接收
-            else if(receive_state == _RECEIVE_CHECKSUM_ERROR){
-                Clear_Array(store_sip_info_point, RECEIVE_MAXLEN);
-            }
-            else{
-                ;//接受中
-            }
+        dat = USART_ReceiveData(USART2);
+        receive_state = Receive_Sip(dat,store_sip_info_point);
+        //接收且过校验了
+        if(receive_state){
+            //把带有数据的指针赋给全局访问接收sip包的指针
+            sip_receive_info = store_sip_info_point;
+        }
+        else{
+            ;//接受中或没通过校验
         }
         USART_ClearITPendingBit(USART2, USART_IT_RXNE);     //清除串口接收中断标志位
     }

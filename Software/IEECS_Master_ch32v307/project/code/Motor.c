@@ -38,9 +38,12 @@ void Motor_All_Init(void){
 //-------------------------------------------------------------------------------------------------------------------
 void Motor_Set_Duty(void){
 
-    Duty.Left_pwmduty  +=  PID_Control(&Pid_Left_Motor ,  *(encoder_master_data + left_encoder ) , Expspeed.Left_expspeed );
+    int16 left_encoder_num = Encoder_Left_Get();
+    int16 right_encoder_num = Encoder_Right_Get();
 
-    Duty.Right_pwmduty +=  PID_Control(&Pid_Right_Motor,  *(encoder_master_data + right_encoder) , Expspeed.Right_expspeed);
+    Duty.Left_pwmduty  +=  PID_Control(&Pid_Left_Motor ,  left_encoder_num , Expspeed.Left_expspeed );
+
+    Duty.Right_pwmduty +=  PID_Control(&Pid_Right_Motor,  right_encoder_num , Expspeed.Right_expspeed);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -68,8 +71,8 @@ void Motor_Speed_Limit(int16 max_pwm_duty){
 //-------------------------------------------------------------------------------------------------------------------
 void Moter_Move(void){
 
-    Duty.Left_pwmduty   > 0     ?   gpio_set(MOTOR_L_DIR, DIR_0) : gpio_set(MOTOR_L_DIR, DIR_1);
-    Duty.Right_pwmduty  > 0     ?   gpio_set(MOTOR_R_DIR, DIR_1) : gpio_set(MOTOR_R_DIR, DIR_0);
+    Duty.Left_pwmduty   > 0     ?   gpio_set(MOTOR_L_DIR, DIR_1) : gpio_set(MOTOR_L_DIR, DIR_0);
+    Duty.Right_pwmduty  > 0     ?   gpio_set(MOTOR_R_DIR, DIR_0) : gpio_set(MOTOR_R_DIR, DIR_1);
 
     pwm_set_duty(MOTOR_L_PWM, Duty.Left_pwmduty  > 0 ? Duty.Left_pwmduty    : -Duty.Left_pwmduty  );
     pwm_set_duty(MOTOR_R_PWM, Duty.Right_pwmduty > 0 ? Duty.Right_pwmduty   : -Duty.Right_pwmduty );
@@ -86,8 +89,8 @@ void Moter_Move(void){
 //-------------------------------------------------------------------------------------------------------------------
 void Motor_Set_Expect_Speed(void){
 
-    Expspeed.Left_expspeed    =   +(int16)(Controlspeed.Vt * VT_KP) - (int16)(VR_KP * Controlspeed.Vr);
-    Expspeed.Right_expspeed   =   +(int16)(Controlspeed.Vt * VT_KP) + (int16)(VR_KP * Controlspeed.Vr);
+    Expspeed.Left_expspeed    =   +(int16)(Controlspeed.Vt * VT_KP - VR_KP * Controlspeed.Vr);
+    Expspeed.Right_expspeed   =   +(int16)(Controlspeed.Vt * VT_KP + VR_KP * Controlspeed.Vr);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -117,6 +120,7 @@ void Motor_Control(void){
 
     Motor_Set_Expect_Speed();
     Encoder_Master_Get();
+    CalcPos();
     Motor_Set_Duty();
     Motor_Speed_Limit(MAXDUTY);
     Moter_Move();

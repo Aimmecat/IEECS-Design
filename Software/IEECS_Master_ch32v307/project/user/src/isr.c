@@ -269,7 +269,7 @@ void TIM1_UP_IRQHandler(void)
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
-
+        Motor_Control();
     }
 }
 
@@ -279,7 +279,6 @@ void TIM2_IRQHandler(void)
     if(TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
     {
        TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
-       Motor_Control();
     }
 }
 

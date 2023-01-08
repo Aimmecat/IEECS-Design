@@ -16,8 +16,8 @@
 #define LIDAR_MIN_DISTANCE  0.08
 #define LIDAR_MAX_DISTANCE  0.8
 
-#define TranseAd(x)         (x * 0.0008056f)
-#define Transe2Distance(x)  (0.276 * pow(x, -0.6629) * exp(-0.194 * x))
+#define TranseAd(x)         ((x) * 0.0008056f)
+#define Transe2Distance(x)  (0.276 * pow((x), -0.6629) * exp(-0.194 * (x)))
 
 #define SONAR0_AD    ADC_IN3_A3
 #define SONAR1_AD    ADC_IN2_A2

@@ -20,15 +20,12 @@
 #define ENCODER_RIGHT_B  TIM9_CH2_ENCOEDER_D11
 #define ENCODER_RIGHT_A  TIM9_CH1_ENCOEDER_D9
 
-//外部调用编码器数组
-extern int16 encoder_master_data[2];
-
-
 //允许计算标志
 extern uint8 roll_flag;
 
-
 void Encoder_Master_Init(void);
 void Encoder_Master_Get(void);
+int16 Encoder_Left_Get(void);
+int16 Encoder_Right_Get(void);
 
 #endif /* ENCODER_H_ */

@@ -33,7 +33,6 @@ typedef enum{
     _ADJUST_NUM,
 }KEY_SETTING_STATE;
 
-
 extern uint32 parameter[];
 
 void Menu_Init(void);

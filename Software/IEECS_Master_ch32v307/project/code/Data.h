@@ -18,7 +18,7 @@
 #define ARCOS_CMD_INDEX 3
 #define ARG_TYPE_INDEX  4
 
-#define RECEIVE_MAXLEN      20
+#define RECEIVE_MAXLEN      10
 
 #define SIP_LEN    49
 #define IO_LEN  31
@@ -91,9 +91,9 @@ typedef enum{
 } ARCOS_CMD;
 
 extern uint8 sip_receive_info_One[RECEIVE_MAXLEN];
-extern uint8 sip_receive_info_Two[RECEIVE_MAXLEN];
-extern uint8 standard_sip_info[SIP_LEN];
-extern uint8 standard_io_info[IO_LEN];
+//extern uint8 sip_receive_info_Two[RECEIVE_MAXLEN];
+extern uint8 standard_sip_info[];
+extern uint8 standard_io_info[];
 
 extern uint8 voltage;
 

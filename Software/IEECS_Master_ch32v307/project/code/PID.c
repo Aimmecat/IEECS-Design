@@ -8,8 +8,8 @@
 #include "headfile.h"
 
 //定义轮子的PI参数
-int16   Left_Motor[2]   = {10,2};          //左前轮
-int16   Right_Motor[2]  = {10,2};          //右前轮
+int16   Left_Motor[2]   = {100,10};          //左前轮
+int16   Right_Motor[2]  = {100,10};          //右前轮
 
 
 //定义四个轮子的PID结构体

@@ -9,13 +9,13 @@
 
 //用于接收soar传输的指令
 uint8 sip_receive_info_One[RECEIVE_MAXLEN];
-uint8 sip_receive_info_Two[RECEIVE_MAXLEN];
+//uint8 sip_receive_info_Two[RECEIVE_MAXLEN];
 
 uint8 voltage;
 
 
 //标注*表示soar缺省值 后续观察若无必要可在soar中对应删除
-uint8 standard_sip_info[SIP_LEN] = {
+uint8 standard_sip_info[] = {
       FIRST_HEAD,                               //Head_first                0
       SECOND_HEAD,                              //Head_second               1
       46,                                       //Len                       2
@@ -79,7 +79,7 @@ uint8 standard_sip_info[SIP_LEN] = {
 };
 
 //soar中只使用了analogInputs 5 6 7 8
-uint8 standard_io_info[IO_LEN] = {
+uint8 standard_io_info[] = {
       FIRST_HEAD,                               //Head_first                0
       SECOND_HEAD,                              //Head_second               1
       28,                                       //Len                       2
